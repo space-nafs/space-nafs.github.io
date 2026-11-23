@@ -171,7 +171,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .simbar input{flex:1;accent-color:var(--gold)}
 
 /* adhan */
-.adhan{background:linear-gradient(180deg,#352c44 0%,#4f4259 50%,#6c5b69 100%);color:#fff;text-align:center;align-items:center}
+.adhan{background:linear-gradient(180deg,#2b3240 0%,#465264 50%,#5f6b7c 100%);color:#fff;text-align:center;align-items:center}
 .adhan .pl{display:inline-flex;align-items:center;gap:6px;background:#ffffff26;border-radius:18px;padding:7px 14px;font-size:13px;font-weight:600;margin-top:22px}
 .adhan .big{font:700 70px var(--disp);line-height:1.2;margin-top:6px}
 .wave{display:flex;gap:4px;align-items:center;height:60px;justify-content:center;margin-top:34px}
@@ -370,7 +370,7 @@ button.ap{color:#fff;font-family:var(--ui)}
 .hero.sky-duha,.mini.sky-duha{background:linear-gradient(180deg,#3a566d 0%,#57748a 60%,#7790a1 100%)}
 .hero.sky-dhuhr,.mini.sky-dhuhr{background:linear-gradient(180deg,#33566b 0%,#4e6f84 60%,#6e8899 100%)}
 .hero.sky-asr,.mini.sky-asr{background:linear-gradient(180deg,#34514f 0%,#4f6b68 60%,#6e8580 100%)}
-.hero.sky-maghrib,.mini.sky-maghrib{background:linear-gradient(180deg,#352c44 0%,#4f4259 60%,#6c5b69 100%)}
+.hero.sky-maghrib,.mini.sky-maghrib{background:linear-gradient(180deg,#2b3240 0%,#465264 60%,#5f6b7c 100%)}
 .hero.sky-isha,.mini.sky-isha{background:linear-gradient(180deg,#141c2c 0%,#1e283b 100%)}
 .hero,.mini{color:#eeece6}
 .hero .cd{color:#f1efe9;font-weight:700}
@@ -439,7 +439,7 @@ button.ap{color:#fff;font-family:var(--ui)}
 .tdark .hero.sky-duha,.tdark .mini.sky-duha{background:linear-gradient(180deg,#22313f,#334656 60%,#455869)}
 .tdark .hero.sky-dhuhr,.tdark .mini.sky-dhuhr{background:linear-gradient(180deg,#1f3341,#2f4555 60%,#405667)}
 .tdark .hero.sky-asr,.tdark .mini.sky-asr{background:linear-gradient(180deg,#203332,#304644 60%,#425855)}
-.tdark .hero.sky-maghrib,.tdark .mini.sky-maghrib{background:linear-gradient(180deg,#241e30,#352d40 60%,#473c4a)}
+.tdark .hero.sky-maghrib,.tdark .mini.sky-maghrib{background:linear-gradient(180deg,#1e232c,#2c3440 60%,#3a4350)}
 .tdark .hero.sky-isha,.tdark .mini.sky-isha{background:linear-gradient(180deg,#121722,#1a2130)}
 /* prayer timeline card v3 */
 .tl{margin:-14px 6px 0;position:relative;z-index:3;padding:16px 10px 10px;overflow:hidden;border-radius:22px}
@@ -786,7 +786,7 @@ function adhkarFor(p){
   if(p==='Fajr') L.push({id:'ilm',title:'سؤال العلم النافع',tag:'دعاء',special:'خاص بالفجر',sub:'رواه ابن ماجه',count:1,text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا',size:27,src:'رواه ابن ماجه (925) عن أم سلمة رضي الله عنها',gnote:'يقوله بعد السلام من صلاة الفجر.'});
   return L;
 }
-const PGRAD={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#352c44,#6a5468)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
+const PGRAD={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#2b3240,#556274)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
 
 /* ============ storage ============ */
 const LS={get(k,d){try{const v=localStorage.getItem('miqat.'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('miqat.'+k,JSON.stringify(v))}catch(e){}}};
@@ -1021,7 +1021,7 @@ const PI={
  Isha:`<path d="M18.5 14.8A7.5 7.5 0 019.2 5.5a7 7 0 109.3 9.3z" fill="currentColor" fill-opacity=".28"/><path d="M16 3.5l.45 1.05 1.05.45-1.05.45L16 6.5l-.45-1.05L14.5 5l1.05-.45zM20 8l.35.8.8.35-.8.35L20 10.3l-.35-.8-.8-.35.8-.35z" fill="currentColor" stroke-width="1"/>`,
 };
 const PIc=(p,s=20)=>`<svg class="i" viewBox="0 0 24 24" style="width:${s}px;height:${s}px">${PI[p]}</svg>`;
-const PCOL={Fajr:'#6b78c4',Sunrise:'#9a8a7e',Dhuhr:'#3d8fbf',Asr:'#3f9a8c',Maghrib:'#c0607a',Isha:'#5a6fb8'};
+const PCOL={Fajr:'#6b78c4',Sunrise:'#9a8a7e',Dhuhr:'#3d8fbf',Asr:'#3f9a8c',Maghrib:'#6e7d93',Isha:'#5a6fb8'};
 function period(st){const T=st.T,n=st.now.secs;if(n<toSec(T.Fajr))return 'isha';if(n<toSec(T.Sunrise))return 'fajr';if(n<toSec(T.Dhuhr))return 'duha';if(n<toSec(T.Asr))return 'dhuhr';if(n<toSec(T.Maghrib))return 'asr';if(n<toSec(T.Isha))return 'maghrib';return 'isha'}
 const QA={
  qibla:`<circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".14"/><circle cx="12" cy="12" r="9"/><path d="M15.8 8.2l-2.3 5.3-5.3 2.3 2.3-5.3z" fill="currentColor" fill-opacity=".35"/>`,
