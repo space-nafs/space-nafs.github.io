@@ -580,9 +580,9 @@ const PGRAD={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradie
 
 /* ============ storage ============ */
 const LS={get(k,d){try{const v=localStorage.getItem('miqat.'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('miqat.'+k,JSON.stringify(v))}catch(e){}}};
-const DEF={theme:'dark',loc:null,method:19,school:0,tune:{Fajr:0,Dhuhr:0,Asr:0,Maghrib:0,Isha:0},hijriAdj:0,sound:'calm',remind:true,font:1,
+const DEF={appearance:'light',loc:null,method:19,school:0,tune:{Fajr:0,Dhuhr:0,Asr:0,Maghrib:0,Isha:0},hijriAdj:0,sound:'calm',remind:true,font:1,
   notif:{Fajr:{on:true,type:'fajr',before:10,after:25},Dhuhr:{on:true,type:'full',before:10,after:15},Asr:{on:true,type:'full',before:10,after:15},Maghrib:{on:true,type:'full',before:10,after:15},Isha:{on:true,type:'short',before:10,after:15}}};
-let S=Object.assign({},DEF,LS.get('settings',{}));if(!S.theme)S.theme='dark';
+let S=Object.assign({},DEF,LS.get('settings',{}));delete S.theme;if(!S.appearance)S.appearance='light';
 const save=()=>LS.set('settings',S);
 let DONE=LS.get('done',{});      // {'YYYY-MM-DD':['Fajr',...]}
 let OFFSET=0;                    // test clock offset ms
@@ -704,8 +704,8 @@ let cleanups=[];function cleanup(){cleanups.forEach(f=>f());cleanups=[]}
 function render(){
   const f=SCREENS[R.name];if(!f)return;
   let html=f(R.params);
-  if(S.theme==='dark')html=html.replace(/class="pt light"/g,'class="pt dark"').replace(/class="light"/g,'class="dark"');
-  $s.innerHTML=html;document.getElementById('phone').classList.toggle('tdark',S.theme==='dark');
+  if(S.appearance==='dark')html=html.replace(/class="pt light"/g,'class="pt dark"').replace(/class="light"/g,'class="dark"');
+  $s.innerHTML=html;document.getElementById('phone').classList.toggle('tdark',S.appearance==='dark');
   const sbar=document.getElementById('sbar');
   sbar.style.color=['splash','home','qibla','adhan','lock','counter','done'].includes(R.name)&&(R.name!=='home'||true)?'#fff':'#1b2333';
   if(['onboard','timings','month','adhkar','settings','notifs'].includes(R.name))sbar.style.color='#1b2333';
@@ -1244,7 +1244,7 @@ SCREENS.settings=()=>{
   <div class="sec">أذكار ما بعد الصلاة</div>
   <div class="card grp">
    <button class="srow" onclick="S.remind=!S.remind;save();askNotif();render()"><span class="ico">${I('tap')}</span><span class="tx"><b>تذكير بالأذكار بعد كل صلاة</b><small>بعد 15–25 د من الأذان حسب الصلاة</small></span><span class="tgl ${S.remind?'on':''}"></span></button>
-   ${row('moon','المظهر',S.theme==='dark'?'داكن مطفي (مريح للعين)':'فاتح',"S.theme=S.theme==='dark'?'light':'dark';save();render()",'')}
+   ${row('moon','المظهر',S.appearance==='dark'?'داكن مطفي':'فاتح',"S.appearance=S.appearance==='dark'?'light':'dark';save();render()",'')}
    ${row('font','حجم خط الأذكار',['صغير','متوسط','كبير'][S.font-1],"S.font=S.font%3+1;save();render()",'')}
   </div>
   <div class="sec">${I('flask','15')} وضع الاختبار</div>
