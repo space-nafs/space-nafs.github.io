@@ -1152,7 +1152,7 @@ SCREENS.home=()=>{
   const off=!G.online;const nb=S.notif;const dn=DONE[k]||[];
   const rows=prayerTL(st);
   const L=S.loc||{};const q=qiblaDeg();
-  return `<div class="${dark?'dark':'light'}" style="flex:1;display:flex;flex-direction:column;min-height:0;position:relative">
+  return `<div class="light" style="flex:1;display:flex;flex-direction:column;min-height:0;position:relative">
   <div class="mini pt sky-${period(st)}" id="mini" onclick="document.querySelector('#screen .scroll').scrollTo({top:0,behavior:'smooth'})">
    <span class="mi">${PIc(nxt.p,22)}</span>
    <span class="mt"><b>${pname(nxt.p,nxt.tomorrow?addDays(k,1):k)} <span class="num">${nxt.t}</span></b><small>${esc(L.label||'')}</small></span>
