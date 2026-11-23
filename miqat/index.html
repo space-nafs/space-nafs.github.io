@@ -610,6 +610,47 @@ button.ap{color:#fff;font-family:var(--ui)}
 .sb2 button:after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,#ffffff1c 50%,transparent 70%);animation:shim 3.5s infinite}
 .swh{text-align:center;font-size:11px;color:var(--muted);margin:2px 0 4px}
 .tdark .dark .apk .bd{border-color:#151a22}
+/* counter v2 */
+.cv2{flex:1;display:flex;flex-direction:column;min-height:0;color:#eef1f5;position:relative;overflow:hidden}
+.cv2 .orb{position:absolute;width:320px;height:320px;border-radius:50%;right:-120px;top:-120px;background:radial-gradient(#ffffff12,transparent 70%);animation:orb 12s ease-in-out infinite;pointer-events:none}
+.cv2 .chd b{color:#fff}.cv2 .chd small{color:#ffffffa0}.cv2 .ib{color:#fff;background:#ffffff14}
+.cv2 .segs i{background:#ffffff26;height:4px;transition:background .4s}
+.cv2 .segs i.d{background:#ffffffb0}.cv2 .segs i.c{background:#fff;box-shadow:0 0 0 1px #ffffff40}
+.cv2 .tapz{flex:1;display:flex;flex-direction:column;min-height:0;overflow-y:auto;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;position:relative}
+.gc{margin:0 12px;background:#ffffff12;border:1px solid #ffffff1f;border-radius:24px;padding:14px 16px 12px;backdrop-filter:blur(6px)}
+.gc.enter{animation:gcin .45s cubic-bezier(.3,1.2,.5,1)}
+@keyframes gcin{from{opacity:0;transform:translateX(-40px) scale(.97)}}
+.gc .tags{display:flex;gap:6px;flex-wrap:wrap}
+.gc .chip{background:#ffffff1c;color:#fff;border:0;height:28px;font-size:12px}
+.gc .chip.k{background:#ffffff30;font-weight:700}
+.gc .dtext{color:#f4f6f9;margin:12px 0 4px}
+.gc .dtext .sur,.gc .dtext .bas,.gc .dtext .ist{color:#ffffffb8}
+.gc .dsrc{color:#ffffffa8;border-top:1px dashed #ffffff26;font-size:12px;display:flex;gap:8px;align-items:center;padding-top:10px;margin-top:8px}
+.gc .dnote{color:#ffffffc0}.gc .gn{color:#ffffffb0!important}
+.fd2{margin:8px 12px 0;font-size:12.5px;line-height:1.7;color:#ffffffc8;display:flex;gap:8px;padding:0 6px}
+.fd2 b{color:#fff}
+.cv2 .subchips .chip{background:#ffffff14;color:#ffffffc0;border:0}
+.cv2 .subchips .chip.cur{background:#ffffffe0;color:#2a3140}
+.cv2 .subchips .chip.ok{background:#6f9a8a66;color:#fff}
+.rw2{margin-top:auto;display:flex;flex-direction:column;align-items:center;padding:16px 0 6px}
+.rg3{position:relative;width:200px;height:200px}
+.rg3 svg{position:absolute;inset:0;width:100%;height:100%}
+.rg3 .bd{transition:fill .25s,r .25s}
+.rg3 .cn{position:absolute;inset:34px;border-radius:50%;background:radial-gradient(circle at 50% 30%,#ffffff2a,#ffffff0a);border:1px solid #ffffff22;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .1s}
+.rg3.press .cn{transform:scale(.94)}
+.rg3 .cn b{font:800 52px var(--num);line-height:1;color:#fff}
+.rg3 .cn b.bump{animation:bump .28s}
+@keyframes bump{40%{transform:scale(1.18)}}
+.rg3 .cn small{font-size:12px;color:#ffffffb0;margin-top:4px}
+.rg3.full .cn{background:radial-gradient(circle at 50% 30%,#6f9a8a88,#6f9a8a33);animation:pop .4s}
+.hint2{font-size:11.5px;color:#ffffff90;margin-top:10px;display:flex;align-items:center;gap:6px}
+.rip{position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#ffffff40;pointer-events:none;animation:rip .6s ease-out forwards;z-index:5}
+@keyframes rip{to{transform:scale(14);opacity:0}}
+.plus{direction:ltr;position:absolute;font:800 22px var(--num);color:#fff;pointer-events:none;animation:plus .8s ease-out forwards;z-index:6;text-shadow:0 2px 8px #0003}
+@keyframes plus{to{transform:translateY(-60px);opacity:0}}
+.cf2{display:flex;gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom))}
+.cf2 button{flex:1;height:46px;border-radius:16px;background:#ffffff14;color:#fff;font-size:13.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;transition:transform .12s,background .2s}
+.cf2 button:active{transform:scale(.95);background:#ffffff22}
 </style>
 </head>
 <body>
@@ -1457,6 +1498,49 @@ function count(){
   const doneItem=a.parts?a.parts.every((pp,k)=>c[k]>=pp.n):c[0]>=a.count;
   render();
   if(doneItem){if(navigator.vibrate)navigator.vibrate([30,40,30]);setTimeout(()=>{if(R.name!=='counter')return;if(C.i<C.list.length-1){C.i++;render()}else finishAdhkar()},380)}
+}
+
+SCREENS.counter=()=>{
+  const a=C.list[C.i];const c=C.cnt[C.i];const j=partIdx(a,c);
+  const part=a.parts?a.parts[j]:null;const n=part?part.n:a.count;const v=c[j];
+  const tot=c.reduce((x,y)=>x+y,0);const fsz=(part&&part.size||a.size||24)*[0.85,1,1.18][C.fs-1];
+  let text;
+  if(part&&part.sur){const s=SUR[part.sur];text=`<span class="sur">${s.n}</span><span class="bas">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>${s.t}`}
+  else if(part)text=part.t;else text=(a.ist?'<span class="ist">أعوذ بالله من الشيطان الرجيم</span>':'')+a.text;
+  const timesTag=n===1?'مرة واحدة':n===3?'ثلاث مرات':n===10?'عشر مرات':`${a.count} عدة`;
+  const enter=C.shown!==C.i+'.'+j;C.shown=C.i+'.'+j;const bump=C.bump;C.bump=false;
+  // bead ring
+  const R1=92,full=v>=n;let ring='';
+  if(a.once){ring=`<circle cx="100" cy="100" r="${R1}" fill="none" stroke="#ffffff22" stroke-width="3"/>`}
+  else if(n<=40){for(let k=0;k<n;k++){const an=(k/n)*2*Math.PI-Math.PI/2;const x=100+R1*Math.cos(an),y=100+R1*Math.sin(an);ring+=`<circle class="bd" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${k<v?(n<=10?6:3.6):(n<=10?4.5:2.6)}" fill="${k<v?'#ffffffe6':'#ffffff33'}"/>`}}
+  else{const L=2*Math.PI*R1;ring=`<circle cx="100" cy="100" r="${R1}" fill="none" stroke="#ffffff22" stroke-width="6"/><circle cx="100" cy="100" r="${R1}" fill="none" stroke="#ffffffd0" stroke-width="6" stroke-linecap="round" stroke-dasharray="${L}" stroke-dashoffset="${L*(1-v/n)}" transform="rotate(-90 100 100)" style="transition:stroke-dashoffset .2s"/>`}
+  return `<div class="cv2" style="background:${PGRAD[C.p]}"><div class="orb"></div>
+  <div class="chd"><button class="ib" onclick="C.fs=C.fs%3+1;S.font=C.fs;save();render()">${I('font')}</button><div class="c"><b>أذكار بعد ${PAR[C.p]}</b><small><span class="ltr">${C.i+1} / ${C.list.length}</span></small></div><button class="ib" onclick="STACK=[];go('adhkar',{p:C.p},false)">${I('x')}</button></div>
+  <div class="segs">${C.list.map((_,k)=>`<i class="${k<C.i?'d':k===C.i?'c':''}"></i>`).join('')}</div>
+  <div class="tapz" id="tapz" onclick="count(event)">
+   <div class="gc ${enter?'enter':''}">
+    <div class="tags"><span class="chip k">${a.tag}</span><span class="chip">${a.parts&&a.id==='tasbih'?'100 عدة':a.parts?a.count+' عدة':timesTag}</span>${a.special?`<span class="chip">${I('spark','14')} ${a.special}</span>`:''}</div>
+    <div class="dtext" style="font-size:${fsz}px">${text}</div>
+    ${a.note&&part&&j===0?`<div class="dnote">${a.note}</div>`:''}
+    <div class="dsrc">${I('book','16')}<span>${a.src}${a.gnote?`<span class="gn">${a.gnote}</span>`:''}</span></div>
+   </div>
+   ${a.fadl?`<div class="fd2">${I('star','16')}<span><b>الفضل:</b> ${a.fadl}</span></div>`:''}
+   ${a.parts?`<div class="subchips">${a.parts.map((pp,k)=>`<span class="chip ${k===j&&c[k]<pp.n?'cur':c[k]>=pp.n?'ok':''}">${c[k]>=pp.n?I('check','14'):''}${pp.l} <span class="num">${k===j&&c[k]<pp.n?c[k]+'/'+pp.n:pp.n}</span></span>`).join('')}</div>`:''}
+   <div class="rw2"><div class="rg3 ${full?'full':''}" id="rg3"><svg viewBox="0 0 200 200">${ring}</svg>
+     <div class="cn">${a.once?`${I('check','46','color:#fff;stroke-width:2.4')}<small style="margin-top:6px">اضغط عند الانتهاء</small>`:`<b class="num ${bump?'bump':''}">${v}</b><small>من ${n}</small>`}</div></div>
+    <div class="hint2">${I('vib','15')} المس أي مكان في الشاشة للعدّ${a.parts?` · المجموع <span class="num">${tot}/${a.count}</span>`:''}</div></div>
+  </div>
+  <div class="cf2"><button onclick="cPrev()">${I('chevR','18')} السابق</button><button onclick="cUndo()">${I('undo','18')} تراجع</button><button onclick="cNext()">تخطٍّ ${I('chevL','18')}</button></div></div>`;
+};
+function count(e){
+  const a=C.list[C.i],c=C.cnt[C.i],j=partIdx(a,c);const n=a.parts?a.parts[j].n:a.count;
+  if(c[j]>=n)return;
+  let px=null,py=null;if(e&&e.clientX!=null){const r=$s.getBoundingClientRect();px=e.clientX-r.left;py=e.clientY-r.top}
+  c[j]++;C.hist.push([C.i,j]);C.bump=true;if(navigator.vibrate)navigator.vibrate(12);
+  const doneItem=a.parts?a.parts.every((pp,k)=>c[k]>=pp.n):c[0]>=a.count;
+  render();
+  if(px!=null){const add=(cls,txt)=>{const d=document.createElement('div');d.className=cls;d.style.left=px+'px';d.style.top=py+'px';if(txt){d.textContent=txt;d.style.marginLeft='-10px';d.style.marginTop='-30px'}$s.appendChild(d);setTimeout(()=>d.remove(),850)};add('rip');add('plus','+1')}
+  if(doneItem){if(navigator.vibrate)navigator.vibrate([30,40,30]);setTimeout(()=>{if(R.name!=='counter')return;if(C.i<C.list.length-1){C.i++;render()}else finishAdhkar()},520)}
 }
 function cUndo(){const h=C.hist.pop();if(!h)return;C.i=h[0];C.cnt[h[0]][h[1]]--;render()}
 function cPrev(){if(C.i>0){C.i--;render()}}
