@@ -801,6 +801,40 @@ button.ap{color:#fff;font-family:var(--ui)}
 @keyframes ngf{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 .ngsh{display:flex;align-items:center;gap:5px;flex:none;padding:7px 11px;border-radius:12px;font-size:12px;font-weight:700;color:#3f5272;background:color-mix(in srgb,var(--bc) 13%,#fff)}
 .ngsh:active{transform:scale(.94)}
+
+/* adhkar / nawafil switch */
+.aseg{position:relative;display:flex;margin:0 14px 12px;padding:4px;border-radius:16px;background:color-mix(in srgb,#526780 10%,#fff);border:1px solid #e1e5ea}
+.aseg button{flex:1;position:relative;z-index:1;padding:9px 0;font-size:14px;font-weight:700;color:color-mix(in srgb,var(--ink) 62%,var(--card));transition:color .25s}
+.aseg button.on{color:#fff}
+.aseg .sgi{position:absolute;top:4px;bottom:4px;right:4px;width:calc(50% - 4px);border-radius:12px;background:#455a75;transform:translateX(calc(var(--i)*-100%));transition:transform .3s cubic-bezier(.3,.8,.3,1);box-shadow:0 2px 8px #2a314030}
+/* nawafil */
+.nh{margin:0 10px;border-radius:24px;padding:18px 18px 14px;color:#fff;background:linear-gradient(135deg,#34445e,#5a6f8c);animation:fade2 .35s}
+.nh .row{display:flex;align-items:center;gap:12px}.nh .row>div{flex:1}
+.nh small{font-size:12px;color:#dfe5ee;font-weight:600}.nh h2{font:700 22px var(--disp);margin:2px 0 6px}
+.nh p{font-size:12px;line-height:1.6;color:#eef2f6;font-weight:500}.nh p small{font-size:10.5px;color:#c4cedb}
+.nh .rg2{width:76px;height:76px;flex:none}.nh .rg2 text{fill:#fff;font:700 17px var(--num)}.nh .pg{transition:stroke-dashoffset .9s cubic-bezier(.3,.8,.3,1)}
+.nh .chips{display:flex;gap:6px;margin-top:10px}.nh .chips span{display:flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:10px;background:#ffffff1f}
+.nnow{display:flex;align-items:center;gap:8px;margin:12px 10px 0;padding:12px 14px;border-radius:16px;background:#fff;border:1px solid #e3e7ec;box-shadow:0 2px 10px #2a31400d;cursor:pointer}
+.nnow b{flex:1;font-size:13.5px}.nnow .nne{font:600 12px var(--num);color:#455a75}
+.nnow .dot{width:9px;height:9px;border-radius:50%;background:#4f8a75;box-shadow:0 0 0 4px #4f8a7522;animation:npl 1.8s ease-in-out infinite}
+@keyframes npl{50%{box-shadow:0 0 0 7px #4f8a7500}}
+.nsec{margin:18px 20px 8px;font-size:13px;font-weight:700;color:color-mix(in srgb,var(--ink) 62%,var(--card))}
+.nlist{display:flex;flex-direction:column;gap:10px;margin:0 10px}
+.nr{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:18px;background:#fff;border:1px solid #e3e7ec;box-shadow:0 2px 10px #2a31400d;animation:fade2 .35s both;transition:box-shadow .3s}
+.nr .sci{width:40px;height:40px;border-radius:13px;overflow:hidden;flex:none;box-shadow:0 2px 6px #2a314022}.nr .sci svg{width:100%;height:100%;display:block}
+.nr .nb{flex:1;min-width:0}
+.nr .nt{display:flex;align-items:baseline;justify-content:space-between;gap:8px}.nr .nt b{font-size:15px}.nr .nt span{font:600 13px var(--num);color:color-mix(in srgb,var(--ink) 65%,var(--card))}
+.nr .nd{font:600 12px var(--num);color:#455a75;margin-top:2px}
+.nr .nq{font-size:11.5px;line-height:1.55;margin-top:5px;color:color-mix(in srgb,var(--ink) 68%,var(--card));font-weight:500}.nr .nq small{font-size:10px;opacity:.8}
+.nch{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.nc{display:flex;align-items:center;gap:6px;padding:7px 11px 7px 12px;border-radius:12px;font-size:12.5px;font-weight:700;color:#3f5272;background:color-mix(in srgb,var(--pc) 10%,#fff);border:1px solid color-mix(in srgb,var(--pc) 22%,transparent);transition:transform .15s,background .25s}
+.nc:active{transform:scale(.93)}
+.nc .ck{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;border:1.6px solid color-mix(in srgb,var(--pc) 45%,#8796ad);color:#fff;transition:all .25s}
+.nc.on{background:#455a75;color:#fff;border-color:transparent}.nc.on .ck{background:#4f8a75;border-color:#4f8a75;animation:nck .35s}
+@keyframes nck{40%{transform:scale(1.3)}}
+.ntg{width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;align-self:center;color:#8796ad;border:1.6px solid #d5dbe3;background:#fff;transition:all .25s}
+.ntg:active{transform:scale(.9)}.ntg.on{background:#4f8a75;border-color:#4f8a75;color:#fff;animation:nck .35s}
+.nr.cur{box-shadow:0 0 0 2px color-mix(in srgb,#455a75 45%,transparent),0 2px 10px #2a31400d}
 </style>
 </head>
 <body>
@@ -1068,11 +1102,11 @@ function render(){
   $s.innerHTML=html;document.getElementById('phone').classList.toggle('tdark',S.appearance==='dark');
   const sbar=document.getElementById('sbar');
   sbar.style.color=['splash','home','qibla','adhan','lock','counter','done'].includes(R.name)&&(R.name!=='home'||true)?'#fff':'#1b2333';
-  if(['onboard','timings','month','adhkar','settings','notifs'].includes(R.name))sbar.style.color='#1b2333';
+  if(['onboard','timings','month','adhkar','nawafil','settings','notifs'].includes(R.name))sbar.style.color='#1b2333';
   if(R.name==='home'&&G.day===null)sbar.style.color='#1b2333';
   const h=AFTER[R.name];if(h)h(R.params);
 }
-function refresh(){if(['home','timings','month','settings','notifs','adhkar'].includes(R.name)){const sc=$s.querySelector('.scroll');const st=sc?sc.scrollTop:0;render();const sc2=$s.querySelector('.scroll');if(sc2)sc2.scrollTop=st}}
+function refresh(){if(['home','timings','month','settings','notifs','adhkar','nawafil'].includes(R.name)){const sc=$s.querySelector('.scroll');const st=sc?sc.scrollTop:0;render();const sc2=$s.querySelector('.scroll');if(sc2)sc2.scrollTop=st}}
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.getElementById('phone').appendChild(e);setTimeout(()=>e.remove(),2600)}
 let NAVI=0;
 function nav(cur){
@@ -1397,7 +1431,7 @@ function toggleBell(p){S.notif[p].on=!S.notif[p].on;save();if(S.notif[p].on)askN
 let lastNext=null,lastKey=null;
 function tick(){
   const st=state();if(!st)return;
-  ngTick(st);tlTick(st);const c2=document.getElementById('cd2');if(c2)c2.textContent=fmtCd(st.nxt.secs);const el=document.getElementById('cd');if(el){el.textContent=CDMODE?`${pad(st.now.h)}:${pad(st.now.mi)}:${pad(st.now.s)}`:fmtCd(st.nxt.secs);el.classList.toggle('clk',CDMODE)}
+  ngTick(st);nafTick();tlTick(st);const c2=document.getElementById('cd2');if(c2)c2.textContent=fmtCd(st.nxt.secs);const el=document.getElementById('cd');if(el){el.textContent=CDMODE?`${pad(st.now.h)}:${pad(st.now.mi)}:${pad(st.now.s)}`:fmtCd(st.nxt.secs);el.classList.toggle('clk',CDMODE)}
   const lb=document.querySelector('.hero .lbl');if(lb)lb.textContent=CDMODE?'الوقت الآن':`${pname(st.nxt.p,st.nxt.tomorrow?addDays(st.now.key,1):st.now.key)} بعد`;
   // day rollover
   if(lastKey&&lastKey!==st.now.key){lastKey=st.now.key;loadAll().then(refresh);return}
@@ -1637,6 +1671,7 @@ SCREENS.adhkar=(p)=>{
       <span class="bx"><span class="tt"><b>${a.title}</b>${ct}</span>${pv?`<div class="pv">${pv}</div>`:''}<div class="mt"><span>${a.sub}</span>${a.special?`<span class="sp">${a.special}</span>`:''}</div></span></button>`}).join('');
   return `<div class="pt light" style="flex:1;display:flex;flex-direction:column;min-height:0">
   <div class="hdr"><h1>أذكار ما بعد الصلاة</h1><button class="ib" style="font:700 16px var(--num)" onclick="S.font=S.font%3+1;save();toast('حجم الخط: '+['صغير','متوسط','كبير'][S.font-1])">A+</button></div>
+  <div class="aseg"><span class="sgi" style="--i:0"></span><button class="on" onclick="if(navigator.vibrate)navigator.vibrate(5);STACK=[];go('adhkar',{},false)">أذكار الصلاة</button><button class="" onclick="if(navigator.vibrate)navigator.vibrate(5);STACK=[];go('nawafil',{},false)">النوافل</button></div>
   <div class="scroll" id="asc">
    <div class="apk">${pk}</div>
    <div class="ah2" style="background:${PGRAD[cur]}"><div class="orb"></div>
@@ -1657,6 +1692,51 @@ AFTER.adhkar=()=>{
   sc.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)<60||Math.abs(dy)>Math.abs(dx))return;
     const cur=R.params.p||lastPrayer();const i=PR.indexOf(cur);const j=dx>0?i+1:i-1;if(j<0||j>=PR.length)return;R.params.p=PR[j];if(navigator.vibrate)navigator.vibrate(5);render()},{passive:true});
 };
+
+/* nawafil */
+let NAF=LS.get('naf',{});
+const RAW=[{k:'Fajr-b',p:'Fajr',w:'قبل',n:2,t:'ركعتا الفجر خير من الدنيا وما فيها',src:'رواه مسلم'},
+ {k:'Dhuhr-b',p:'Dhuhr',w:'قبل',n:4},{k:'Dhuhr-a',p:'Dhuhr',w:'بعد',n:2},
+ {k:'Maghrib-a',p:'Maghrib',w:'بعد',n:2},{k:'Isha-a',p:'Isha',w:'بعد',n:2}];
+function nafToggle(x){const k=tzNow().key;const a=new Set(NAF[k]||[]);a.has(x)?a.delete(x):a.add(x);NAF[k]=[...a];LS.set('naf',NAF);if(navigator.vibrate)navigator.vibrate(a.has(x)?[8,40,8]:6);
+  const sc=$s.querySelector('.scroll');const t=sc?sc.scrollTop:0;render();const s2=$s.querySelector('.scroll');if(s2)s2.scrollTop=t}
+function nafStreak(){let n=0,k=tzNow().key;const full=d=>RAW.every(r=>(NAF[d]||[]).includes(r.k));if(!full(k))k=addDays(k,-1);while(full(k)){n++;k=addDays(k,-1)}return n}
+function nafNow(st){const {now,T}=st;const s=now.secs,ts=x=>toSec(T[x]);
+  const dS=ts('Sunrise')+15*60,dE=ts('Dhuhr')-10*60;
+  if(s>=dS&&s<dE)return {k:'Duha',l:'وقت صلاة الضحى الآن',e:dE-s,el:'ينتهي بعد'};
+  if(s>=ts('Isha')||s<ts('Fajr')){const lt=ts('Lastthird');const inL=s>=lt&&s<ts('Fajr');return {k:'Witr',l:inL?'أنت في الثلث الأخير من الليل':'وقت قيام الليل والوتر',e:inL?ts('Fajr')-s:((lt-s)%86400+86400)%86400,el:inL?'يطلع الفجر بعد':'الثلث الأخير بعد'}}
+  if(s<dS&&s>=ts('Sunrise'))return {k:'Duha',l:'يبدأ وقت الضحى قريباً',e:dS-s,el:'يبدأ بعد'};
+  return null}
+SCREENS.nawafil=()=>{const st=state();const k=tzNow().key;const dn=NAF[k]||[];
+  if(!st)return `<div class="pt light" style="flex:1;display:flex;flex-direction:column;min-height:0"><div class="hdr"><h1>النوافل</h1></div>${'<div class="aseg"><span class="sgi" style="--i:1"></span><button class="" onclick="if(navigator.vibrate)navigator.vibrate(5);STACK=[];go(\'adhkar\',{},false)">أذكار الصلاة</button><button class="on" onclick="if(navigator.vibrate)navigator.vibrate(5);STACK=[];go(\'nawafil\',{},false)">النوافل</button></div>'}<div class="scroll"></div>${nav('adhkar')}</div>`;
+  const {T,now}=st;const rk=RAW.filter(r=>dn.includes(r.k)).reduce((a,r)=>a+r.n,0);const C=2*Math.PI*32;const sk=nafStreak();const nn=nafNow(st);
+  const grp=['Fajr','Dhuhr','Maghrib','Isha'].map((p,i)=>{const rs=RAW.filter(r=>r.p===p);const pas=toSec(T[p])<=now.secs;
+    return `<div class="nr" style="--pc:${PCOL[p]};animation-delay:${i*50}ms"><span class="sci">${PSc(p)}</span>
+      <div class="nb"><div class="nt"><b>${PAR[p]}</b><span>${hm(T[p])}</span></div>
+       <div class="nch">${rs.map(r=>{const on=dn.includes(r.k);return `<button class="nc ${on?'on':''}" onclick="nafToggle('${r.k}')"><span class="ck">${on?I('check','12','stroke-width:3.4'):''}</span>${r.n===2?'ركعتان':r.n+' ركعات'} ${r.w}ها</button>`}).join('')}</div>
+       ${rs[0].t?`<div class="nq">«${rs[0].t}» <small>${rs[0].src}</small></div>`:''}</div></div>`}).join('');
+  const dS=toSec(T.Sunrise)+900,dE=toSec(T.Dhuhr)-600;const f=x=>pad(Math.floor(x/3600))+':'+pad(Math.floor(x%3600/60));
+  const ex=[{k:'Duha',sc:PSc('Sunrise'),h:'صلاة الضحى',d:`من ${f(dS)} إلى ${f(dE)}`,m:'ركعتان على الأقل، وتجزئ عن الصدقة عن كل مفصل'},
+    {k:'Witr',sc:ILL('night'),h:'قيام الليل والوتر',d:`بعد العشاء حتى الفجر · أفضله من ${hm(T.Lastthird)}`,m:'الوتر ركعة على الأقل، ويُختم به قيام الليل'},
+    {k:'Asr-b',sc:PSc('Asr'),h:'أربع قبل العصر',d:`قبل ${hm(T.Asr)}`,m:'«رحم الله امرأً صلى قبل العصر أربعاً» رواه أبو داود والترمذي'}];
+  return `<div class="pt light" style="flex:1;display:flex;flex-direction:column;min-height:0">
+  <div class="hdr"><h1>النوافل</h1></div>
+  ${'<div class="aseg"><span class="sgi" style="--i:1"></span><button class="" onclick="if(navigator.vibrate)navigator.vibrate(5);STACK=[];go(\'adhkar\',{},false)">أذكار الصلاة</button><button class="on" onclick="if(navigator.vibrate)navigator.vibrate(5);STACK=[];go(\'nawafil\',{},false)">النوافل</button></div>'}
+  <div class="scroll">
+   <div class="nh"><div class="row"><div><small>السنن الرواتب اليوم</small><h2>${rk} من 12 ركعة</h2><p>«من صلى اثنتي عشرة ركعة في يوم وليلة بُني له بهن بيت في الجنة» <small>رواه مسلم</small></p></div>
+     <svg class="rg2" viewBox="0 0 76 76"><circle cx="38" cy="38" r="32" fill="none" stroke="#ffffff26" stroke-width="7"/><circle class="pg" id="nfr" cx="38" cy="38" r="32" fill="none" stroke="#ffffffd0" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" data-off="${(C*(1-rk/12)).toFixed(1)}" transform="rotate(-90 38 38)"/><text x="38" y="44" text-anchor="middle">${rk}/12</text></svg></div>
+    ${sk?`<div class="chips"><span>${I('check','14')} ${sk} ${sk===1?'يوم':'أيام'} متتالية</span></div>`:''}</div>
+   ${nn?`<div class="nnow" onclick="document.getElementById('nx-${nn.k}').scrollIntoView({behavior:'smooth',block:'center'})"><span class="dot"></span><b>${nn.l}</b><span class="nne">${nn.el} <span id="nncd" data-e="${nn.e}" data-t="${Date.now()}">⁦${fmtShort(nn.e)}⁩</span></span></div>`:''}
+   <div class="nsec">السنن الرواتب</div>
+   <div class="nlist">${grp}</div>
+   <div class="nsec">نوافل أخرى</div>
+   <div class="nlist">${ex.map((x,i)=>{const on=dn.includes(x.k);return `<div class="nr nx2 ${nn&&nn.k===x.k?'cur':''}" id="nx-${x.k}" style="animation-delay:${(i+4)*50}ms"><span class="sci">${x.sc}</span>
+      <div class="nb"><div class="nt"><b>${x.h}</b></div><div class="nd">${x.d}</div><div class="nq">${x.m}</div></div>
+      <button class="ntg ${on?'on':''}" onclick="nafToggle('${x.k}')" aria-label="صلّيت">${I('check','16','stroke-width:3')}</button></div>`}).join('')}</div>
+   <div class="swh">اضغط على الركعات بعد أدائها لتسجيلها</div>
+  </div>${nav('adhkar')}</div>`};
+AFTER.nawafil=()=>{requestAnimationFrame(()=>requestAnimationFrame(()=>{const r=document.getElementById('nfr');if(r)r.style.strokeDashoffset=r.dataset.off}))};
+function nafTick(){const c=document.getElementById('nncd');if(!c)return;const e=Math.max(0,+c.dataset.e-Math.floor((Date.now()-+c.dataset.t)/1000));c.textContent='⁦'+fmtShort(e)+'⁩';if(e<=0)render()}
 
 /* 11-15 counter */
 let C=null;
