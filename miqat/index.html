@@ -651,6 +651,61 @@ button.ap{color:#fff;font-family:var(--ui)}
 .cf2{display:flex;gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom))}
 .cf2 button{flex:1;height:46px;border-radius:16px;background:#ffffff14;color:#fff;font-size:13.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;transition:transform .12s,background .2s}
 .cf2 button:active{transform:scale(.95);background:#ffffff22}
+
+/* prayer card v3 — uniform columns + day line + detail panel */
+.pdh{display:flex;align-items:center;gap:10px;padding:0 6px 12px}
+.pdh h3{margin:0;font-size:15.5px;font-weight:700}.pdh small{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+.pdr{margin-right:auto;width:42px;height:42px;position:relative;flex:none}
+.pdr svg{width:100%;height:100%;transform:rotate(-90deg)}
+.pdr circle{fill:none;stroke:color-mix(in srgb,var(--muted) 18%,transparent);stroke-width:3.2}
+.pdr circle.v{stroke:#6f9a8a;stroke-linecap:round;stroke-dasharray:calc(var(--v)*100) 100;transition:stroke-dasharray .6s}
+.pdr b{position:absolute;inset:0;display:flex;align-items:baseline;justify-content:center;padding-top:12px;box-sizing:border-box;font:700 13px var(--num);direction:ltr;white-space:nowrap}.pdr b small{font-size:9px;color:var(--muted);font-weight:600}
+.pcs{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.pc{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px 9px;border-radius:16px;background:color-mix(in srgb,var(--pc) 6%,var(--card));border:1.5px solid transparent;position:relative;transition:transform .25s cubic-bezier(.3,1.4,.5,1),background .3s,border-color .3s;animation:pcin .45s both}
+@keyframes pcin{from{opacity:0;transform:translateY(8px)}}
+.tl.noanim .pc{animation:none}
+.pc:active{transform:scale(.95)}
+.pc .ci{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;color:color-mix(in srgb,var(--pc) 75%,#4a5262);background:color-mix(in srgb,var(--pc) 14%,var(--card));transition:all .3s}
+.pc .cn{font-size:12.5px;font-weight:600;color:var(--ink)}
+.pc .ct{font:600 13px var(--num);color:var(--muted)}
+.pc .mk{position:absolute;top:6px;left:6px;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;border:1.3px dashed color-mix(in srgb,var(--muted) 45%,transparent);color:transparent;transition:all .3s}
+.pc .mk.on{border:0;background:#6f9a8a;color:#fff;animation:pop .35s}
+.pc .mk.bl{border:0;color:color-mix(in srgb,var(--muted) 70%,transparent)}.pc .mk.bl.off{opacity:.55}
+.pc.ps .ci{filter:saturate(.55)}.pc.ps .cn{color:color-mix(in srgb,var(--ink) 65%,var(--card))}
+.pc.nx{background:color-mix(in srgb,var(--pc) 16%,var(--card));transform:translateY(-3px)}
+.pc.nx .ci{background:color-mix(in srgb,var(--pc) 50%,#5b6475);color:#fff}
+.pc.nx .ci svg{animation:bob 2.6s ease-in-out infinite}
+.pc.nx .cn{font-weight:700}.pc.nx .ct{color:var(--ink);font-weight:700}
+.pc.sel{border-color:color-mix(in srgb,var(--pc) 45%,transparent)}
+.pc.nx.sel{border-color:transparent}
+.pdl{position:relative;height:14px;margin:8px 0 4px}
+.pdl:before{content:'';position:absolute;right:10%;left:10%;top:6px;height:2px;border-radius:1px;background:color-mix(in srgb,var(--muted) 20%,transparent)}
+.pdl .fl{position:absolute;right:10%;top:6px;height:2px;border-radius:1px;background:#8796a8;transition:width 1s linear}
+.pdl .dt{position:absolute;top:3px;width:8px;height:8px;margin-right:-4px;border-radius:50%;background:var(--card);border:1.5px solid color-mix(in srgb,var(--muted) 40%,transparent);box-sizing:border-box}
+.pdl .dt.on{background:color-mix(in srgb,var(--pc) 60%,#8a96a8);border-color:transparent}
+.pdl .nw{position:absolute;top:1px;width:12px;height:12px;margin-right:-6px;border-radius:50%;background:#6c7d92;box-shadow:0 0 0 3px var(--card);transition:right 1s linear;animation:ping2 2.4s infinite}
+@keyframes ping2{0%{box-shadow:0 0 0 3px var(--card),0 0 0 3px #6c7d9255}70%{box-shadow:0 0 0 3px var(--card),0 0 0 9px transparent}100%{box-shadow:0 0 0 3px var(--card),0 0 0 3px transparent}}
+.pdd{margin-top:6px;padding:12px;border-radius:16px;background:color-mix(in srgb,var(--pc) 8%,var(--card));animation:pdin .35s both}
+@keyframes pdin{from{opacity:0;transform:translateY(6px)}}
+.pdd .dl{display:flex;align-items:center;gap:10px}
+.pdd .di{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--pc) 50%,#5b6475);color:#fff}
+.pdd .dx{flex:1;min-width:0}.pdd .dx small{display:block;font-size:11px;color:var(--muted)}.pdd .dx b{font-size:16px;font-weight:700}.pdd .dx b .num{font-weight:600;color:color-mix(in srgb,var(--ink) 75%,var(--card));margin-right:4px}
+.pdd .cd{font:700 20px var(--num);color:color-mix(in srgb,var(--pc) 55%,var(--ink));letter-spacing:.5px}
+.pdd .rl{font-size:12.5px;color:var(--muted);font-weight:600}
+.pdd .br{height:5px;border-radius:3px;background:color-mix(in srgb,var(--pc) 14%,transparent);margin-top:10px;overflow:hidden}
+.pdd .br i{display:block;height:100%;border-radius:3px;background:color-mix(in srgb,var(--pc) 55%,#8a96a8);transition:width 1s linear;position:relative;overflow:hidden}
+.pdd .br i:after{content:'';position:absolute;inset:0;background:linear-gradient(270deg,transparent,#ffffff55,transparent);animation:shim 2.8s infinite}
+.pdd .pb{margin-top:10px;width:100%;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13.5px;font-weight:600;border:1.5px dashed color-mix(in srgb,var(--muted) 40%,transparent);color:var(--muted);transition:all .3s}
+.pdd .pb.on{border:0;background:#6f9a8a;color:#fff}
+.pdd .da{display:flex;align-items:center;gap:6px;margin-top:8px}
+.pdd .sx{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.pdd .ib{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:color-mix(in srgb,var(--pc) 60%,var(--ink));background:color-mix(in srgb,var(--pc) 10%,var(--card))}
+.pdd .ib.off{color:var(--muted)}
+.tdark .dark .pc{background:color-mix(in srgb,var(--pc) 8%,#1c222c)}.tdark .dark .pc.nx{background:color-mix(in srgb,var(--pc) 20%,#1c222c)}
+.tdark .dark .pc .ci{background:color-mix(in srgb,var(--pc) 16%,#1c222c);color:color-mix(in srgb,var(--pc) 55%,#c9ced6)}
+.tdark .dark .pc.nx .ci,.tdark .dark .pdd .di{background:color-mix(in srgb,var(--pc) 50%,#2a3342);color:#e3e6ea}
+.tdark .dark .pdd{background:color-mix(in srgb,var(--pc) 12%,#1c222c)}
+.tdark .dark .pdd .cd{color:color-mix(in srgb,var(--pc) 40%,#c9ced6)}
 </style>
 </head>
 <body>
@@ -1076,38 +1131,46 @@ function addMin(t,m){const s=toSec(t)+m*60;return `${pad(Math.floor(s/3600)%24)}
 function sharePrayer(p){const t=`${pname(p,tzNow().key)} — ${hm(G.day.timings[p])} · ${(S.loc||{}).label||''}\n— ميقات`;if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard&&navigator.clipboard.writeText(t);toast('نُسخ الوقت')}}
 
 let PRAYED=LS.get('prayed',{}),TLANIM=true;
+let PSEL=null;
+function pdPos(st){const {now,T}=st;const t=PR.map(p=>toSec(T[p]));if(now.secs<t[0])return 0;for(let i=0;i<4;i++)if(now.secs<t[i+1])return (i+(now.secs-t[i])/(t[i+1]-t[i]))/4;return 1}
+function pdSel(p){PSEL=PSEL===p?null:p;if(navigator.vibrate)navigator.vibrate(6);render()}
 function prayerTL(st){
   const {now,T,nxt}=st;const k=now.key;const nb=S.notif;const pd=PRAYED[k]||[];const dn=DONE[k]||[];
-  const passed=PR.filter(p=>toSec(T[p])<=now.secs);
-  const segs=PR.map(p=>`<i class="${pd.includes(p)?'on':''}"></i>`).join('');
-  const head=`<div class="tlh"><div><h3>صلوات اليوم</h3><small>${passed.length?'اضغط الدائرة عند أداء الصلاة':'يومك يبدأ مع الفجر'}</small></div><div class="sg">${segs}<b>${pd.length}/5</b></div></div>`;
-  const rows=ORD6.map((p,idx)=>{
-    const s=toSec(T[p]);const isN=p===nxt.p&&!nxt.tomorrow;const past=s<=now.secs;const op=OPEN===p;const sun=p==='Sunrise';
-    // rail fill: full for past rows, partial (to "now") for the next row
-    let fl='',nw='';
-    if(past)fl=`<span class="fl" style="height:calc(100% + 16px)"></span>`;
-    if(isN){const pv=idx>0?toSec(T[ORD6[idx-1]]):0;const f=Math.max(0,Math.min(1,(now.secs-pv)/(s-pv)));fl=`<span class="fl" id="tlfl" style="height:calc(${(f*50).toFixed(1)}% + 8px)"></span>`;nw=`<span class="nw" id="tlnw" style="top:${(f*50).toFixed(1)}%"></span>`}
-    let ac,sub='';
-    if(sun){sub='ليس وقت صلاة';ac=''}
-    else if(past){const on=pd.includes(p);ac=`<button class="ac pr ${on?'on':''}" onclick="event.stopPropagation();markPrayed('${p}')" aria-label="صليت">${I('check','18','stroke-width:2.6')}</button>`;sub=on?(dn.includes(p)?'صلّيت · أتممت الأذكار':'صلّيت، تقبّل الله'):'هل صلّيت؟'}
-    else{ac=`<button class="ac ${nb[p].on?'':'off'}" onclick="event.stopPropagation();toggleBell('${p}')">${I(nb[p].on?'bellf':'belloff','19')}</button>`;if(!isN)sub=rel(s-now.secs)}
-    let nx='';
-    if(isN){const pv=idx>0?toSec(T[ORD6[idx-1]]):0;const f=Math.max(0,Math.min(1,(now.secs-pv)/(s-pv)));
-      nx=`<div class="nx"><div class="ln"><span>الصلاة القادمة${nb[p].on&&nb[p].before?` · تنبيه قبلها ${nb[p].before} د`:''}</span><b id="tlcd" class="num">${fmtCd(nxt.secs)}</b></div><div class="br"><i id="tlbar" style="width:${(f*100).toFixed(1)}%"></i></div></div>`}
-    return `<div class="tr ${idx?'':'f'} ${isN?'next':''} ${past&&!sun?'past':''} ${sun?'sun':''} ${sun&&past?'gone':''} ${op?'open':''}" onclick="rowTap('${p}')" style="--pc:${PCOL[p]};animation-delay:${idx*55}ms">
-      <span class="rail">${fl}<span class="dt"></span>${nw}</span>
-      <span class="ic">${PIc(p,sun?17:isN?24:21)}</span>
-      <span class="tx"><div class="nm">${pname(p,k)}${sun?`<span class="sb">${sub}</span>`:''}</div>${!sun&&sub?`<div class="sb">${sub}</div>`:''}</span>
-      <span class="tm">${hm(T[p])}</span>${ac}${nx}
-      ${op?rowPanel(p,st):''}</div>`}).join('');
+  const nP=nxt.tomorrow?null:nxt.p;const sel=PSEL||nP;
+  const pos=pdPos(st);
+  const head=`<div class="pdh"><div><h3>صلوات اليوم</h3><small>${pd.length===5?'أتممت صلوات اليوم، تقبّل الله':'اضغط على الصلاة لتفاصيلها'}</small></div>
+    <div class="pdr" style="--v:${pd.length/5}"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15"/><circle class="v" cx="18" cy="18" r="15" pathLength="100"/></svg><b class="num">${pd.length}<small>/5</small></b></div></div>`;
+  const cols=PR.map((p,i)=>{const s=toSec(T[p]);const past=s<=now.secs;const on=pd.includes(p);
+    const st2=p===nP?'nx':past?'ps':'ft';
+    const mark=past?`<span class="mk ${on?'on':''}">${I('check','12','stroke-width:3')}</span>`:`<span class="mk bl ${nb[p].on?'':'off'}">${I(nb[p].on?'bellf':'belloff','11')}</span>`;
+    return `<button class="pc ${st2} ${sel===p?'sel':''}" style="--pc:${PCOL[p]};animation-delay:${i*50}ms" onclick="pdSel('${p}')">
+      <span class="ci">${PIc(p,p===nP?22:19)}</span><span class="cn">${pname(p,k)}</span><span class="ct num">${hm(T[p])}</span>${mark}</button>`}).join('');
+  const line=`<div class="pdl"><i class="fl" id="pdfl" style="width:${(pos*80).toFixed(2)}%"></i>${PR.map((p,i)=>`<i class="dt ${toSec(T[p])<=now.secs?'on':''}" style="right:${10+i*20}%;--pc:${PCOL[p]}"></i>`).join('')}<i class="nw" id="pdnw" style="right:${(10+pos*80).toFixed(2)}%"></i></div>`;
+  // detail panel
+  let det;
+  if(!sel){const tm=G.tomorrow?G.tomorrow.timings:T;
+    det=`<div class="pdd" style="--pc:${PCOL.Fajr}"><div class="dl"><span class="di">${PIc('Fajr',22)}</span><div class="dx"><small>الصلاة القادمة · غدًا</small><b>الفجر <span class="num">${hm(tm.Fajr)}</span></b></div><b class="cd num" id="tlcd">${fmtCd(nxt.secs)}</b></div>
+      <div class="br"><i id="tlbar" style="width:${(Math.max(0,Math.min(1,1-nxt.secs/(86400-toSec(T.Isha)+toSec(tm.Fajr))))*100).toFixed(1)}%"></i></div></div>`}
+  else{const p=sel;const s=toSec(T[p]);const past=s<=now.secs;const on=pd.includes(p);const isN=p===nP;
+    let mid,act;
+    if(isN){const i=PR.indexOf(p);const pv=i?toSec(T[PR[i-1]]):0;const f=Math.max(0,Math.min(1,(now.secs-pv)/(s-pv)));
+      mid=`<b class="cd num" id="tlcd">${fmtCd(nxt.secs)}</b>`;
+      act=`<div class="br"><i id="tlbar" style="width:${(f*100).toFixed(1)}%"></i></div>`}
+    else if(past){mid=`<span class="rl">${rel(s-now.secs)}</span>`;
+      act=`<button class="pb ${on?'on':''}" onclick="markPrayed('${p}')">${I('check','16','stroke-width:2.6')} ${on?(dn.includes(p)?'صلّيت · أتممت الأذكار':'صلّيت، تقبّل الله'):'هل صلّيت؟ اضغط للتأكيد'}</button>`}
+    else{mid=`<span class="rl">${rel(s-now.secs)}</span>`;act=''}
+    const sub=isN?'الصلاة القادمة':past?'مضت':'لاحقًا';
+    const extra=p==='Fajr'?`<span class="sx">${PIc('Sunrise',13)} الشروق <span class="num">${hm(T.Sunrise)}</span></span>`:'';
+    det=`<div class="pdd" style="--pc:${PCOL[p]}"><div class="dl"><span class="di">${PIc(p,22)}</span><div class="dx"><small>${sub}${nb[p].on&&nb[p].before?` · تنبيه قبلها ${nb[p].before} د`:''}</small><b>${pname(p,k)} <span class="num">${hm(T[p])}</span></b></div>${mid}</div>
+      ${act}<div class="da">${extra}<span style="flex:1"></span><button class="ib ${nb[p].on?'':'off'}" onclick="toggleBell('${p}')" aria-label="تنبيه">${I(nb[p].on?'bellf':'belloff','17')}</button><button class="ib" onclick="sharePrayer('${p}')" aria-label="مشاركة">${I('share','16')}</button></div></div>`}
   setTimeout(()=>{TLANIM=false},700);
-  return head+rows;
+  return head+`<div class="pcs">${cols}</div>`+line+det;
 }
 function markPrayed(p){const k=tzNow().key;const a=PRAYED[k]||(PRAYED[k]=[]);const i=a.indexOf(p);if(i>=0)a.splice(i,1);else{a.push(p);toast('تقبّل الله منك 🤍')}LS.set('prayed',PRAYED);if(navigator.vibrate)navigator.vibrate(i>=0?6:[8,40,8]);render()}
-function tlTick(st){const c=document.getElementById('tlcd');if(!c)return;c.textContent=fmtCd(st.nxt.secs);
-  const i=ORD6.indexOf(st.nxt.p);const s=toSec(st.T[st.nxt.p]);const pv=i>0?toSec(st.T[ORD6[i-1]]):0;const f=Math.max(0,Math.min(1,(st.now.secs-pv)/(s-pv)));
-  const b=document.getElementById('tlbar');if(b)b.style.width=(f*100).toFixed(2)+'%';
-  const fl=document.getElementById('tlfl');if(fl)fl.style.height=`calc(${(f*50).toFixed(1)}% + 8px)`;const nw=document.getElementById('tlnw');if(nw)nw.style.top=(f*50).toFixed(1)+'%'}
+function tlTick(st){const pos=pdPos(st);const fl=document.getElementById('pdfl');if(fl)fl.style.width=(pos*80).toFixed(2)+'%';const nw=document.getElementById('pdnw');if(nw)nw.style.right=(10+pos*80).toFixed(2)+'%';
+  const c=document.getElementById('tlcd');if(!c)return;c.textContent=fmtCd(st.nxt.secs);const b=document.getElementById('tlbar');if(!b)return;
+  if(st.nxt.tomorrow){const tm=G.tomorrow?G.tomorrow.timings:st.T;b.style.width=(Math.max(0,Math.min(1,1-st.nxt.secs/(86400-toSec(st.T.Isha)+toSec(tm.Fajr))))*100).toFixed(2)+'%';return}
+  const i=PR.indexOf(st.nxt.p);const s=toSec(st.T[st.nxt.p]);const pv=i>0?toSec(st.T[PR[i-1]]):0;b.style.width=(Math.max(0,Math.min(1,(st.now.secs-pv)/(s-pv)))*100).toFixed(2)+'%'}
 
 const WDS=['أحد','إثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];
 function homeBento(st){
