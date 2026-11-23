@@ -667,6 +667,26 @@ html.matte .rg3 .cn{background:#ffffff10}html.matte .rg3.full .cn{background:#6f
 html.matte .nx .br i:after,html.matte .sb2 button:after{display:none}
 html.matte .sb2 .pi,html.matte .tr.next .rail .dt{animation:none!important;box-shadow:none!important}
 html.matte .rip{background:#ffffff22}
+
+/* FLAT mode (html.flat): zero glow — solid colours, no gradients, shadows or glowing animations */
+html.flat .hero.sky-fajr,html.flat .mini.sky-fajr{background:#3e465b}
+html.flat .hero.sky-duha,html.flat .mini.sky-duha{background:#465869}
+html.flat .hero.sky-dhuhr,html.flat .mini.sky-dhuhr{background:#415868}
+html.flat .hero.sky-asr,html.flat .mini.sky-asr{background:#415755}
+html.flat .hero.sky-maghrib,html.flat .mini.sky-maghrib{background:#3f4653}
+html.flat .hero.sky-isha,html.flat .mini.sky-isha{background:#222936}
+html.flat .hero,html.flat .mini{color:#cdd2d8}html.flat .hero .cd{color:#d2d6db}html.flat .cv2{color:#d6dae0}html.flat .cv2 .dtext,html.flat .rg3 .cn b{color:#dde0e5}html.flat .arc path,html.flat .arc circle{opacity:.85}
+html.flat .hero .deco,html.flat .stars,html.flat .orb,html.flat .sunp,html.flat .arc [fill="url(#glow)"]{display:none!important}
+html.flat .arc circle[fill="#e9e6dc"]{fill:#c3c9d1;stroke:none}
+html.flat .adhan{background:#3f4653}html.flat .lock{background:#2f3441}
+html.flat *{box-shadow:none!important;text-shadow:none!important}
+html.flat *:after{animation:none!important}
+html.flat .sunp,html.flat .sb2 .pi,html.flat .rail .dt,html.flat .tr.next .ic svg,html.flat .ah2 .orb,html.flat .cv2 .orb{animation:none!important}
+html.flat .nx .br i:after,html.flat .sb2 button:after{display:none}
+html.flat .rg3 .cn{background:#ffffff0e}html.flat .rg3.full .cn{background:#6f9a8a4d;animation:none}
+html.flat .rip{display:none}
+html.flat .gc{backdrop-filter:none;background:#ffffff10}
+html.flat .btn.gold,html.flat .sb2 button{background-image:none!important}
 </style>
 </head>
 <body>
@@ -804,8 +824,12 @@ function adhkarFor(p){
 }
 const PGRAD_GLOW={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#2b3240,#556274)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
 const PGRAD_MATTE={Fajr:'linear-gradient(135deg,#3b4258,#444c62)',Dhuhr:'linear-gradient(135deg,#3e5566,#465d6d)',Asr:'linear-gradient(135deg,#3e5452,#465c5a)',Maghrib:'linear-gradient(135deg,#3c4350,#454c59)',Isha:'linear-gradient(135deg,#1f2633,#272e3b)'};
+const PGRAD_FLAT={Fajr:'#3e465b',Dhuhr:'#415868',Asr:'#415755',Maghrib:'#3f4653',Isha:'#222936'};
 const PGRAD={};
-function applyMatte(){Object.assign(PGRAD,S.matte?PGRAD_MATTE:PGRAD_GLOW);document.documentElement.classList.toggle('matte',!!S.matte)}
+function glowMode(){return S.glow||(S.matte===false?'glow':'matte')}
+function applyMatte(){const m=glowMode();Object.assign(PGRAD,m==='flat'?PGRAD_FLAT:m==='matte'?PGRAD_MATTE:PGRAD_GLOW);const c=document.documentElement.classList;c.toggle('matte',m==='matte'||m==='flat');c.toggle('flat',m==='flat')}
+function cycleGlow(){const o=['glow','matte','flat'];S.glow=o[(o.indexOf(glowMode())+1)%3];save();applyMatte();render();toast('التوهّج: '+GLOWL[S.glow])}
+const GLOWL={glow:'مع توهّج',matte:'مطفي',flat:'بلا توهّج نهائياً'};
 
 /* ============ storage ============ */
 const LS={get(k,d){try{const v=localStorage.getItem('miqat.'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('miqat.'+k,JSON.stringify(v))}catch(e){}}};
@@ -1608,7 +1632,7 @@ SCREENS.settings=()=>{
   <div class="sec">أذكار ما بعد الصلاة</div>
   <div class="card grp">
    <button class="srow" onclick="S.remind=!S.remind;save();askNotif();render()"><span class="ico">${I('tap')}</span><span class="tx"><b>تذكير بالأذكار بعد كل صلاة</b><small>بعد 15–25 د من الأذان حسب الصلاة</small></span><span class="tgl ${S.remind?'on':''}"></span></button>
-   ${row('spark','التوهّج',S.matte?'مطفي (بلا توهّج)':'مع توهّج',"S.matte=!S.matte;save();applyMatte();render()",'')}
+   ${row('spark','التوهّج',GLOWL[glowMode()]+' · اضغط للتبديل',"cycleGlow()",'')}
    ${row('moon','المظهر',S.appearance==='dark'?'داكن مطفي':'فاتح',"S.appearance=S.appearance==='dark'?'light':'dark';save();render()",'')}
    ${row('font','حجم خط الأذكار',['صغير','متوسط','كبير'][S.font-1],"S.font=S.font%3+1;save();render()",'')}
   </div>
