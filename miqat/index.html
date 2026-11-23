@@ -775,6 +775,32 @@ button.ap{color:#fff;font-family:var(--ui)}
 .tdark .dark .bt::before{background:color-mix(in srgb,var(--bc) 16%,#1c222c)}
 
 .bt.noq::before,.bt.lr::before{display:none}
+
+/* night timings card */
+.bt.ng::before{display:none}
+.nrl{margin:2px 2px 10px}
+.nrt{position:relative;height:6px;border-radius:3px;background:color-mix(in srgb,var(--bc) 14%,#fff);margin:10px 0 6px}
+.nrt>i{position:absolute;right:0;top:0;bottom:0;border-radius:3px;background:linear-gradient(270deg,#55698a,#2f3d58);transition:width 1s linear}
+.nrt .nm{position:absolute;top:-3px;width:2px;height:12px;border-radius:1px;background:#8796ad;transform:translateX(50%)}
+.nrd{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #2f3d58;transform:translate(50%,-50%);box-shadow:0 0 0 4px color-mix(in srgb,#2f3d58 14%,transparent);transition:right 1s linear}
+.nrd.off{display:none}
+.nrlb{display:flex;justify-content:space-between;font:600 10.5px var(--num);color:color-mix(in srgb,var(--ink) 62%,var(--card))}
+.ngs{display:flex;gap:8px}
+.ngi{flex:1;border-radius:16px;padding:9px 4px 8px;text-align:center;background:color-mix(in srgb,var(--bc) 8%,#fff);border:1px solid color-mix(in srgb,var(--bc) 16%,transparent);transition:transform .15s,background .25s,box-shadow .25s}
+.ngi:active{transform:scale(.94)}
+.ngi .mi{display:block;width:26px;height:26px;border-radius:9px;overflow:hidden;margin:0 auto 4px;box-shadow:0 2px 5px #2a314022}.ngi .mi svg{width:100%;height:100%;display:block}
+.ngi small{display:block;font-size:11px;font-weight:600;color:color-mix(in srgb,var(--ink) 70%,var(--card))}
+.ngi b{display:block;font:700 17px var(--num);color:var(--ink);margin:1px 0}
+.ngi em{display:block;font:600 10.5px var(--num);font-style:normal;color:#455a75;min-height:14px}
+.ngi.on{box-shadow:0 0 0 2px color-mix(in srgb,#455a75 55%,transparent)}
+.ngi.nx{background:#455a75;border-color:transparent}.ngi.nx small,.ngi.nx em{color:#e8edf3}.ngi.nx b{color:#fff}
+.ngi.nx.on{box-shadow:0 0 0 2px #fff,0 0 0 4px color-mix(in srgb,#455a75 60%,transparent)}
+.nghb{display:flex;align-items:center;gap:8px;margin-top:10px}
+.ngh{flex:1;font-size:12px;font-weight:600;color:color-mix(in srgb,var(--ink) 72%,var(--card));line-height:1.5}
+.ngh.fl{animation:ngf .35s ease}
+@keyframes ngf{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.ngsh{display:flex;align-items:center;gap:5px;flex:none;padding:7px 11px;border-radius:12px;font-size:12px;font-weight:700;color:#3f5272;background:color-mix(in srgb,var(--bc) 13%,#fff)}
+.ngsh:active{transform:scale(.94)}
 </style>
 </head>
 <body>
@@ -1271,6 +1297,27 @@ const DECO={
  beads:`<svg class="dco bl" viewBox="0 0 120 70" aria-hidden="true">${[...Array(14)].map((_,i)=>{const a=(200+i*11)*Math.PI/180;return `<circle cx="${(60+52*Math.cos(a)).toFixed(1)}" cy="${(70+52*Math.sin(a)).toFixed(1)}" r="4.2" fill="#4f7891"/>`}).join('')}</svg>`,
  cal:`<svg class="dco tl" viewBox="0 0 120 60" aria-hidden="true"><path d="M30 8a16 16 0 1019 19 18 18 0 01-19-19z" fill="#526780"/><circle cx="62" cy="14" r="2.2" fill="#526780"/><circle cx="80" cy="30" r="1.6" fill="#526780"/><circle cx="96" cy="12" r="2.6" fill="#526780"/><circle cx="110" cy="38" r="1.4" fill="#526780"/></svg>`,
  night:`<svg class="dco tl" viewBox="0 0 120 50" aria-hidden="true"><circle cx="14" cy="12" r="2" fill="#5a6f8c"/><circle cx="34" cy="30" r="1.4" fill="#5a6f8c"/><circle cx="56" cy="10" r="1.8" fill="#5a6f8c"/><circle cx="78" cy="26" r="1.2" fill="#5a6f8c"/></svg>`};
+let NSEL=null;
+const NK=['Imsak','Midnight','Lastthird'];
+const NHINT={Imsak:'موعد التوقف عن السحور، قبل أذان الفجر بقليل',Midnight:'آخر الوقت المختار لصلاة العشاء',Lastthird:'وقت قيام الليل والاستغفار والدعاء'};
+function nightData(st){const {now,T}=st;const tm=G.tomorrow?G.tomorrow.timings:T;
+  const at=x=>{const v=toSec((x==='Imsak'&&toSec(T.Imsak)<=now.secs&&now.secs>=toSec(T.Fajr))?tm.Imsak:T[x]);return {t:v,left:((v-now.secs)%86400+86400)%86400}};
+  const it=NK.map(x=>({k:x,...at(x)}));const nx=it.reduce((a,b)=>b.left<a.left?b:a);
+  let s0,e0;if(now.secs<toSec(T.Fajr)){s0=toSec(T.Maghrib)-86400;e0=toSec(T.Fajr)}else{s0=toSec(T.Maghrib);e0=86400+toSec(tm.Fajr)}
+  const P=v=>{let x=v;if(x<s0)x+=86400;if(x>e0)x-=86400;return Math.max(0,Math.min(1,(x-s0)/(e0-s0)))};
+  return {it,nx,pos:P(now.secs),pm:P(toSec(T.Midnight)),pl:P(toSec(T.Lastthird)),inN:now.secs>=s0&&now.secs<=e0&&(now.secs>=toSec(T.Maghrib)||now.secs<toSec(T.Fajr))}}
+function nightCard(st){const k=st.now.key;const D=nightData(st);const sel=NSEL||D.nx.k;
+  const sc={Imsak:PSc('Fajr'),Midnight:PSc('Isha'),Lastthird:ILL('night')};
+  return `<div class="bt w ng" style="animation-delay:.2s;--bc:#4b5f80">
+    <h4 onclick="go('timings',{k:'${k}'})" style="cursor:pointer"><span class="hi">${ILL('night')}</span>مواقيت الليل</h4><span class="go" onclick="go('timings',{k:'${k}'})">${I('chevL','16')}</span>
+    <div class="nrl"><div class="nrt"><i id="nrf" style="width:${(D.pos*100).toFixed(2)}%"></i><b class="nm" style="right:${(D.pm*100).toFixed(1)}%"></b><b class="nm" style="right:${(D.pl*100).toFixed(1)}%"></b><span id="nrd" class="nrd ${D.inN?'':'off'}" style="right:${(D.pos*100).toFixed(2)}%"></span></div>
+      <div class="nrlb"><span>المغرب ${hm(st.T.Maghrib)}</span><span>الفجر</span></div></div>
+    <div class="ngs">${D.it.map(x=>`<button class="ngi ${x.k===D.nx.k?'nx':''} ${x.k===sel?'on':''}" onclick="event.stopPropagation();ngSel('${x.k}')"><i class="mi">${sc[x.k]}</i><small>${PAR[x.k]}</small><b>${pad(Math.floor(x.t/3600)%24)}:${pad(Math.floor(x.t%3600/60))}</b><em ${x.k===D.nx.k?'id="ngcd"':''}>${x.k===D.nx.k?'بعد \u2066'+fmtShort(x.left)+'\u2069':'&nbsp;'}</em></button>`).join('')}</div>
+    <div class="nghb"><span class="ngh" id="ngh">${NHINT[sel]}</span><button class="ngsh" onclick="event.stopPropagation();shareDay('${k}')" aria-label="مشاركة">${QAi('share','16')}<span>مشاركة</span></button></div></div>`}
+function fmtShort(s){const h=Math.floor(s/3600),m=Math.floor(s%3600/60);return h?`${h}:${pad(m)}`:`${m} د`}
+function ngSel(x){NSEL=x;if(navigator.vibrate)navigator.vibrate(6);document.querySelectorAll('.ngi').forEach(b=>b.classList.toggle('on',b.querySelector('small').textContent===PAR[x]));const h=document.getElementById('ngh');if(h){h.classList.remove('fl');void h.offsetWidth;h.textContent=NHINT[x];h.classList.add('fl')}}
+function ngTick(st){const f=document.getElementById('nrf');if(!f)return;const D=nightData(st);f.style.width=(D.pos*100).toFixed(2)+'%';const d=document.getElementById('nrd');if(d){d.style.right=(D.pos*100).toFixed(2)+'%';d.classList.toggle('off',!D.inN)}
+  const c=document.getElementById('ngcd');if(c){if(c.closest('.ngi').querySelector('small').textContent!==PAR[D.nx.k]){render();return}c.textContent='بعد \u2066'+fmtShort(D.nx.left)+'\u2069'}}
 function homeBento(st){
   const {now,T}=st;const k=now.key;const dn=DONE[k]||[];const q=qiblaDeg();
   const passed=PR.filter(p=>toSec(T[p])<=now.secs);const pend=passed.filter(p=>!dn.includes(p)).pop();
@@ -1296,9 +1343,7 @@ function homeBento(st){
     <h4><span class="hi">${ILL('cal')}</span>الإمساكية <span class="s" style="margin:0;font-weight:500">· ${GM[now.m-1]}</span></h4><span class="go">${I('chevL','16')}</span>
     <div class="wk" id="wk">${days.map(x=>`<button class="wd ${x.o===0?'td':''} ${x.o<0?'ps':''} ${wdOf(x.dk)===5?'fr':''}" onclick="event.stopPropagation();go('timings',{k:'${x.dk}'})" ${x.o===0?'id="wdt"':''}><small>${x.o===0?'اليوم':WDS[wdOf(x.dk)]}</small><b>${x.d}</b>${x.row?`<span><i class="mi">${PSc('Fajr')}</i>${hm(x.row.timings.Fajr)}</span><span><i class="mi">${PSc('Maghrib')}</i>${hm(x.row.timings.Maghrib)}</span>`:'<span>—</span>'}</button>`).join('')}</div>
     <div class="s" style="margin-top:6px;display:flex;justify-content:space-between"><span>الفجر / المغرب</span><span>اضغط يوما لرؤية مواقيته</span></div></div>`;
-  const all=`<div class="bt w lr" style="animation-delay:.2s;padding:10px 12px;--bc:#5a6f8c">
-    <button class="lr" style="flex:1;text-align:right" onclick="go('timings',{k:'${k}'})"><span class="li hi2">${ILL('night')}</span><span style="flex:1"><b style="font-size:14.5px">كل مواقيت اليوم</b><div class="s">الإمساك، منتصف الليل، الثلث الأخير</div></span>${I('chevL','18','opacity:.6')}</button>
-    <button class="sh" onclick="shareDay('${k}')" aria-label="مشاركة">${QAi('share','20')}</button></div>`;
+  const all=nightCard(st);
   return `<div class="bn">${qib}${adk}${wk}${all}</div>`;
 }
 function rowTap(p){OPEN=OPEN===p?null:p;if(navigator.vibrate)navigator.vibrate(6);render()}
@@ -1352,7 +1397,7 @@ function toggleBell(p){S.notif[p].on=!S.notif[p].on;save();if(S.notif[p].on)askN
 let lastNext=null,lastKey=null;
 function tick(){
   const st=state();if(!st)return;
-  tlTick(st);const c2=document.getElementById('cd2');if(c2)c2.textContent=fmtCd(st.nxt.secs);const el=document.getElementById('cd');if(el){el.textContent=CDMODE?`${pad(st.now.h)}:${pad(st.now.mi)}:${pad(st.now.s)}`:fmtCd(st.nxt.secs);el.classList.toggle('clk',CDMODE)}
+  ngTick(st);tlTick(st);const c2=document.getElementById('cd2');if(c2)c2.textContent=fmtCd(st.nxt.secs);const el=document.getElementById('cd');if(el){el.textContent=CDMODE?`${pad(st.now.h)}:${pad(st.now.mi)}:${pad(st.now.s)}`:fmtCd(st.nxt.secs);el.classList.toggle('clk',CDMODE)}
   const lb=document.querySelector('.hero .lbl');if(lb)lb.textContent=CDMODE?'الوقت الآن':`${pname(st.nxt.p,st.nxt.tomorrow?addDays(st.now.key,1):st.now.key)} بعد`;
   // day rollover
   if(lastKey&&lastKey!==st.now.key){lastKey=st.now.key;loadAll().then(refresh);return}
