@@ -1268,7 +1268,7 @@ function homeBento(st){
   const C=2*Math.PI*40,f=dn.length/5;
   const ticks=Array.from({length:24},(_,i)=>`<line x1="50" y1="${i%6?9:7}" x2="50" y2="${i%6?13:15}" stroke="currentColor" stroke-opacity="${i%6?.25:.5}" stroke-width="${i%6?1:1.6}" transform="rotate(${i*15} 50 50)"/>`).join('');
   const qib=`<button class="bt" onclick="STACK=[];go('qibla',{},false)" style="animation-delay:.05s;--bc:#3f7d68">
-    ${DECO.qibla}<h4><span class="hi">${ILL('qibla')}</span>القبلة</h4><span class="go">${I('chevL','16')}</span>
+    <h4><span class="hi">${ILL('qibla')}</span>القبلة</h4><span class="go">${I('chevL','16')}</span>
     <div class="qbw"><svg class="qd" id="mqd" viewBox="0 0 100 100" style="--q:${q||0}deg;color:#56627a">
       <circle cx="50" cy="50" r="46" fill="color-mix(in srgb,#3f7d68 9%,#fff)" stroke="currentColor" stroke-opacity=".3"/>${ticks}
       <text x="50" y="26" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">N</text>
@@ -1276,7 +1276,7 @@ function homeBento(st){
       <circle cx="50" cy="50" r="3.4" fill="var(--card)" stroke="#3f7d68" stroke-width="2"/></svg>
      <div class="qv"><b>${q!=null?q.toFixed(0)+'°':'—'}</b><small>من الشمال<br>اضغط للبوصلة</small></div></div></button>`;
   const adk=`<button class="bt" style="--bc:#4f7891" onclick="${pend?`startAdhkar('${pend}')`:`STACK=[];go('adhkar',{},false)`}" style="animation-delay:.1s">
-    ${DECO.beads}<h4><span class="hi">${ILL('beads')}</span>الأذكار</h4><span class="go">${I('chevL','16')}</span>
+    <h4><span class="hi">${ILL('beads')}</span>الأذكار</h4><span class="go">${I('chevL','16')}</span>
     <div class="rgw"><svg class="rg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="color-mix(in srgb,#4f8a75 16%,#fff)" stroke-width="9"/>
       <circle class="pg" id="adring" cx="50" cy="50" r="40" fill="none" stroke="#4f8a75" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" data-off="${(C*(1-f)).toFixed(1)}" transform="rotate(-90 50 50)"/>
       <text x="50" y="57" text-anchor="middle">${dn.length}/5</text></svg>
@@ -1284,7 +1284,7 @@ function homeBento(st){
   const D=G.month[now.y+'-'+now.m]||[];const days=[];
   for(let o=-2;o<=4;o++){const dk=addDays(k,o);const[y,m,d]=dk.split('-').map(Number);const row=(G.month[y+'-'+m]||[]).find(x=>+x.date.gregorian.day===d);days.push({dk,d,row,o})}
   const wk=`<div class="bt w" onclick="go('month')" style="animation-delay:.15s;cursor:pointer;--bc:#526780">
-    ${DECO.cal}<h4><span class="hi">${ILL('cal')}</span>الإمساكية <span class="s" style="margin:0;font-weight:500">· ${GM[now.m-1]}</span></h4><span class="go">${I('chevL','16')}</span>
+    <h4><span class="hi">${ILL('cal')}</span>الإمساكية <span class="s" style="margin:0;font-weight:500">· ${GM[now.m-1]}</span></h4><span class="go">${I('chevL','16')}</span>
     <div class="wk" id="wk">${days.map(x=>`<button class="wd ${x.o===0?'td':''} ${x.o<0?'ps':''} ${wdOf(x.dk)===5?'fr':''}" onclick="event.stopPropagation();go('timings',{k:'${x.dk}'})" ${x.o===0?'id="wdt"':''}><small>${x.o===0?'اليوم':WDS[wdOf(x.dk)]}</small><b>${x.d}</b>${x.row?`<span><i class="mi">${PSc('Fajr')}</i>${hm(x.row.timings.Fajr)}</span><span><i class="mi">${PSc('Maghrib')}</i>${hm(x.row.timings.Maghrib)}</span>`:'<span>—</span>'}</button>`).join('')}</div>
     <div class="s" style="margin-top:6px;display:flex;justify-content:space-between"><span>الفجر / المغرب</span><span>اضغط يوما لرؤية مواقيته</span></div></div>`;
   const all=`<div class="bt w lr" style="animation-delay:.2s;padding:10px 12px;--bc:#5a6f8c">
