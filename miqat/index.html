@@ -348,6 +348,21 @@ button.ap{color:#fff;font-family:var(--ui)}
 .mini .mt{flex:1;line-height:1.3}.mini .mt b{font-size:15px;display:block}.mini .mt small{font-size:11.5px;opacity:.85}
 .mini~#hsc{padding-bottom:90px}
 .mini .mc{font:800 26px var(--num);letter-spacing:-.5px;direction:ltr}
+
+/* per-prayer skies */
+.hero.sky-fajr,.mini.sky-fajr{background:linear-gradient(180deg,#26355c 0%,#4f5f92 55%,#8d8db5 100%)}
+.hero.sky-duha,.mini.sky-duha{background:linear-gradient(180deg,#4f7fae 0%,#7ea6c9 60%,#b4cfe0 100%)}
+.hero.sky-dhuhr,.mini.sky-dhuhr{background:linear-gradient(180deg,#2f6f9e 0%,#5b97bf 60%,#93bfd8 100%)}
+.hero.sky-asr,.mini.sky-asr{background:linear-gradient(180deg,#2f6470 0%,#4f8a8a 55%,#86aea3 100%)}
+.hero.sky-maghrib,.mini.sky-maghrib{background:linear-gradient(180deg,#2c2550 0%,#56406e 55%,#8a5675 100%)}
+.hero.sky-isha,.mini.sky-isha{background:linear-gradient(180deg,#0f1a2e 0%,#1c2b47 100%)}
+.prow.next{--pc2:var(--pc);background:color-mix(in srgb,var(--pc) 11%,#fff)}
+.dark .prow.next{background:color-mix(in srgb,var(--pc) 26%,#1a2842)}
+.prow.next .ic{background:linear-gradient(160deg,color-mix(in srgb,var(--pc) 70%,#fff),var(--pc));color:#fff;box-shadow:0 4px 12px color-mix(in srgb,var(--pc) 35%,transparent)}
+.prow.next .sb{color:color-mix(in srgb,var(--pc) 80%,#000)}
+.dark .prow.next .sb{color:color-mix(in srgb,var(--pc) 45%,#fff)}
+.prow .bell{color:#9aa3b5}.prow .bell.off{color:#c3c7cf}
+.prow.next .bell{color:var(--pc)}.dark .prow.next .bell{color:color-mix(in srgb,var(--pc) 50%,#fff)}
 </style>
 </head>
 <body>
@@ -712,7 +727,8 @@ const PI={
  Isha:`<path d="M18.5 14.8A7.5 7.5 0 019.2 5.5a7 7 0 109.3 9.3z" fill="currentColor" fill-opacity=".28"/><path d="M16 3.5l.45 1.05 1.05.45-1.05.45L16 6.5l-.45-1.05L14.5 5l1.05-.45zM20 8l.35.8.8.35-.8.35L20 10.3l-.35-.8-.8-.35.8-.35z" fill="currentColor" stroke-width="1"/>`,
 };
 const PIc=(p,s=20)=>`<svg class="i" viewBox="0 0 24 24" style="width:${s}px;height:${s}px">${PI[p]}</svg>`;
-const PCOL={Fajr:'#6f7fc9',Sunrise:'#e3a43c',Dhuhr:'#e0a21f',Asr:'#e08a3c',Maghrib:'#d0644c',Isha:'#5a6fb8'};
+const PCOL={Fajr:'#6b78c4',Sunrise:'#d99a4e',Dhuhr:'#3d8fbf',Asr:'#3f9a8c',Maghrib:'#c0607a',Isha:'#5a6fb8'};
+function period(st){const T=st.T,n=st.now.secs;if(n<toSec(T.Fajr))return 'isha';if(n<toSec(T.Sunrise))return 'fajr';if(n<toSec(T.Dhuhr))return 'duha';if(n<toSec(T.Asr))return 'dhuhr';if(n<toSec(T.Maghrib))return 'asr';if(n<toSec(T.Isha))return 'maghrib';return 'isha'}
 const QA={
  qibla:`<circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".14"/><circle cx="12" cy="12" r="9"/><path d="M15.8 8.2l-2.3 5.3-5.3 2.3 2.3-5.3z" fill="currentColor" fill-opacity=".35"/>`,
  month:`<rect x="3.5" y="5" width="17" height="15.5" rx="3" fill="currentColor" fill-opacity=".14"/><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/><circle cx="8.5" cy="14" r=".6" fill="currentColor"/><circle cx="12" cy="14" r=".6" fill="currentColor"/><circle cx="15.5" cy="14" r=".6" fill="currentColor"/><circle cx="8.5" cy="17.2" r=".6" fill="currentColor"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/>`,
@@ -786,13 +802,13 @@ SCREENS.home=()=>{
       ${op?rowPanel(p,st):''}</div>`}).join('');
   const L=S.loc||{};const q=qiblaDeg();
   return `<div class="${dark?'dark':'light'}" style="flex:1;display:flex;flex-direction:column;min-height:0;position:relative">
-  <div class="mini pt ${dark?'night':'day'}" id="mini" onclick="document.querySelector('#screen .scroll').scrollTo({top:0,behavior:'smooth'})">
+  <div class="mini pt sky-${period(st)}" id="mini" onclick="document.querySelector('#screen .scroll').scrollTo({top:0,behavior:'smooth'})">
    <span class="mi">${PIc(nxt.p,22)}</span>
    <span class="mt"><b>${pname(nxt.p,nxt.tomorrow?addDays(k,1):k)} <span class="num">${nxt.t}</span></b><small>${esc(L.label||'')}</small></span>
    <span class="mc num" id="cd2">${fmtCd(nxt.secs)}</span>
   </div>
   <div class="scroll" id="hsc">
-   <div class="hero pt ${dark?'night':'day'}">
+   <div class="hero pt sky-${period(st)} ${dark?'night':'day'}" style="--pc:${PCOL[nxt.p]}">
     ${dark?'<div class="stars"></div>':'<div class="deco"></div>'}
     <button class="calbtn" onclick="go('month')">${I('cal','20')}</button>
     <div style="padding-top:12px">
