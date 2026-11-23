@@ -651,6 +651,22 @@ button.ap{color:#fff;font-family:var(--ui)}
 .cf2{display:flex;gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom))}
 .cf2 button{flex:1;height:46px;border-radius:16px;background:#ffffff14;color:#fff;font-size:13.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;transition:transform .12s,background .2s}
 .cf2 button:active{transform:scale(.95);background:#ffffff22}
+
+/* MATTE (temporary test, La-Zi 2026-11-23): flat backgrounds, no glow. Delete this block + restore PGRAD_GLOW to revert. */
+html .hero.sky-fajr,html .mini.sky-fajr{background:linear-gradient(180deg,#3b4258,#424a60)}
+html .hero.sky-duha,html .mini.sky-duha{background:linear-gradient(180deg,#435566,#4a5c6d)}
+html .hero.sky-dhuhr,html .mini.sky-dhuhr{background:linear-gradient(180deg,#3e5566,#455c6c)}
+html .hero.sky-asr,html .mini.sky-asr{background:linear-gradient(180deg,#3e5452,#455a58)}
+html .hero.sky-maghrib,html .mini.sky-maghrib{background:linear-gradient(180deg,#3c4350,#434a57)}
+html .hero.sky-isha,html .mini.sky-isha{background:linear-gradient(180deg,#1f2633,#242b38)}
+html .hero,html .mini{color:#e3e6ea}html .hero .cd{color:#e6e8eb}
+html .hero .deco,html .stars,html .orb,html .sunp,html .arc [fill="url(#glow)"]{display:none!important}
+html .arc circle[fill="#e9e6dc"]{fill:#cfd5dc;stroke:none}
+html .adhan{background:#3c4350}html .lock{background:#2e3340}
+html .rg3 .cn{background:#ffffff10}html .rg3.full .cn{background:#6f9a8a55;animation:none}
+html .nx .br i:after,html .sb2 button:after{display:none}
+html .sb2 .pi,html .tr.next .rail .dt{animation:none!important;box-shadow:none!important}
+html .rip{background:#ffffff22}
 </style>
 </head>
 <body>
@@ -786,7 +802,8 @@ function adhkarFor(p){
   if(p==='Fajr') L.push({id:'ilm',title:'سؤال العلم النافع',tag:'دعاء',special:'خاص بالفجر',sub:'رواه ابن ماجه',count:1,text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا',size:27,src:'رواه ابن ماجه (925) عن أم سلمة رضي الله عنها',gnote:'يقوله بعد السلام من صلاة الفجر.'});
   return L;
 }
-const PGRAD={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#2b3240,#556274)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
+// PGRAD_GLOW (pre-matte): PGRAD={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#2b3240,#556274)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
+const PGRAD={Fajr:'linear-gradient(135deg,#3b4258,#444c62)',Dhuhr:'linear-gradient(135deg,#3e5566,#465d6d)',Asr:'linear-gradient(135deg,#3e5452,#465c5a)',Maghrib:'linear-gradient(135deg,#3c4350,#454c59)',Isha:'linear-gradient(135deg,#1f2633,#272e3b)'};
 
 /* ============ storage ============ */
 const LS={get(k,d){try{const v=localStorage.getItem('miqat.'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('miqat.'+k,JSON.stringify(v))}catch(e){}}};
