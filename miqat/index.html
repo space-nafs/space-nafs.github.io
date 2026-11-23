@@ -651,20 +651,6 @@ button.ap{color:#fff;font-family:var(--ui)}
 .cf2{display:flex;gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom))}
 .cf2 button{flex:1;height:46px;border-radius:16px;background:#ffffff14;color:#fff;font-size:13.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;transition:transform .12s,background .2s}
 .cf2 button:active{transform:scale(.95);background:#ffffff22}
-
-/* THEME 2 «داكن هادئ» (html.t2) — optional, toggled in Settings; default theme untouched. Builds on .tdark + one calm colour per prayer */
-html.t2 body{background:#11161d}
-html.t2 .hero.sky-fajr,html.t2 .mini.sky-fajr{background:linear-gradient(180deg,#1b2633 0%,#26374a 100%)}
-html.t2 .hero.sky-duha,html.t2 .mini.sky-duha{background:linear-gradient(180deg,#1f2a30 0%,#2c3c44 100%)}
-html.t2 .hero.sky-dhuhr,html.t2 .mini.sky-dhuhr{background:linear-gradient(180deg,#1b2a24 0%,#284036 100%)}
-html.t2 .hero.sky-asr,html.t2 .mini.sky-asr{background:linear-gradient(180deg,#1a2a2b 0%,#263f40 100%)}
-html.t2 .hero.sky-maghrib,html.t2 .mini.sky-maghrib{background:linear-gradient(180deg,#1e2133 0%,#2d334c 100%)}
-html.t2 .hero.sky-isha,html.t2 .mini.sky-isha{background:linear-gradient(180deg,#12161f 0%,#1c2330 100%)}
-html.t2 .hero,html.t2 .mini{color:#d9dde2}html.t2 .hero .cd{color:#e0e3e7}
-html.t2 .sunp{opacity:.45}
-html.t2 .adhan{background:linear-gradient(180deg,#151b24,#222c3a)}html.t2 .lock{background:#151a22}
-html.t2 .btn.gold,html.t2 .xa button.gold,html.t2 .wd.td{background:#3f5a6e;color:#e3e6ea}
-html.t2 .tdark .nav .ind{background:#ffffff10}html.t2 .tdark .nav button.on{color:#d5d9df}
 </style>
 </head>
 <body>
@@ -800,9 +786,7 @@ function adhkarFor(p){
   if(p==='Fajr') L.push({id:'ilm',title:'سؤال العلم النافع',tag:'دعاء',special:'خاص بالفجر',sub:'رواه ابن ماجه',count:1,text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا',size:27,src:'رواه ابن ماجه (925) عن أم سلمة رضي الله عنها',gnote:'يقوله بعد السلام من صلاة الفجر.'});
   return L;
 }
-const PGRAD_BASE={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#2b3240,#556274)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
-const PGRAD_T2={Fajr:'linear-gradient(135deg,#1b2633,#2c4055)',Dhuhr:'linear-gradient(135deg,#1b2a24,#2e4a3e)',Asr:'linear-gradient(135deg,#1a2a2b,#2c4849)',Maghrib:'linear-gradient(135deg,#1e2133,#343b57)',Isha:'linear-gradient(135deg,#12161f,#222b3b)'};
-const PGRAD=Object.assign({},PGRAD_BASE);
+const PGRAD={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#2b3240,#556274)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
 
 /* ============ storage ============ */
 const LS={get(k,d){try{const v=localStorage.getItem('miqat.'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('miqat.'+k,JSON.stringify(v))}catch(e){}}};
@@ -930,8 +914,8 @@ let cleanups=[];function cleanup(){cleanups.forEach(f=>f());cleanups=[]}
 function render(){
   const f=SCREENS[R.name];if(!f)return;
   let html=f(R.params);
-  if(S.appearance==='dark'||S.t2)html=html.replace(/class="pt light"/g,'class="pt dark"').replace(/class="light"/g,'class="dark"');
-  $s.innerHTML=html;document.getElementById('phone').classList.toggle('tdark',S.appearance==='dark'||!!S.t2);
+  if(S.appearance==='dark')html=html.replace(/class="pt light"/g,'class="pt dark"').replace(/class="light"/g,'class="dark"');
+  $s.innerHTML=html;document.getElementById('phone').classList.toggle('tdark',S.appearance==='dark');
   const sbar=document.getElementById('sbar');
   sbar.style.color=['splash','home','qibla','adhan','lock','counter','done'].includes(R.name)&&(R.name!=='home'||true)?'#fff':'#1b2333';
   if(['onboard','timings','month','adhkar','settings','notifs'].includes(R.name))sbar.style.color='#1b2333';
@@ -1037,10 +1021,7 @@ const PI={
  Isha:`<path d="M18.5 14.8A7.5 7.5 0 019.2 5.5a7 7 0 109.3 9.3z" fill="currentColor" fill-opacity=".28"/><path d="M16 3.5l.45 1.05 1.05.45-1.05.45L16 6.5l-.45-1.05L14.5 5l1.05-.45zM20 8l.35.8.8.35-.8.35L20 10.3l-.35-.8-.8-.35.8-.35z" fill="currentColor" stroke-width="1"/>`,
 };
 const PIc=(p,s=20)=>`<svg class="i" viewBox="0 0 24 24" style="width:${s}px;height:${s}px">${PI[p]}</svg>`;
-const PCOL_BASE={Fajr:'#6b78c4',Sunrise:'#9a8a7e',Dhuhr:'#3d8fbf',Asr:'#3f9a8c',Maghrib:'#6e7d93',Isha:'#5a6fb8'};
-const PCOL_T2={Fajr:'#5f84a6',Sunrise:'#7f8a94',Dhuhr:'#5f9479',Asr:'#4f9192',Maghrib:'#7079a6',Isha:'#5a6f8c'};
-const PCOL=Object.assign({},PCOL_BASE);
-function applyTheme2(){Object.assign(PGRAD,S.t2?PGRAD_T2:PGRAD_BASE);Object.assign(PCOL,S.t2?PCOL_T2:PCOL_BASE);document.documentElement.classList.toggle('t2',!!S.t2)};
+const PCOL={Fajr:'#6b78c4',Sunrise:'#9a8a7e',Dhuhr:'#3d8fbf',Asr:'#3f9a8c',Maghrib:'#6e7d93',Isha:'#5a6fb8'};
 function period(st){const T=st.T,n=st.now.secs;if(n<toSec(T.Fajr))return 'isha';if(n<toSec(T.Sunrise))return 'fajr';if(n<toSec(T.Dhuhr))return 'duha';if(n<toSec(T.Asr))return 'dhuhr';if(n<toSec(T.Maghrib))return 'asr';if(n<toSec(T.Isha))return 'maghrib';return 'isha'}
 const QA={
  qibla:`<circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".14"/><circle cx="12" cy="12" r="9"/><path d="M15.8 8.2l-2.3 5.3-5.3 2.3 2.3-5.3z" fill="currentColor" fill-opacity=".35"/>`,
@@ -1608,7 +1589,6 @@ SCREENS.settings=()=>{
   <div class="sec">أذكار ما بعد الصلاة</div>
   <div class="card grp">
    <button class="srow" onclick="S.remind=!S.remind;save();askNotif();render()"><span class="ico">${I('tap')}</span><span class="tx"><b>تذكير بالأذكار بعد كل صلاة</b><small>بعد 15–25 د من الأذان حسب الصلاة</small></span><span class="tgl ${S.remind?'on':''}"></span></button>
-   <button class="srow" onclick="S.t2=!S.t2;save();applyTheme2();render()"><span class="ico">${I('moon')}</span><span class="tx"><b>الوضع الجديد</b><small>داكن هادئ · لكل صلاة لونها · يمكن الرجوع للوضع الأصلي</small></span><span class="tgl ${S.t2?'on':''}"></span></button>
    ${row('moon','المظهر',S.appearance==='dark'?'داكن مطفي':'فاتح',"S.appearance=S.appearance==='dark'?'light':'dark';save();render()",'')}
    ${row('font','حجم خط الأذكار',['صغير','متوسط','كبير'][S.font-1],"S.font=S.font%3+1;save();render()",'')}
   </div>
@@ -1674,7 +1654,6 @@ setInterval(clock,1000);clock();
 window.addEventListener('online',()=>{if(!FORCE_OFFLINE)loadAll().then(refresh).catch(()=>{})});
 window.addEventListener('offline',()=>{G.online=false;refresh()});
 if(S.loc){OB.method=S.method;OB.school=S.school}
-applyTheme2();
 render();
 </script>
 </body>
