@@ -11,8 +11,8 @@
 <style>
 :root{
   --navy:#121e33;--navy2:#1a2842;--navy3:#22324f;--navyline:#2b3c5c;
-  --cream:#f5f0e6;--card:#fff;--line:#eee8dc;--ink:#1b2333;--muted:#8b8f98;--muted2:#a9adb5;
-  --gold:#d4a44c;--gold2:#e8c27a;--goldsoft:#f8ecd3;--goldink:#a87a22;
+  --cream:#eceef1;--card:#fff;--line:#eee8dc;--ink:#1b2333;--muted:#8b8f98;--muted2:#a9adb5;
+  --gold:#7f91a8;--gold2:#aebccc;--goldsoft:#e3e8ef;--goldink:#4e6079;
   --green:#3dbb8a;--greensoft:#e2f4ec;
   --ui:'IBM Plex Sans Arabic',system-ui,sans-serif;--num:'Inter','IBM Plex Sans Arabic',sans-serif;
   --disp:'Aref Ruqaa','Amiri',serif;--quran:'Amiri',serif;--mono:'JetBrains Mono',monospace;
@@ -58,7 +58,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .card{background:var(--card);border-radius:18px;border:1px solid var(--line)}
 .dark .card{background:var(--navy2);border-color:var(--navyline)}
 .btn{height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;width:100%}
-.btn.gold{background:linear-gradient(180deg,#e8c27a,#d4a44c);color:#2a1d05;box-shadow:0 6px 18px #d4a44c55}
+.btn.gold{background:linear-gradient(180deg,#61778f,#526780);color:#fff;box-shadow:none}
 .btn.navy{background:var(--navy);color:#fff}
 .btn.white{background:#fff;color:var(--ink)}
 .chip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:14px;font-size:12.5px;font-weight:600;white-space:nowrap}
@@ -79,7 +79,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 
 /* onboarding */
 .prog{display:flex;gap:6px;padding:14px 22px 0}
-.prog i{flex:1;height:4px;border-radius:2px;background:#e4ddcf}.prog i.on{background:var(--gold)}
+.prog i{flex:1;height:4px;border-radius:2px;background:#dce1e7}.prog i.on{background:var(--gold)}
 .ob h2{font:700 34px var(--disp);padding:18px 22px 4px}
 .ob p.lead{padding:0 22px;color:var(--muted);font-size:13.5px}
 .search{display:flex;align-items:center;gap:10px;margin:0 22px;height:56px;padding:0 16px;border-radius:16px;background:#fff;border:1.5px solid var(--gold2)}
@@ -90,7 +90,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .li .tx{flex:1}.li b{display:block;font-size:15px}.li small{color:var(--muted);font-size:12px}
 .radio{width:22px;height:22px;border-radius:11px;display:grid;place-items:center;color:#fff}
 .radio.on{background:var(--navy)}
-.seg{display:flex;background:#ebe5d8;border-radius:14px;padding:4px;margin:0 22px}
+.seg{display:flex;background:#e2e6eb;border-radius:14px;padding:4px;margin:0 22px}
 .seg button{flex:1;height:40px;border-radius:11px;font-size:13.5px;color:var(--muted);font-weight:600}
 .seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px #0001}
 
@@ -99,7 +99,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .hero.day{background:linear-gradient(180deg,#6d8099 0%,#a6968f 55%,#e0a46c 100%)}
 .hero.night{background:linear-gradient(180deg,#0f1a2e 0%,#1c2b47 100%)}
 .hero .deco{position:absolute;left:-70px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px dashed #ffffff30}
-.hero .moon{position:absolute;left:18px;top:30px;width:76px;height:76px;border-radius:50%;box-shadow:-14px 10px 0 0 #e9dcc0;transform:rotate(-20deg)}
+.hero .moon{position:absolute;left:18px;top:30px;width:76px;height:76px;border-radius:50%;box-shadow:-14px 10px 0 0 #dfe3ea;transform:rotate(-20deg)}
 .hero .loc{display:flex;align-items:center;gap:6px;font-weight:700;font-size:16px;justify-content:flex-start}
 .hero .date{font-size:12.5px;opacity:.9;margin-top:3px}
 .hero .lbl{font-size:13px;opacity:.9;margin-top:26px;text-align:right}
@@ -107,12 +107,12 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .hero .ap{display:inline-flex;align-items:center;gap:6px;background:#ffffff2e;border-radius:18px;padding:6px 12px;font-size:13.5px;font-weight:600;margin-top:10px}
 .hero .apw{text-align:right}
 .calbtn{position:absolute;left:22px;top:12px;width:40px;height:40px;border-radius:20px;background:#ffffff26;display:grid;place-items:center;z-index:2}
-.offbar{margin:14px 16px 0;padding:12px 14px;border-radius:14px;background:#fbf1dc;border:1px solid #f1dcaf;display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#7a5a1a;line-height:1.7}
+.offbar{margin:14px 16px 0;padding:12px 14px;border-radius:14px;background:#e9edf2;border:1px solid #d6dde6;display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#4a5a6e;line-height:1.7}
 .plist{margin:-14px 16px 0;position:relative;z-index:3;overflow:hidden;padding:4px 0}
 .prow{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);position:relative}
 .prow:last-child{border-bottom:0}
 .dark .prow{border-color:var(--navyline)}
-.prow .ic{width:38px;height:38px;border-radius:12px;background:#f3eee4;display:grid;place-items:center;color:#7d8597}
+.prow .ic{width:38px;height:38px;border-radius:12px;background:#e9ecf0;display:grid;place-items:center;color:#7d8597}
 .dark .prow .ic{background:#24344f;color:#b7c0d2}
 .prow .nm{font-size:16px;font-weight:600}.prow .sb{font-size:11.5px;color:var(--muted)}
 .prow .tm{font:600 19px var(--num);min-width:58px;text-align:left;color:var(--ink)}
@@ -153,7 +153,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .mrow.h>span{font-family:var(--ui);font-weight:500}
 .mrow.today{background:var(--navy);color:#fff;border-radius:12px;margin:0 6px;border:0}
 .mrow.today .d b{color:var(--gold2)}.mrow.today small{color:#b0b9cc}
-.mrow.alt{background:#f9f5ec}
+.mrow.alt{background:#f2f4f6}
 
 /* qibla */
 .qhead{text-align:center;padding:10px 20px 0}
@@ -171,7 +171,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .simbar input{flex:1;accent-color:var(--gold)}
 
 /* adhan */
-.adhan{background:linear-gradient(180deg,#4a2f63 0%,#7b4a72 45%,#d9845e 100%);color:#fff;text-align:center;align-items:center}
+.adhan{background:linear-gradient(180deg,#352c44 0%,#4f4259 50%,#6c5b69 100%);color:#fff;text-align:center;align-items:center}
 .adhan .pl{display:inline-flex;align-items:center;gap:6px;background:#ffffff26;border-radius:18px;padding:7px 14px;font-size:13px;font-weight:600;margin-top:22px}
 .adhan .big{font:700 70px var(--disp);line-height:1.2;margin-top:6px}
 .wave{display:flex;gap:4px;align-items:center;height:60px;justify-content:center;margin-top:34px}
@@ -180,7 +180,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .adhan .bar{margin:0 18px;padding:14px 16px;border-radius:16px;background:#ffffff22;display:flex;align-items:center;gap:10px;font-size:13px;text-align:right}
 
 /* lock reminder */
-.lock{background:linear-gradient(180deg,#3a2552 0%,#4d2f5e 50%,#3b2348 100%);color:#fff}
+.lock{background:linear-gradient(180deg,#2c2a3e 0%,#3b3550 50%,#2c2a3e 100%);color:#fff}
 .lock .clock{text-align:center;margin-top:34px}
 .lock .clock small{font-size:15px;opacity:.9}.lock .clock b{display:block;font:300 92px var(--num);letter-spacing:-2px;line-height:1.05}
 .notif{margin:20px 12px 0;background:#f2ecf1f2;color:var(--ink);border-radius:22px;padding:14px 16px;animation:drop .4s}
@@ -204,7 +204,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .aheroc .fp{margin-top:12px;background:#ffffff26;border-radius:14px;padding:8px 12px;font-size:12px;display:flex;align-items:center;gap:8px}
 .arow{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);width:100%;text-align:right}
 .arow:last-child{border:0}
-.arow .n{width:26px;height:26px;border-radius:9px;background:#f2ede3;display:grid;place-items:center;font:600 12px var(--num);color:#6a707b}
+.arow .n{width:26px;height:26px;border-radius:9px;background:#e9ecf0;display:grid;place-items:center;font:600 12px var(--num);color:#6a707b}
 .arow.dn .n{background:var(--greensoft);color:var(--green)}
 .arow .tx{flex:1}.arow b{display:block;font-size:15px}.arow small{font-size:12px;color:var(--muted)}
 .arow .x{font:700 14px var(--num);color:var(--goldink);direction:ltr}
@@ -216,7 +216,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .segs{display:flex;gap:5px;padding:8px 18px 12px;direction:rtl}
 .segs i{flex:1;height:3px;border-radius:2px;background:#33435f}
 .segs i.d{background:var(--gold)}.segs i.c{background:#fff}
-.dcard{margin:0 16px;background:#fbf7ee;color:var(--ink);border-radius:22px;padding:16px 18px 14px;cursor:pointer;user-select:none}
+.dcard{margin:0 16px;background:#f6f7f9;color:var(--ink);border-radius:22px;padding:16px 18px 14px;cursor:pointer;user-select:none}
 .dcard .tags{display:flex;gap:6px;justify-content:flex-start;flex-wrap:wrap}
 .tg1{background:var(--navy);color:#fff}.tg2{background:var(--goldsoft);color:var(--goldink)}.tg3{background:var(--greensoft);color:#2a8a63}
 .dtext{font-family:var(--quran);text-align:center;line-height:2;margin:12px 0 6px;color:#1b2333}
@@ -224,13 +224,13 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .dtext .bas{display:block;font-size:.6em;color:#7a7f8a;line-height:1.6}
 .dtext .ist{display:block;font-size:.6em;color:#7a7f8a}
 .dnote{font-size:12.5px;color:#6a707b;text-align:center;padding:8px 0 0}
-.dsrc{border-top:1px dashed #ddd5c4;margin-top:10px;padding-top:10px;display:flex;gap:8px;font-size:12px;color:#6a707b;line-height:1.7}
+.dsrc{border-top:1px dashed #d6dbe2;margin-top:10px;padding-top:10px;display:flex;gap:8px;font-size:12px;color:#6a707b;line-height:1.7}
 .dsrc .gn{color:var(--goldink);font-weight:700;display:block}
 .fadl{margin:10px 16px 0;padding:12px 14px;border-radius:16px;background:#1d2b45;border:1px solid var(--navyline);font-size:12.5px;line-height:1.7;display:flex;gap:8px;color:#dfe5ef}
 .fadl b{color:var(--gold2)}
 .subchips{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
 .subchips .chip{height:32px;background:#1d2b45;color:#b9c3d6;border:1px solid var(--navyline);font-family:var(--ui)}
-.subchips .chip.cur{background:var(--gold2);color:#2a1d05;border-color:var(--gold2)}
+.subchips .chip.cur{background:var(--gold2);color:#ffffff;border-color:var(--gold2)}
 .subchips .chip.ok{background:#173a36;color:#59d4a2;border-color:#1f4a44}
 .ringw{display:flex;flex-direction:column;align-items:center;margin-top:auto;padding-top:14px}
 .ring{position:relative;width:150px;height:150px;cursor:pointer;user-select:none;transition:transform .08s}
@@ -246,7 +246,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 /* done */
 .done{text-align:center}
 .okbig{width:150px;height:150px;border-radius:50%;margin:40px auto 0;background:radial-gradient(circle,#1d3b44 55%,#16283f 56%);display:grid;place-items:center}
-.okbig i{width:110px;height:110px;border-radius:50%;background:linear-gradient(180deg,#3fc794,#25976b);display:grid;place-items:center;box-shadow:0 10px 40px #3dbb8a55;animation:pop .5s}
+.okbig i{width:110px;height:110px;border-radius:50%;background:linear-gradient(180deg,#5a9a86,#447d6b);display:grid;place-items:center;box-shadow:none;animation:pop .5s}
 @keyframes pop{from{transform:scale(.5)}}
 .done h2{font:700 40px var(--disp);color:var(--gold2);margin-top:14px}
 .stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 16px 0}
@@ -262,7 +262,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .srow .tx{flex:1}.srow b{display:block;font-size:15px;font-weight:600}.srow small{font-size:12px;color:var(--muted)}
 .srow .ico{color:#5b6372}
 .grp{margin:0 16px}
-.tgl{width:50px;height:30px;border-radius:15px;background:#d9d4c8;position:relative;flex:none;transition:.2s}
+.tgl{width:50px;height:30px;border-radius:15px;background:#cfd5dd;position:relative;flex:none;transition:.2s}
 .tgl::after{content:"";position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:12px;background:#fff;transition:.2s;box-shadow:0 1px 3px #0003}
 .tgl.on{background:#2f8d68}.tgl.on::after{right:23px}
 .ncard{margin:0 16px 12px;padding:14px}
@@ -271,7 +271,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .ncard .top b{font-size:16px}.ncard .top span{font:500 14px var(--num);color:var(--muted);margin-inline-start:6px}
 .ncard .ops{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
 .ncard .ops button{height:34px;padding:0 12px;border-radius:17px;font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:6px}
-.o1{background:var(--navy);color:#fff}.o2{background:#f2ede3;color:#4b5260}.o3{background:var(--goldsoft);color:var(--goldink)}
+.o1{background:var(--navy);color:#fff}.o2{background:#e9ecf0;color:#4b5260}.o3{background:var(--goldsoft);color:var(--goldink)}
 .ncard.off .ops{opacity:.4;pointer-events:none}
 .ncard .nt{font-size:11.5px;color:var(--muted);margin-top:8px;display:flex;gap:6px;align-items:center}
 
@@ -280,7 +280,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 @keyframes fd{from{opacity:0}}
 .sheet{width:100%;max-height:86%;background:var(--cream);color:var(--ink);border-radius:24px 24px 0 0;padding:10px 0 calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column;animation:up .25s}
 @keyframes up{from{transform:translateY(40px)}}
-.sheet .grab{width:40px;height:5px;border-radius:3px;background:#d4cdbf;margin:0 auto 10px}
+.sheet .grab{width:40px;height:5px;border-radius:3px;background:#cfd5dd;margin:0 auto 10px}
 .sheet h3{font-size:18px;padding:0 20px 10px}
 .sheet .scroll{padding:0 16px}
 .stepper{display:flex;align-items:center;gap:10px}
@@ -306,11 +306,11 @@ button.ap{color:#fff;font-family:var(--ui)}
 .prow{flex-wrap:wrap;cursor:pointer;transition:background .2s}
 .prow .ic{color:var(--pc);background:color-mix(in srgb,var(--pc) 13%,#fff)}
 .dark .prow .ic{color:color-mix(in srgb,var(--pc) 55%,#fff);background:color-mix(in srgb,var(--pc) 22%,#1a2842)}
-.prow.next .ic{background:linear-gradient(160deg,#e8c27a,#d4a44c);color:#fff;box-shadow:0 4px 12px #d4a44c55}
+.prow.next .ic{background:linear-gradient(160deg,#aebccc,#7f91a8);color:#fff;box-shadow:0 4px 12px #7f91a855}
 .prow.next .ic svg{animation:bob 2.4s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-2px)}}
 .prow.open:not(.next){background:#faf7f0}.dark .prow.open:not(.next){background:#1f2f4c}
-.prow .ck.gd{background:var(--goldsoft);color:var(--goldink)}.dark .prow .ck.gd{background:#4a3c1f;color:var(--gold2)}
+.prow .ck.gd{background:var(--goldsoft);color:var(--goldink)}.dark .prow .ck.gd{background:#3a4a60;color:var(--gold2)}
 .xp{flex-basis:100%;padding:10px 50px 2px 0;animation:fade2 .2s}
 @keyframes fade2{from{opacity:0;transform:translateY(-4px)}}
 .xl{font-size:12.5px;color:#6a707b;display:flex;gap:6px;align-items:center;line-height:1.7}
@@ -318,14 +318,14 @@ button.ap{color:#fff;font-family:var(--ui)}
 .xl b{color:var(--ink)}.dark .xl b{color:#fff}
 .pbar{height:6px;border-radius:3px;background:#0000000f;margin-top:8px;overflow:hidden}
 .dark .pbar{background:#ffffff1a}
-.pbar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#d4a44c,#e8c27a);margin-right:auto;margin-left:0;float:right}
+.pbar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#7f91a8,#aebccc);margin-right:auto;margin-left:0;float:right}
 .pmeta{display:flex;justify-content:space-between;font:11px var(--num);color:var(--muted);margin-top:4px}
 .xa{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .xa button{display:flex;align-items:center;gap:5px;height:32px;padding:0 11px;border-radius:16px;font-size:12px;font-weight:600;background:#fff;border:1px solid var(--line);color:#4b5260}
 .dark .xa button{background:#22324f;border-color:var(--navyline);color:#dfe5ef}
 .xa button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.dark .xa button.on{background:#e8c27a;color:#2a1d05;border-color:#e8c27a}
-.xa button.gold{background:linear-gradient(180deg,#e8c27a,#d4a44c);color:#2a1d05;border:0}
+.dark .xa button.on{background:#aebccc;color:#1b2333;border-color:#aebccc}
+.xa button.gold{background:#526780;color:#fff;border:0}
 .xa button.ok{background:var(--greensoft);color:#2a8a63;border-color:transparent}
 .qa{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:14px 16px}
 .qa button{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:transform .1s}
@@ -365,7 +365,7 @@ button.ap{color:#fff;font-family:var(--ui)}
 .prow.next .bell{color:var(--pc)}.dark .prow.next .bell{color:color-mix(in srgb,var(--pc) 50%,#fff)}
 
 /* eye-comfort palette (v3): muted, low-glare */
-:root{--cream:#efede7;--card:#faf9f6;--line:#e6e2d9;--ink:#2a3140}
+:root{--cream:#eceef1;--card:#f7f8fa;--line:#e6e2d9;--ink:#2a3140}
 .hero.sky-fajr,.mini.sky-fajr{background:linear-gradient(180deg,#2a3350 0%,#454d6e 60%,#62678a 100%)}
 .hero.sky-duha,.mini.sky-duha{background:linear-gradient(180deg,#3a566d 0%,#57748a 60%,#7790a1 100%)}
 .hero.sky-dhuhr,.mini.sky-dhuhr{background:linear-gradient(180deg,#33566b 0%,#4e6f84 60%,#6e8899 100%)}
@@ -377,12 +377,12 @@ button.ap{color:#fff;font-family:var(--ui)}
 .hero .ap{background:#ffffff1f}
 .hero .deco{border-color:#ffffff1a}
 .sunp{animation:none}
-.prow.next{background:color-mix(in srgb,var(--pc) 9%,#faf9f6)}
+.prow.next{background:color-mix(in srgb,var(--pc) 9%,#f7f8fa)}
 .prow.next .ic{background:color-mix(in srgb,var(--pc) 75%,#5b6475);box-shadow:none}
 .prow.next .ic svg{animation:none}
-.prow .ic{background:color-mix(in srgb,var(--pc) 10%,#faf9f6);color:color-mix(in srgb,var(--pc) 80%,#555)}
+.prow .ic{background:color-mix(in srgb,var(--pc) 10%,#f7f8fa);color:color-mix(in srgb,var(--pc) 80%,#555)}
 .prow .tm{color:#2f3644}.prow.past .tm{color:#9aa0a8}
-.qa span{background:color-mix(in srgb,var(--c) 10%,#faf9f6)}
+.qa span{background:color-mix(in srgb,var(--c) 10%,#f7f8fa)}
 </style>
 </head>
 <body>
@@ -518,7 +518,7 @@ function adhkarFor(p){
   if(p==='Fajr') L.push({id:'ilm',title:'سؤال العلم النافع',tag:'دعاء',special:'خاص بالفجر',sub:'رواه ابن ماجه',count:1,text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا',size:27,src:'رواه ابن ماجه (925) عن أم سلمة رضي الله عنها',gnote:'يقوله بعد السلام من صلاة الفجر.'});
   return L;
 }
-const PGRAD={Fajr:'linear-gradient(135deg,#27406b,#7c6fa0 60%,#d99a86)',Dhuhr:'linear-gradient(135deg,#2f6f96,#6aa6c4)',Asr:'linear-gradient(135deg,#8a5a3a,#d8925a)',Maghrib:'linear-gradient(135deg,#4a2f63,#8a4a6e 60%,#c9705a)',Isha:'linear-gradient(135deg,#121e33,#2b3c66)'};
+const PGRAD={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#352c44,#6a5468)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
 
 /* ============ storage ============ */
 const LS={get(k,d){try{const v=localStorage.getItem('miqat.'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('miqat.'+k,JSON.stringify(v))}catch(e){}}};
@@ -671,7 +671,7 @@ const SCREENS={},AFTER={};
 
 /* 01 splash */
 SCREENS.splash=()=>`<div class="pt splash" style="flex:1;display:flex;flex-direction:column">
- <svg viewBox="0 0 120 110" width="132" height="122" fill="none" stroke="#e8c27a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+ <svg viewBox="0 0 120 110" width="132" height="122" fill="none" stroke="#aebccc" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M10 104h100"/><path d="M22 104V72a16 16 0 0132 0v32"/><path d="M60 104V64a20 20 0 0140 0v40"/><path d="M33 104V90a5 5 0 0110 0v14M74 104V86a6 6 0 0112 0v18"/>
   <path d="M38 56V48M80 44V36"/><path d="M78 6a24 24 0 1020 36A20 20 0 0178 6z"/></svg>
  <div class="t">ميقات</div><div class="s">مواقيت الصلاة · القبلة · أذكار ما بعد الصلاة</div>
@@ -747,7 +747,7 @@ const PI={
  Isha:`<path d="M18.5 14.8A7.5 7.5 0 019.2 5.5a7 7 0 109.3 9.3z" fill="currentColor" fill-opacity=".28"/><path d="M16 3.5l.45 1.05 1.05.45-1.05.45L16 6.5l-.45-1.05L14.5 5l1.05-.45zM20 8l.35.8.8.35-.8.35L20 10.3l-.35-.8-.8-.35.8-.35z" fill="currentColor" stroke-width="1"/>`,
 };
 const PIc=(p,s=20)=>`<svg class="i" viewBox="0 0 24 24" style="width:${s}px;height:${s}px">${PI[p]}</svg>`;
-const PCOL={Fajr:'#6b78c4',Sunrise:'#d99a4e',Dhuhr:'#3d8fbf',Asr:'#3f9a8c',Maghrib:'#c0607a',Isha:'#5a6fb8'};
+const PCOL={Fajr:'#6b78c4',Sunrise:'#9a8a7e',Dhuhr:'#3d8fbf',Asr:'#3f9a8c',Maghrib:'#c0607a',Isha:'#5a6fb8'};
 function period(st){const T=st.T,n=st.now.secs;if(n<toSec(T.Fajr))return 'isha';if(n<toSec(T.Sunrise))return 'fajr';if(n<toSec(T.Dhuhr))return 'duha';if(n<toSec(T.Asr))return 'dhuhr';if(n<toSec(T.Maghrib))return 'asr';if(n<toSec(T.Isha))return 'maghrib';return 'isha'}
 const QA={
  qibla:`<circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".14"/><circle cx="12" cy="12" r="9"/><path d="M15.8 8.2l-2.3 5.3-5.3 2.3 2.3-5.3z" fill="currentColor" fill-opacity=".35"/>`,
@@ -845,7 +845,7 @@ SCREENS.home=()=>{
    <div class="qa">
     <button onclick="STACK=[];go('qibla',{},false)"><span style="--c:#2a8a63;--b:#e2f4ec">${QAi('qibla')}</span><b>القبلة</b><small class="num">${q!=null?q.toFixed(0)+'°':'—'}</small></button>
     <button onclick="go('month')"><span style="--c:#4b5fb0;--b:#e6e9f8">${QAi('month')}</span><b>الإمساكية</b><small>${GM[now.m-1]}</small></button>
-    <button onclick="STACK=[];go('adhkar',{},false)"><span style="--c:#a87a22;--b:#f8ecd3">${QAi('beads')}</span><b>الأذكار</b><small>${dn.length}/5 اليوم</small></button>
+    <button onclick="STACK=[];go('adhkar',{},false)"><span style="--c:#6f7f95;--b:#e9ecf0">${QAi('beads')}</span><b>الأذكار</b><small>${dn.length}/5 اليوم</small></button>
     <button onclick="shareDay('${k}')"><span style="--c:#b0503c;--b:#f8e4df">${QAi('share')}</span><b>مشاركة</b><small>مواقيت اليوم</small></button>
    </div>
    <button class="card" style="margin:0 16px 18px;padding:14px 16px;display:flex;gap:10px;align-items:center;width:calc(100% - 32px);text-align:right" onclick="go('timings',{k:'${k}'})">${I('list','20')}<span style="flex:1;font-weight:600">كل مواقيت اليوم</span>${I('chevL','18')}</button>
@@ -951,11 +951,11 @@ function dialSVG(){
   let t='';for(let a=0;a<360;a+=5){const L=a%30===0?14:a%10===0?9:6;const w=a%30===0?2.4:1.2;t+=`<line x1="150" y1="${16}" x2="150" y2="${16+L}" stroke="${a%90===0?'#fff':'#8796b3'}" stroke-width="${w}" transform="rotate(${a} 150 150)"/>`}
   const lab={0:'ش',90:'ق',180:'ج',270:'غ'};let n='';
   for(let a=0;a<360;a+=30){const r=a%90===0?104:112;const x=150+r*Math.sin(a*Math.PI/180),y=150-r*Math.cos(a*Math.PI/180);
-    n+=a%90===0?`<text x="${x}" y="${y+7}" text-anchor="middle" font-size="20" font-weight="700" fill="${a===0?'#e8c27a':'#fff'}" font-family="IBM Plex Sans Arabic">${lab[a]}</text>`:`<text x="${x}" y="${y+4}" text-anchor="middle" font-size="10" fill="#8796b3" font-family="Inter" transform="rotate(${a} ${x} ${y})">${a}</text>`}
+    n+=a%90===0?`<text x="${x}" y="${y+7}" text-anchor="middle" font-size="20" font-weight="700" fill="${a===0?'#aebccc':'#fff'}" font-family="IBM Plex Sans Arabic">${lab[a]}</text>`:`<text x="${x}" y="${y+4}" text-anchor="middle" font-size="10" fill="#8796b3" font-family="Inter" transform="rotate(${a} ${x} ${y})">${a}</text>`}
   return `<svg class="dial" viewBox="0 0 300 300"><circle cx="150" cy="150" r="146" fill="#16233b" stroke="#2b3c5c" stroke-width="2" id="dring"/>
-   <g id="drot">${t}${n}<g id="needle"><line x1="150" y1="150" x2="150" y2="62" stroke="#e8c27a" stroke-width="4" stroke-linecap="round"/>
-    <g transform="translate(150 50)"><rect x="-14" y="-14" width="28" height="28" rx="3" fill="#111"/><rect x="-14" y="-7" width="28" height="5" fill="#e8c27a"/></g></g></g>
-   <circle cx="150" cy="150" r="9" fill="#16233b" stroke="#e8c27a" stroke-width="4"/></svg>`;
+   <g id="drot">${t}${n}<g id="needle"><line x1="150" y1="150" x2="150" y2="62" stroke="#aebccc" stroke-width="4" stroke-linecap="round"/>
+    <g transform="translate(150 50)"><rect x="-14" y="-14" width="28" height="28" rx="3" fill="#111"/><rect x="-14" y="-7" width="28" height="5" fill="#aebccc"/></g></g></g>
+   <circle cx="150" cy="150" r="9" fill="#16233b" stroke="#aebccc" stroke-width="4"/></svg>`;
 }
 SCREENS.qibla=()=>{
   const ll=locLatLng();const q=qiblaDeg();
@@ -1061,7 +1061,7 @@ SCREENS.lock=({p})=>{
   <div class="clock"><small>${WD[wdOf(now.key)]}، ${now.d} ${GM[now.m-1]}</small><b>${pad(now.h)}:${pad(now.mi)}</b></div>
   <div class="notif"><div class="app"><i>${I('mosque','13')}</i> ميقات · الآن</div>
    <h4>تقبّل الله صلاتك 🤍</h4><p>هل أنهيت صلاة ${PAR[p]}؟ أذكار ما بعد الصلاة جاهزة: ${list.length} أذكار، قراءة ${mins} دقائق.</p>
-   <div class="acts"><button style="background:var(--navy);color:#fff" onclick="startAdhkar('${p}')">ابدأ الأذكار</button><button style="background:#e3dce2" onclick="snooze('${p}')">بعد 5 دقائق</button></div></div>
+   <div class="acts"><button style="background:var(--navy);color:#fff" onclick="startAdhkar('${p}')">ابدأ الأذكار</button><button style="background:#e2e5ea" onclick="snooze('${p}')">بعد 5 دقائق</button></div></div>
   ${st?`<div class="notif" style="background:#ffffff2a;color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px;font-size:13px;margin-top:10px">${I('clock','18')}<span style="flex:1">${PAR[st.nxt.p]} بعد ${Math.floor(st.nxt.secs/3600)?Math.floor(st.nxt.secs/3600)+' ساعة و':''}${Math.floor(st.nxt.secs%3600/60)} دقائق · <span class="num">${st.nxt.t}</span></span></div>`:''}
   <div style="flex:1"></div>
   <div style="display:flex;justify-content:space-between;padding:0 40px 40px">${I('target','24')}<button onclick="STACK=[];go('home',{},false)">${I('x','24')}</button></div></div>`;
@@ -1122,7 +1122,7 @@ SCREENS.counter=()=>{
   ${a.parts?`<div class="subchips">${a.parts.map((pp,k)=>`<span class="chip ${k===j&&c[k]<pp.n?'cur':c[k]>=pp.n?'ok':''}">${c[k]>=pp.n?I('check','14'):''}${pp.l} <span class="num">${k===j&&c[k]<pp.n?c[k]+'/'+pp.n:pp.n}</span></span>`).join('')}</div>`:''}
   <div class="ringw">
    <div class="ring" onclick="count()">
-    <svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="${R0}" stroke="#22324f" stroke-width="7" fill="none"/><circle cx="75" cy="75" r="${R0}" stroke="#e8c27a" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="${CIRC}" stroke-dashoffset="${CIRC*(1-pct)}" style="transition:stroke-dashoffset .2s"/></svg>
+    <svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="${R0}" stroke="#22324f" stroke-width="7" fill="none"/><circle cx="75" cy="75" r="${R0}" stroke="#aebccc" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="${CIRC}" stroke-dashoffset="${CIRC*(1-pct)}" style="transition:stroke-dashoffset .2s"/></svg>
     <div class="in">${a.once?`${I('check','44','color:var(--gold2);stroke-width:2.4')}<small style="margin-top:6px">اضغط عند الانتهاء</small>`:`<b class="num">${v}</b><small>من ${n}</small>`}</div>
    </div>
    <div class="hint">${I('vib','16')} المس البطاقة أو الدائرة للعدّ${a.parts?` · المجموع <span class="num">${tot}/${a.count}</span>`:''}</div>
@@ -1156,7 +1156,7 @@ SCREENS.done=()=>{
   <div class="stats3"><div class="card"><b class="num">${done}</b><small>أذكار</small></div><div class="card"><b class="num">${tot}</b><small>عدة</small></div><div class="card"><b class="num" style="color:var(--gold2)">${streak()}</b><small>أيام متتالية</small></div></div>
   <div class="card" style="margin:12px 16px 0;padding:14px;text-align:right"><b style="font-size:15px">أذكار اليوم</b>
    <div class="pdots">${PR.map(p=>`<div><i class="${dn.includes(p)?'':'no'}">${dn.includes(p)?I('check','20','stroke-width:2.4'):I('moon','20')}</i>${pname(p,k)}</div>`).join('')}</div></div>
-  ${st?`<div class="card" style="margin:12px 16px 0;padding:14px;display:flex;align-items:center;gap:12px;text-align:right"><span class="ib" style="background:#e9dcc0;color:#1b2333;border-radius:12px">${I(PIC[st.nxt.p],'20')}</span><span style="flex:1"><small style="color:#9aa6bb;font-size:11.5px">الصلاة القادمة</small><b style="display:block;font-size:17px">${pname(st.nxt.p,k)} · <span class="num">${st.nxt.t}</span></b></span><span style="color:var(--gold2)">${I('alarm','22')}</span></div>`:''}
+  ${st?`<div class="card" style="margin:12px 16px 0;padding:14px;display:flex;align-items:center;gap:12px;text-align:right"><span class="ib" style="background:#dfe3ea;color:#1b2333;border-radius:12px">${I(PIC[st.nxt.p],'20')}</span><span style="flex:1"><small style="color:#9aa6bb;font-size:11.5px">الصلاة القادمة</small><b style="display:block;font-size:17px">${pname(st.nxt.p,k)} · <span class="num">${st.nxt.t}</span></b></span><span style="color:var(--gold2)">${I('alarm','22')}</span></div>`:''}
   </div>
   <div style="display:flex;gap:10px;padding:12px 16px 26px"><button class="btn gold" style="flex:2.2" onclick="STACK=[];go('home',{},false)">العودة للمواقيت</button><button class="btn" style="flex:1;background:#1d2b45;color:#fff;border:1px solid var(--navyline)" onclick="startAdhkar('${C.p}')">${I('refresh','18')} إعادة</button></div></div>`;
 };
@@ -1231,7 +1231,7 @@ SCREENS.notifs=()=>{
   return `<div class="pt light" style="flex:1;display:flex;flex-direction:column;min-height:0">
   <div class="hdr"><button class="ib" onclick="back()">${I('arrowR')}</button><h1>تنبيهات كل صلاة</h1></div><div class="scroll">
   ${PR.map(p=>{const n=S.notif[p];return `<div class="card ncard ${n.on?'':'off'}">
-   <div class="top"><span class="ib" style="background:#f3eee4;border-radius:12px;color:#7d8597">${I(PIC[p],'20')}</span><span class="tx"><b>${pname(p,k)}</b><span>${hm(T[p])}</span></span><button class="tgl ${n.on?'on':''}" onclick="S.notif.${p}.on=!S.notif.${p}.on;save();askNotif();render()"></button></div>
+   <div class="top"><span class="ib" style="background:#e9ecf0;border-radius:12px;color:#7d8597">${I(PIC[p],'20')}</span><span class="tx"><b>${pname(p,k)}</b><span>${hm(T[p])}</span></span><button class="tgl ${n.on?'on':''}" onclick="S.notif.${p}.on=!S.notif.${p}.on;save();askNotif();render()"></button></div>
    <div class="ops"><button class="o1" onclick="cyc('${p}','type')">${I(n.type==='short'?'bellf':'mega','16')} ${n.type==='fajr'&&p!=='Fajr'?TYPES.full:TYPES[n.type]}</button>
    <button class="o2" onclick="cyc('${p}','before')">${I('alarm','16')} ${n.before?`قبلها بـ ${n.before} د`:'بلا تنبيه مسبق'}</button>
    <button class="o3" onclick="cyc('${p}','after')">${I('tap','16')} ${n.after?`الأذكار بعد ${n.after} د`:'بلا تذكير أذكار'}</button></div>
