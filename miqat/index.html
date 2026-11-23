@@ -706,6 +706,24 @@ button.ap{color:#fff;font-family:var(--ui)}
 .tdark .dark .pc.nx .ci,.tdark .dark .pdd .di{background:color-mix(in srgb,var(--pc) 50%,#2a3342);color:#e3e6ea}
 .tdark .dark .pdd{background:color-mix(in srgb,var(--pc) 12%,#1c222c)}
 .tdark .dark .pdd .cd{color:color-mix(in srgb,var(--pc) 40%,#c9ced6)}
+
+/* illustrated prayer icons */
+.sc{overflow:hidden;padding:0!important;background:none!important;box-shadow:0 2px 6px #2a314022}
+.sc .psc{width:100%;height:100%;display:block}
+.pc .ci.sc{width:38px;height:38px;border-radius:12px}
+.pc.nx .ci.sc{width:42px;height:42px;border-radius:13px}
+.pdd .di.sc{width:44px;height:44px;border-radius:14px}
+.psc.an .ray{animation:psr 18s linear infinite}
+@keyframes psr{to{transform:rotate(360deg)}}
+.psc.an .tw{animation:pst 2.6s ease-in-out infinite}.psc.an .tw.t2{animation-delay:.9s}.psc.an .tw.t3{animation-delay:1.7s}
+@keyframes pst{50%{opacity:.25}}
+.psc.an .cl{animation:psc 5s ease-in-out infinite alternate}
+@keyframes psc{to{transform:translateX(-3px)}}
+.psc.an .sn{animation:pss 3.4s ease-in-out infinite}
+@keyframes pss{50%{transform:translateY(-1.2px)}}
+.psc.an .bd{animation:psb 4s ease-in-out infinite alternate}
+@keyframes psb{to{transform:translate(1.5px,-1px)}}
+.pc.nx .ci.sc svg{animation:none}
 </style>
 </head>
 <body>
@@ -1131,6 +1149,21 @@ function addMin(t,m){const s=toSec(t)+m*60;return `${pad(Math.floor(s/3600)%24)}
 function sharePrayer(p){const t=`${pname(p,tzNow().key)} — ${hm(G.day.timings[p])} · ${(S.loc||{}).label||''}\n— ميقات`;if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard&&navigator.clipboard.writeText(t);toast('نُسخ الوقت')}}
 
 let PRAYED=LS.get('prayed',{}),TLANIM=true;
+/* illustrated prayer icons: a tiny sky scene per prayer (calm colours, no yellow) */
+let PSN=0;
+function PSc(p,anim){const u='ps'+(++PSN);const W='#eef2f6';
+  const sky=(a,b)=>`<defs><linearGradient id="${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="40" height="40" fill="url(#${u})"/>`;
+  const rays=(cx,cy,r1,r2,op)=>`<g class="ray" style="transform-origin:${cx}px ${cy}px">${[0,45,90,135,180,225,270,315].map(a=>{const t=a*Math.PI/180;return `<line x1="${(cx+r1*Math.cos(t)).toFixed(1)}" y1="${(cy+r1*Math.sin(t)).toFixed(1)}" x2="${(cx+r2*Math.cos(t)).toFixed(1)}" y2="${(cy+r2*Math.sin(t)).toFixed(1)}"/>`}).join('')}</g>`.replace('<g class="ray"',`<g class="ray" stroke="${W}" stroke-width="1.8" stroke-linecap="round" opacity="${op}"`);
+  const cloud=(x,y,sc,op)=>`<g class="cl" opacity="${op}"><path transform="translate(${x} ${y}) scale(${sc})" d="M0 8a4 4 0 014-4 5.5 5.5 0 0110.5-1.5A4 4 0 0120 6.5 3.5 3.5 0 0119.5 13H3.5A3.5 3.5 0 010 8z" fill="#f4f7f9"/></g>`;
+  let g='';
+  if(p==='Fajr')g=sky('#26354f','#5f7c99')+`<circle class="tw" cx="9" cy="9" r="1" fill="${W}"/><circle class="tw t2" cx="31" cy="7" r=".8" fill="${W}"/><circle class="tw t3" cx="24" cy="12" r=".6" fill="${W}"/><g class="sn"><circle cx="20" cy="30" r="7.5" fill="#dfe7ef"/><circle cx="20" cy="30" r="10.5" fill="#dfe7ef" opacity=".18"/></g><rect y="29" width="40" height="11" fill="#22304a"/><path d="M0 31q10-3 20 0t20 0v9H0z" fill="#2c3c5a"/>`;
+  else if(p==='Sunrise')g=sky('#4a6788','#97adc2')+`<g class="sn"><circle cx="20" cy="27" r="7" fill="${W}"/></g>${rays(20,27,9.5,12,.6)}<rect y="27" width="40" height="13" fill="#3b5372"/>`;
+  else if(p==='Dhuhr')g=sky('#4a7ca2','#8db4cb')+`${rays(20,15,9,12.5,.75)}<g class="sn"><circle cx="20" cy="15" r="6.5" fill="${W}"/></g>${cloud(16,25,1,.9)}`;
+  else if(p==='Asr')g=sky('#3b7678','#7eaaa3')+`${rays(14,13,7.5,10.5,.6)}<g class="sn"><circle cx="14" cy="13" r="5.5" fill="${W}"/></g>${cloud(12,19,1.25,.95)}<path d="M0 34q12-4 22 0t18-1v7H0z" fill="#2f6163"/>`;
+  else if(p==='Maghrib')g=sky('#36405f','#7f89a8')+`<g class="sn"><circle cx="21" cy="27" r="8" fill="#e4e7ef"/><circle cx="21" cy="27" r="11.5" fill="#e4e7ef" opacity=".16"/></g><path class="bd" d="M8 12q2-1.6 3.4 0q1.4-1.6 3.4 0M25 9q1.6-1.3 2.8 0q1.2-1.3 2.8 0" stroke="${W}" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".7"/><path d="M0 28q8-5 16-1t14-2 10 1v14H0z" fill="#2c3450"/><path d="M0 33q14-4 26 0t14 0v7H0z" fill="#232a42"/>`;
+  else if(p==='Isha')g=sky('#151d33','#2c3a5c')+`<circle class="tw" cx="8" cy="10" r="1" fill="${W}"/><circle class="tw t2" cx="31" cy="29" r=".9" fill="${W}"/><circle class="tw t3" cx="12" cy="30" r=".7" fill="${W}"/><circle class="tw" cx="33" cy="9" r=".6" fill="${W}"/><g class="sn"><mask id="${u}m"><rect width="40" height="40" fill="#fff"/><circle cx="25.5" cy="15.5" r="7" fill="#000"/></mask><circle cx="20.5" cy="19" r="8" fill="#e9edf4" mask="url(#${u}m)"/></g>`;
+  else return PIc(p,20);
+  return `<svg class="psc ${anim?'an':''}" viewBox="0 0 40 40" aria-hidden="true">${g}</svg>`}
 let PSEL=null;
 function pdPos(st){const {now,T}=st;const t=PR.map(p=>toSec(T[p]));if(now.secs<t[0])return 0;for(let i=0;i<4;i++)if(now.secs<t[i+1])return (i+(now.secs-t[i])/(t[i+1]-t[i]))/4;return 1}
 function pdSel(p){PSEL=PSEL===p?null:p;if(navigator.vibrate)navigator.vibrate(6);render()}
@@ -1144,12 +1177,12 @@ function prayerTL(st){
     const st2=p===nP?'nx':past?'ps':'ft';
     const mark=past?`<span class="mk ${on?'on':''}">${I('check','12','stroke-width:3')}</span>`:`<span class="mk bl ${nb[p].on?'':'off'}">${I(nb[p].on?'bellf':'belloff','11')}</span>`;
     return `<button class="pc ${st2} ${sel===p?'sel':''}" style="--pc:${PCOL[p]};animation-delay:${i*50}ms" onclick="pdSel('${p}')">
-      <span class="ci">${PIc(p,p===nP?22:19)}</span><span class="cn">${pname(p,k)}</span><span class="ct num">${hm(T[p])}</span>${mark}</button>`}).join('');
+      <span class="ci sc">${PSc(p,p===nP)}</span><span class="cn">${pname(p,k)}</span><span class="ct num">${hm(T[p])}</span>${mark}</button>`}).join('');
   const line=`<div class="pdl"><i class="fl" id="pdfl" style="width:${(pos*80).toFixed(2)}%"></i>${PR.map((p,i)=>`<i class="dt ${toSec(T[p])<=now.secs?'on':''}" style="right:${10+i*20}%;--pc:${PCOL[p]}"></i>`).join('')}<i class="nw" id="pdnw" style="right:${(10+pos*80).toFixed(2)}%"></i></div>`;
   // detail panel
   let det;
   if(!sel){const tm=G.tomorrow?G.tomorrow.timings:T;
-    det=`<div class="pdd" style="--pc:${PCOL.Fajr}"><div class="dl"><span class="di">${PIc('Fajr',22)}</span><div class="dx"><small>الصلاة القادمة · غدًا</small><b>الفجر <span class="num">${hm(tm.Fajr)}</span></b></div><b class="cd num" id="tlcd">${fmtCd(nxt.secs)}</b></div>
+    det=`<div class="pdd" style="--pc:${PCOL.Fajr}"><div class="dl"><span class="di sc">${PSc('Fajr',true)}</span><div class="dx"><small>الصلاة القادمة · غدًا</small><b>الفجر <span class="num">${hm(tm.Fajr)}</span></b></div><b class="cd num" id="tlcd">${fmtCd(nxt.secs)}</b></div>
       <div class="br"><i id="tlbar" style="width:${(Math.max(0,Math.min(1,1-nxt.secs/(86400-toSec(T.Isha)+toSec(tm.Fajr))))*100).toFixed(1)}%"></i></div></div>`}
   else{const p=sel;const s=toSec(T[p]);const past=s<=now.secs;const on=pd.includes(p);const isN=p===nP;
     let mid,act;
@@ -1161,7 +1194,7 @@ function prayerTL(st){
     else{mid=`<span class="rl">${rel(s-now.secs)}</span>`;act=''}
     const sub=isN?'الصلاة القادمة':past?'مضت':'لاحقًا';
     const extra=p==='Fajr'?`<span class="sx">${PIc('Sunrise',13)} الشروق <span class="num">${hm(T.Sunrise)}</span></span>`:'';
-    det=`<div class="pdd" style="--pc:${PCOL[p]}"><div class="dl"><span class="di">${PIc(p,22)}</span><div class="dx"><small>${sub}${nb[p].on&&nb[p].before?` · تنبيه قبلها ${nb[p].before} د`:''}</small><b>${pname(p,k)} <span class="num">${hm(T[p])}</span></b></div>${mid}</div>
+    det=`<div class="pdd" style="--pc:${PCOL[p]}"><div class="dl"><span class="di sc">${PSc(p,true)}</span><div class="dx"><small>${sub}${nb[p].on&&nb[p].before?` · تنبيه قبلها ${nb[p].before} د`:''}</small><b>${pname(p,k)} <span class="num">${hm(T[p])}</span></b></div>${mid}</div>
       ${act}<div class="da">${extra}<span style="flex:1"></span><button class="ib ${nb[p].on?'':'off'}" onclick="toggleBell('${p}')" aria-label="تنبيه">${I(nb[p].on?'bellf':'belloff','17')}</button><button class="ib" onclick="sharePrayer('${p}')" aria-label="مشاركة">${I('share','16')}</button></div></div>`}
   setTimeout(()=>{TLANIM=false},700);
   return head+`<div class="pcs">${cols}</div>`+line+det;
