@@ -363,6 +363,26 @@ button.ap{color:#fff;font-family:var(--ui)}
 .dark .prow.next .sb{color:color-mix(in srgb,var(--pc) 45%,#fff)}
 .prow .bell{color:#9aa3b5}.prow .bell.off{color:#c3c7cf}
 .prow.next .bell{color:var(--pc)}.dark .prow.next .bell{color:color-mix(in srgb,var(--pc) 50%,#fff)}
+
+/* eye-comfort palette (v3): muted, low-glare */
+:root{--cream:#efede7;--card:#faf9f6;--line:#e6e2d9;--ink:#2a3140}
+.hero.sky-fajr,.mini.sky-fajr{background:linear-gradient(180deg,#2a3350 0%,#454d6e 60%,#62678a 100%)}
+.hero.sky-duha,.mini.sky-duha{background:linear-gradient(180deg,#3a566d 0%,#57748a 60%,#7790a1 100%)}
+.hero.sky-dhuhr,.mini.sky-dhuhr{background:linear-gradient(180deg,#33566b 0%,#4e6f84 60%,#6e8899 100%)}
+.hero.sky-asr,.mini.sky-asr{background:linear-gradient(180deg,#34514f 0%,#4f6b68 60%,#6e8580 100%)}
+.hero.sky-maghrib,.mini.sky-maghrib{background:linear-gradient(180deg,#352c44 0%,#4f4259 60%,#6c5b69 100%)}
+.hero.sky-isha,.mini.sky-isha{background:linear-gradient(180deg,#141c2c 0%,#1e283b 100%)}
+.hero,.mini{color:#eeece6}
+.hero .cd{color:#f1efe9;font-weight:700}
+.hero .ap{background:#ffffff1f}
+.hero .deco{border-color:#ffffff1a}
+.sunp{animation:none}
+.prow.next{background:color-mix(in srgb,var(--pc) 9%,#faf9f6)}
+.prow.next .ic{background:color-mix(in srgb,var(--pc) 75%,#5b6475);box-shadow:none}
+.prow.next .ic svg{animation:none}
+.prow .ic{background:color-mix(in srgb,var(--pc) 10%,#faf9f6);color:color-mix(in srgb,var(--pc) 80%,#555)}
+.prow .tm{color:#2f3644}.prow.past .tm{color:#9aa0a8}
+.qa span{background:color-mix(in srgb,var(--c) 10%,#faf9f6)}
 </style>
 </head>
 <body>
@@ -754,12 +774,12 @@ function sunArc(st){
   if(ARCSEL){const p=ARCSEL;const[x,y]=pt(u(toSec(T[p])));const d=toSec(T[p])-now.secs;const bx=Math.max(62,Math.min(W-62,x));
     bubble=`<g class="bub"><rect x="${bx-58}" y="${y-44}" width="116" height="32" rx="10" fill="#0d1628dd"/><text x="${bx}" y="${y-31}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="IBM Plex Sans Arabic">${pname(p,now.key)} · ${hm(T[p])}</text><text x="${bx}" y="${y-18}" text-anchor="middle" font-size="10" fill="#c9d6ea" font-family="IBM Plex Sans Arabic">${rel(d)}</text></g>`}
   return `<svg class="arc" viewBox="0 0 ${W} 96" onclick="if(event.target===this){ARCSEL=null;render()}">
-   <defs><radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".5" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><linearGradient id="arcg" x1="1" x2="0" y1="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".95"/></linearGradient></defs>
+   <defs><radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><linearGradient id="arcg" x1="1" x2="0" y1="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity=".6"/></linearGradient></defs>
    <line x1="${hx0}" y1="${BY}" x2="${hx1}" y2="${BY}" stroke="#ffffff40" stroke-width="1" stroke-dasharray="2 4"/>
-   <path d="${full}" fill="none" stroke="#ffffff55" stroke-width="1.6" stroke-dasharray="3 5"/>
+   <path d="${full}" fill="none" stroke="#ffffff33" stroke-width="1.4" stroke-dasharray="3 5"/>
    ${done?`<path d="${done}" fill="none" stroke="url(#arcg)" stroke-width="2.6" stroke-linecap="round"/>`:''}
    ${marks}
-   ${night||now.secs>=toSec(T.Maghrib)?`<g transform="translate(${night?(now.secs<a?X1:X0):cx} ${night?BY-14:cy-14})"><circle r="16" fill="url(#glow)" opacity=".5"/><circle r="9" fill="#f1f3f8"/><circle cx="4" cy="-3" r="7.6" fill="#1c2b47"/></g>`:`<circle cx="${cx}" cy="${cy}" r="22" fill="url(#glow)" class="sunp"/><circle cx="${cx}" cy="${cy}" r="7" fill="#fff" stroke="#ffffff66" stroke-width="5"/>`}
+   ${night||now.secs>=toSec(T.Maghrib)?`<g transform="translate(${night?(now.secs<a?X1:X0):cx} ${night?BY-14:cy-14})"><circle r="16" fill="url(#glow)" opacity=".5"/><circle r="9" fill="#f1f3f8"/><circle cx="4" cy="-3" r="7.6" fill="#1c2b47"/></g>`:`<circle cx="${cx}" cy="${cy}" r="22" fill="url(#glow)" class="sunp"/><circle cx="${cx}" cy="${cy}" r="6.5" fill="#e9e6dc" stroke="#ffffff33" stroke-width="4"/>`}
    ${bubble}
   </svg>`;
 }
