@@ -727,7 +727,7 @@ button.ap{color:#fff;font-family:var(--ui)}
 
 /* bento v2: clearer tints + stronger text */
 .bt{--bc:#526780;background:#fff;border-color:#e3e7ec;box-shadow:0 2px 10px #2a31400d}
-.bt h4 svg{width:22px;height:22px}
+
 .bt h4{color:var(--ink)}.bt h4 svg{color:var(--bc)}
 .bt .s{color:color-mix(in srgb,var(--ink) 68%,var(--card))}
 .bt .go{color:color-mix(in srgb,var(--ink) 60%,var(--card));opacity:1}
@@ -751,6 +751,21 @@ button.ap{color:#fff;font-family:var(--ui)}
 .apk .cc svg.rr{z-index:1}.apk .bd{z-index:2}
 .apk button{color:color-mix(in srgb,var(--ink) 70%,var(--card))}
 .apk button.on .cc{background:none;box-shadow:0 0 0 3px var(--cream),0 0 0 5px color-mix(in srgb,var(--pc) 70%,#3f4757)}
+
+/* bento illustrations */
+.bt h4{gap:8px}
+.bt h4 .hi{width:30px;height:30px;border-radius:10px;overflow:hidden;flex:none;box-shadow:0 2px 6px #2a314022}
+.bt h4 .hi svg,.lr .hi2 svg{width:100%;height:100%;display:block}
+.lr .li.hi2{overflow:hidden;padding:0;background:none;box-shadow:0 2px 6px #2a314022}
+.bt>*:not(.go):not(.dco){position:relative;z-index:1}.bt .go{z-index:1}
+.bt .dco{position:absolute;z-index:0;pointer-events:none;opacity:.09;left:0;right:0;bottom:0;width:100%;height:46px}
+.bt .dco.tl{top:6px;bottom:auto;left:6px;right:auto;width:120px;height:60px;opacity:.1}
+.bt.lr .dco.tl{top:auto;bottom:4px;left:auto;right:40%;width:100px;height:40px}
+.tdark .dark .bt .dco{opacity:.16}
+
+.bt .dco.bl{top:auto;bottom:4px;left:8px;right:auto;width:110px;height:56px;opacity:.1}
+.wd span{display:flex;align-items:center;justify-content:center;gap:3px}
+.wd .mi{width:12px;height:12px;border-radius:4px;overflow:hidden;flex:none;display:block}.wd .mi svg{width:100%;height:100%;display:block}
 </style>
 </head>
 <body>
@@ -1233,13 +1248,27 @@ function tlTick(st){const pos=pdPos(st);const fl=document.getElementById('pdfl')
   const i=PR.indexOf(st.nxt.p);const s=toSec(st.T[st.nxt.p]);const pv=i>0?toSec(st.T[PR[i-1]]):0;b.style.width=(Math.max(0,Math.min(1,(st.now.secs-pv)/(s-pv)))*100).toFixed(2)+'%'}
 
 const WDS=['أحد','إثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];
+/* illustrated widget tiles + soft card decor (same style as PSc) */
+function ILL(k){const u='il'+(++PSN);const W='#eef2f6';
+  const sky=(a,b)=>`<defs><linearGradient id="${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="40" height="40" fill="url(#${u})"/>`;
+  let g='';
+  if(k==='qibla')g=sky('#3b7678','#7eaaa3')+`<circle cx="30" cy="10" r="1" fill="${W}"/><path d="M27 8.5a3.2 3.2 0 104 4 3.6 3.6 0 01-4-4z" fill="${W}"/><path d="M0 31q10-4 20-1t20-1v11H0z" fill="#2f6163"/><path d="M13 30V17.5l7-2.5 7 2.5V30z" fill="#232831"/><path d="M13 20.5l7-2.3 7 2.3" stroke="#9fb3ad" stroke-width="1.4" fill="none"/><path d="M13 17.5l7-2.5 7 2.5" stroke="#3a414c" stroke-width=".8" fill="none"/>`;
+  else if(k==='beads')g=sky('#26354f','#5f7c99')+[...Array(11)].map((_,i)=>{const a=(-200+i*22)*Math.PI/180;return `<circle cx="${(20+11*Math.cos(a)).toFixed(1)}" cy="${(17+10*Math.sin(a)).toFixed(1)}" r="2.3" fill="${W}"/>`}).join('')+`<circle cx="20" cy="28" r="2.6" fill="#c9d6e3"/><path d="M20 30.5v4M18.4 34.5h3.2" stroke="#c9d6e3" stroke-width="1.6" stroke-linecap="round"/><circle cx="31" cy="8" r=".8" fill="${W}"/>`;
+  else if(k==='cal')g=sky('#4a7ca2','#8db4cb')+`<rect x="9" y="10" width="22" height="21" rx="4" fill="${W}"/><path d="M9 14a4 4 0 014-4h14a4 4 0 014 4v2H9z" fill="#3c5f80"/><path d="M14 8v4M26 8v4" stroke="#24384d" stroke-width="2" stroke-linecap="round"/><path d="M21 19.5a4.4 4.4 0 105.2 5.2 5 5 0 01-5.2-5.2z" fill="#4a7ca2"/><circle cx="15" cy="21" r="1" fill="#8db4cb"/><circle cx="17" cy="27" r=".8" fill="#8db4cb"/>`;
+  else if(k==='night')g=sky('#151d33','#2c3a5c')+`<circle cx="8" cy="9" r=".9" fill="${W}"/><circle cx="33" cy="15" r=".7" fill="${W}"/><circle cx="14" cy="16" r=".6" fill="${W}"/><path d="M26 6.5a5.5 5.5 0 106.5 6.5 6.2 6.2 0 01-6.5-6.5z" fill="#e9edf4"/><path d="M4 40V28h4v-3l2-2 2 2v3h3v-2a5 5 0 0110 0v2h3v-3l2-2 2 2v3h4v12z" fill="#0e1424"/>`;
+  return `<svg viewBox="0 0 40 40" aria-hidden="true">${g}</svg>`}
+const DECO={
+ qibla:`<svg class="dco" viewBox="0 0 200 60" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><path fill="#3f7d68" d="M0 60V44h14v-8l4-5 4 5v8h10v-6a14 14 0 0128 0v6h8V22l3-6 3 6v22h12v-10a20 20 0 0140 0v10h12V22l3-6 3 6v22h8v-6a14 14 0 0128 0v6h10v-8l4-5 4 5v8h14v16z"/></svg>`,
+ beads:`<svg class="dco bl" viewBox="0 0 120 70" aria-hidden="true">${[...Array(14)].map((_,i)=>{const a=(200+i*11)*Math.PI/180;return `<circle cx="${(60+52*Math.cos(a)).toFixed(1)}" cy="${(70+52*Math.sin(a)).toFixed(1)}" r="4.2" fill="#4f7891"/>`}).join('')}</svg>`,
+ cal:`<svg class="dco tl" viewBox="0 0 120 60" aria-hidden="true"><path d="M30 8a16 16 0 1019 19 18 18 0 01-19-19z" fill="#526780"/><circle cx="62" cy="14" r="2.2" fill="#526780"/><circle cx="80" cy="30" r="1.6" fill="#526780"/><circle cx="96" cy="12" r="2.6" fill="#526780"/><circle cx="110" cy="38" r="1.4" fill="#526780"/></svg>`,
+ night:`<svg class="dco tl" viewBox="0 0 120 50" aria-hidden="true"><circle cx="14" cy="12" r="2" fill="#5a6f8c"/><circle cx="34" cy="30" r="1.4" fill="#5a6f8c"/><circle cx="56" cy="10" r="1.8" fill="#5a6f8c"/><circle cx="78" cy="26" r="1.2" fill="#5a6f8c"/></svg>`};
 function homeBento(st){
   const {now,T}=st;const k=now.key;const dn=DONE[k]||[];const q=qiblaDeg();
   const passed=PR.filter(p=>toSec(T[p])<=now.secs);const pend=passed.filter(p=>!dn.includes(p)).pop();
   const C=2*Math.PI*40,f=dn.length/5;
   const ticks=Array.from({length:24},(_,i)=>`<line x1="50" y1="${i%6?9:7}" x2="50" y2="${i%6?13:15}" stroke="currentColor" stroke-opacity="${i%6?.25:.5}" stroke-width="${i%6?1:1.6}" transform="rotate(${i*15} 50 50)"/>`).join('');
   const qib=`<button class="bt" onclick="STACK=[];go('qibla',{},false)" style="animation-delay:.05s;--bc:#3f7d68">
-    <h4>${QAi('qibla','18')} القبلة</h4><span class="go">${I('chevL','16')}</span>
+    ${DECO.qibla}<h4><span class="hi">${ILL('qibla')}</span>القبلة</h4><span class="go">${I('chevL','16')}</span>
     <div class="qbw"><svg class="qd" id="mqd" viewBox="0 0 100 100" style="--q:${q||0}deg;color:#56627a">
       <circle cx="50" cy="50" r="46" fill="color-mix(in srgb,#3f7d68 9%,#fff)" stroke="currentColor" stroke-opacity=".3"/>${ticks}
       <text x="50" y="26" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">N</text>
@@ -1247,7 +1276,7 @@ function homeBento(st){
       <circle cx="50" cy="50" r="3.4" fill="var(--card)" stroke="#3f7d68" stroke-width="2"/></svg>
      <div class="qv"><b>${q!=null?q.toFixed(0)+'°':'—'}</b><small>من الشمال<br>اضغط للبوصلة</small></div></div></button>`;
   const adk=`<button class="bt" style="--bc:#4f7891" onclick="${pend?`startAdhkar('${pend}')`:`STACK=[];go('adhkar',{},false)`}" style="animation-delay:.1s">
-    <h4>${QAi('beads','18')} الأذكار</h4><span class="go">${I('chevL','16')}</span>
+    ${DECO.beads}<h4><span class="hi">${ILL('beads')}</span>الأذكار</h4><span class="go">${I('chevL','16')}</span>
     <div class="rgw"><svg class="rg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="color-mix(in srgb,#4f8a75 16%,#fff)" stroke-width="9"/>
       <circle class="pg" id="adring" cx="50" cy="50" r="40" fill="none" stroke="#4f8a75" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" data-off="${(C*(1-f)).toFixed(1)}" transform="rotate(-90 50 50)"/>
       <text x="50" y="57" text-anchor="middle">${dn.length}/5</text></svg>
@@ -1255,11 +1284,11 @@ function homeBento(st){
   const D=G.month[now.y+'-'+now.m]||[];const days=[];
   for(let o=-2;o<=4;o++){const dk=addDays(k,o);const[y,m,d]=dk.split('-').map(Number);const row=(G.month[y+'-'+m]||[]).find(x=>+x.date.gregorian.day===d);days.push({dk,d,row,o})}
   const wk=`<div class="bt w" onclick="go('month')" style="animation-delay:.15s;cursor:pointer;--bc:#526780">
-    <h4>${QAi('month','18')} الإمساكية <span class="s" style="margin:0;font-weight:500">· ${GM[now.m-1]}</span></h4><span class="go">${I('chevL','16')}</span>
-    <div class="wk" id="wk">${days.map(x=>`<button class="wd ${x.o===0?'td':''} ${x.o<0?'ps':''} ${wdOf(x.dk)===5?'fr':''}" onclick="event.stopPropagation();go('timings',{k:'${x.dk}'})" ${x.o===0?'id="wdt"':''}><small>${x.o===0?'اليوم':WDS[wdOf(x.dk)]}</small><b>${x.d}</b>${x.row?`<span>${hm(x.row.timings.Fajr)}</span><span>${hm(x.row.timings.Maghrib)}</span>`:'<span>—</span>'}</button>`).join('')}</div>
+    ${DECO.cal}<h4><span class="hi">${ILL('cal')}</span>الإمساكية <span class="s" style="margin:0;font-weight:500">· ${GM[now.m-1]}</span></h4><span class="go">${I('chevL','16')}</span>
+    <div class="wk" id="wk">${days.map(x=>`<button class="wd ${x.o===0?'td':''} ${x.o<0?'ps':''} ${wdOf(x.dk)===5?'fr':''}" onclick="event.stopPropagation();go('timings',{k:'${x.dk}'})" ${x.o===0?'id="wdt"':''}><small>${x.o===0?'اليوم':WDS[wdOf(x.dk)]}</small><b>${x.d}</b>${x.row?`<span><i class="mi">${PSc('Fajr')}</i>${hm(x.row.timings.Fajr)}</span><span><i class="mi">${PSc('Maghrib')}</i>${hm(x.row.timings.Maghrib)}</span>`:'<span>—</span>'}</button>`).join('')}</div>
     <div class="s" style="margin-top:6px;display:flex;justify-content:space-between"><span>الفجر / المغرب</span><span>اضغط يوما لرؤية مواقيته</span></div></div>`;
   const all=`<div class="bt w lr" style="animation-delay:.2s;padding:10px 12px;--bc:#5a6f8c">
-    <button class="lr" style="flex:1;text-align:right" onclick="go('timings',{k:'${k}'})"><span class="li">${I('list','20')}</span><span style="flex:1"><b style="font-size:14.5px">كل مواقيت اليوم</b><div class="s">الإمساك، منتصف الليل، الثلث الأخير</div></span>${I('chevL','18','opacity:.6')}</button>
+    <button class="lr" style="flex:1;text-align:right" onclick="go('timings',{k:'${k}'})"><span class="li hi2">${ILL('night')}</span><span style="flex:1"><b style="font-size:14.5px">كل مواقيت اليوم</b><div class="s">الإمساك، منتصف الليل، الثلث الأخير</div></span>${I('chevL','18','opacity:.6')}</button>
     <button class="sh" onclick="shareDay('${k}')" aria-label="مشاركة">${QAi('share','20')}</button></div>`;
   return `<div class="bn">${qib}${adk}${wk}${all}</div>`;
 }
