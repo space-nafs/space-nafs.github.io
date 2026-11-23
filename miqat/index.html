@@ -566,6 +566,50 @@ button.ap{color:#fff;font-family:var(--ui)}
 .nav button.on .pill{transform:none}
 .nav button.on:after{display:none}
 @media (max-height:680px){.nav button{height:38px;font-size:10px}.nav button .pill{height:20px}.nav button .pill svg{width:18px;height:18px}}
+/* adhkar page v2 */
+.apk{display:flex;justify-content:space-between;position:relative;margin:2px 10px 12px;padding:0 4px}
+.apk:before{content:'';position:absolute;top:26px;right:34px;left:34px;height:2px;background:color-mix(in srgb,var(--muted) 20%,transparent)}
+.apk button{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--muted);width:64px;transition:color .25s}
+.apk .cc{position:relative;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--card);color:color-mix(in srgb,var(--pc) 80%,#555);transition:transform .35s cubic-bezier(.3,1.5,.5,1),background .3s,color .3s}
+.apk .cc svg.rr{position:absolute;inset:-3px;width:58px;height:58px;transform:rotate(-90deg)}
+.apk button.on{color:var(--ink)}
+.apk button.on .cc{background:color-mix(in srgb,var(--pc) 50%,#5b6475);color:#fff;transform:scale(1.1)}
+.apk .bd{position:absolute;bottom:-2px;left:-2px;width:18px;height:18px;border-radius:9px;background:#6f9a8a;color:#fff;display:grid;place-items:center;border:2px solid var(--cream);animation:pop .4s}
+.ah2{margin:0 10px;border-radius:24px;padding:18px 18px 14px;color:#fff;position:relative;overflow:hidden;animation:fade2 .35s}
+.ah2 .row{display:flex;align-items:center;gap:12px}
+.ah2 small{font-size:12px;opacity:.85}.ah2 h2{font:700 30px var(--disp);margin:2px 0 0;line-height:1.3}
+.ah2 .rg2{width:76px;height:76px;flex:none;margin-right:auto}
+.ah2 .rg2 .pg{transition:stroke-dashoffset 1.1s cubic-bezier(.3,1,.4,1)}
+.ah2 .rg2 text{font:700 17px var(--num);fill:#fff}
+.ah2 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.ah2 .chips span{display:flex;align-items:center;gap:5px;background:#ffffff1f;border-radius:12px;padding:5px 10px;font-size:12px}
+.ah2 .fp{margin-top:10px;font-size:12px;opacity:.9;display:flex;gap:7px;align-items:flex-start;line-height:1.7}
+.ah2 .orb{position:absolute;width:180px;height:180px;border-radius:50%;left:-60px;top:-70px;background:radial-gradient(#ffffff14,transparent 70%);animation:orb 9s ease-in-out infinite}
+@keyframes orb{50%{transform:translate(30px,20px) scale(1.1)}}
+.apath{margin:14px 10px 0;position:relative}
+.ai{display:flex;gap:12px;align-items:stretch;width:100%;text-align:right;position:relative;animation:trin .45s both}
+.ai .rl{width:30px;flex:none;display:flex;flex-direction:column;align-items:center}
+.ai .rl .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 12.5px var(--num);background:var(--card);border:1.6px solid color-mix(in srgb,var(--pc) 45%,transparent);color:color-mix(in srgb,var(--pc) 80%,#444);margin-top:14px;flex:none}
+.ai .rl:after{content:'';flex:1;width:2px;background:color-mix(in srgb,var(--pc) 18%,transparent);margin-top:2px}
+.ai:last-child .rl:after{opacity:0}
+.ai .bx{flex:1;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px;margin-bottom:8px;transition:transform .15s,box-shadow .2s}
+.ai:active .bx{transform:scale(.98)}
+.ai .tt{display:flex;align-items:center;gap:8px}
+.ai .tt b{font-size:15px;flex:1}
+.ai .pv{font-family:var(--quran,var(--disp));font-size:14px;color:color-mix(in srgb,var(--ink) 70%,var(--card));margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;-webkit-mask-image:linear-gradient(270deg,#000 75%,transparent)}
+.ai .mt{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.ai .sp{background:color-mix(in srgb,var(--pc) 12%,var(--card));color:color-mix(in srgb,var(--pc) 80%,#444);border-radius:8px;padding:1px 7px;font-size:10.5px;font-weight:600}
+.ai .ct{display:flex;gap:3px;align-items:center;direction:ltr}
+.ai .ct i{width:7px;height:7px;border-radius:50%;background:color-mix(in srgb,var(--pc) 60%,#8a96a8)}
+.ai .ct em{font:700 13px var(--num);font-style:normal;color:color-mix(in srgb,var(--pc) 80%,#444);background:color-mix(in srgb,var(--pc) 11%,var(--card));padding:2px 8px;border-radius:9px}
+.sb2{position:sticky;bottom:0;padding:12px 10px 10px;background:linear-gradient(transparent,var(--cream) 35%)}
+.sb2 button{width:100%;height:56px;border-radius:20px;color:#fff;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden;transition:transform .15s}
+.sb2 button:active{transform:scale(.97)}
+.sb2 .pi{width:32px;height:32px;border-radius:50%;background:#ffffff26;display:grid;place-items:center;animation:ping2 2.4s infinite}
+@keyframes ping2{0%{box-shadow:0 0 0 0 #ffffff40}70%,100%{box-shadow:0 0 0 10px #ffffff00}}
+.sb2 button:after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,#ffffff1c 50%,transparent 70%);animation:shim 3.5s infinite}
+.swh{text-align:center;font-size:11px;color:var(--muted);margin:2px 0 4px}
+.tdark .dark .apk .bd{border-color:#151a22}
 </style>
 </head>
 <body>
@@ -1330,6 +1374,41 @@ SCREENS.adhkar=(p)=>{
    </div>
    <div class="stickyb"><button class="btn gold" onclick="startAdhkar('${cur}')">${I('play','18')} ابدأ أذكار ${pname(cur,k)}</button></div>
   </div>${nav('adhkar')}</div>`;
+};
+
+function streak(){let n=0,k=tzNow().key;if((DONE[k]||[]).length<5)k=addDays(k,-1);while((DONE[k]||[]).length>=5){n++;k=addDays(k,-1)}return n}
+SCREENS.adhkar=(p)=>{
+  const cur=p.p||lastPrayer();const list=adhkarFor(cur);const k=tzNow().key;const dn=DONE[k]||[];const isDone=dn.includes(cur);
+  const total=list.reduce((a,x)=>a+x.count,0);const mins=Math.max(2,Math.round(total*2/60));const fm=cur==='Fajr'||cur==='Maghrib';
+  const C2=2*Math.PI*32,st=streak();
+  const pk=PR.map(x=>{const d=dn.includes(x);return `<button class="${x===cur?'on':''}" style="--pc:${PCOL[x]}" onclick="if(navigator.vibrate)navigator.vibrate(5);R.params.p='${x}';render()">
+     <span class="cc">${d?`<svg class="rr" viewBox="0 0 58 58"><circle cx="29" cy="29" r="27" fill="none" stroke="#6f9a8a" stroke-width="2.4"/></svg>`:''}${PIc(x,22)}${d?`<span class="bd">${I('check','10','stroke-width:3.4')}</span>`:''}</span>${pname(x,k)}</button>`}).join('');
+  const items=list.map((a,i)=>{const pv=a.text?a.text.replace(/\s+/g,' ').slice(0,70):a.parts?a.parts.map(x=>x.l).join(' · '):'';
+    const ct=a.count<=3?`<span class="ct">${'<i></i>'.repeat(a.count)}</span>`:`<span class="ct"><em>×${a.count}</em></span>`;
+    return `<button class="ai" style="--pc:${PCOL[cur]};animation-delay:${i*45}ms" onclick="startAdhkar('${cur}',${i})">
+      <span class="rl"><span class="n">${i+1}</span></span>
+      <span class="bx"><span class="tt"><b>${a.title}</b>${ct}</span>${pv?`<div class="pv">${pv}</div>`:''}<div class="mt"><span>${a.sub}</span>${a.special?`<span class="sp">${a.special}</span>`:''}</div></span></button>`}).join('');
+  return `<div class="pt light" style="flex:1;display:flex;flex-direction:column;min-height:0">
+  <div class="hdr"><h1>أذكار ما بعد الصلاة</h1><button class="ib" style="font:700 16px var(--num)" onclick="S.font=S.font%3+1;save();toast('حجم الخط: '+['صغير','متوسط','كبير'][S.font-1])">A+</button></div>
+  <div class="scroll" id="asc">
+   <div class="apk">${pk}</div>
+   <div class="ah2" style="background:${PGRAD[cur]}"><div class="orb"></div>
+    <div class="row"><div><small>${isDone?'أتممت أذكار هذه الصلاة ✓':cur===lastPrayer()?'آخر صلاة أدّيتها':'أذكار صلاة'}</small><h2>بعد صلاة ${pname(cur,k)}</h2></div>
+     <svg class="rg2" viewBox="0 0 76 76"><circle cx="38" cy="38" r="32" fill="none" stroke="#ffffff26" stroke-width="7"/><circle class="pg" id="adr2" cx="38" cy="38" r="32" fill="none" stroke="#ffffffd0" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C2.toFixed(1)}" stroke-dashoffset="${C2.toFixed(1)}" data-off="${(C2*(1-dn.length/5)).toFixed(1)}" transform="rotate(-90 38 38)"/><text x="38" y="38" text-anchor="middle">${dn.length}/5</text><text x="38" y="53" text-anchor="middle" style="font-size:9px;font-weight:500;opacity:.8">اليوم</text></svg></div>
+    <div class="chips"><span>${I('list','14')} ${list.length} أذكار</span><span>${I('tap','14')} ${total} عدّة</span><span>${I('clock','14')} ≈ ${mins} د</span>${st?`<span>${I('check','14')} ${st} ${st===1?'يوم':'أيام'} متتالية</span>`:''}</div>
+    <div class="fp">${I('spark','15')}<span>${fm?`يُضاف بعد ${PAR[cur]}: التهليل عشراً${cur==='Fajr'?'، وسؤال العلم النافع':''}، والمعوّذات ثلاثاً`:'المعوّذات مرة واحدة بعد الظهر والعصر والعشاء'}</span></div>
+   </div>
+   <div class="apath">${items}</div>
+   <div class="swh">اسحب يميناً أو يساراً للتنقل بين الصلوات</div>
+   <div class="sb2"><button style="background:linear-gradient(135deg,color-mix(in srgb,${PCOL[cur]} 40%,#465061),color-mix(in srgb,${PCOL[cur]} 50%,#5b6475))" onclick="startAdhkar('${cur}')"><span class="pi">${I(isDone?'refresh':'play','17')}</span>${isDone?'أعد':'ابدأ'} أذكار ${pname(cur,k)}</button></div>
+  </div>${nav('adhkar')}</div>`;
+};
+AFTER.adhkar=()=>{
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{const r=document.getElementById('adr2');if(r)r.style.strokeDashoffset=r.dataset.off}));
+  const sc=document.getElementById('asc');if(!sc)return;let x0=null,y0=0;
+  sc.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+  sc.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)<60||Math.abs(dy)>Math.abs(dx))return;
+    const cur=R.params.p||lastPrayer();const i=PR.indexOf(cur);const j=dx>0?i+1:i-1;if(j<0||j>=PR.length)return;R.params.p=PR[j];if(navigator.vibrate)navigator.vibrate(5);render()},{passive:true});
 };
 
 /* 11-15 counter */
