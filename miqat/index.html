@@ -501,6 +501,46 @@ button.ap{color:#fff;font-family:var(--ui)}
 .tdark .dark .tr.next{background:color-mix(in srgb,var(--pc) 14%,#1c222c)}
 .tdark .dark .tr.next .ic{background:color-mix(in srgb,var(--pc) 50%,#2a3342);color:#e3e6ea}
 .tdark .dark .nx .ln{color:color-mix(in srgb,var(--pc) 40%,#c9ced6)}
+/* home bento widgets */
+.bn{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 6px 18px}
+.bt{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;text-align:right;position:relative;overflow:hidden;transition:transform .15s;display:block;width:100%;color:inherit;animation:trin .5s both}
+.bt:active{transform:scale(.97)}
+.bt.w{grid-column:1/-1}
+.bt h4{margin:0;font-size:14.5px;font-weight:700;display:flex;align-items:center;gap:6px}
+.bt .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+.bt .go{position:absolute;left:12px;top:14px;color:var(--muted);opacity:.7}
+.qbw{display:flex;align-items:center;gap:10px;margin-top:8px}
+.qd{width:74px;height:74px;flex:none;transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
+.qd .nd{transform-origin:50px 50px;transform:rotate(var(--q));animation:ndin 1.3s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes ndin{from{transform:rotate(calc(var(--q) - 200deg))}}
+.qd .sw{transform-origin:50px 50px;animation:sway 4s ease-in-out 1.3s infinite}
+@keyframes sway{25%{transform:rotate(2.5deg)}75%{transform:rotate(-2.5deg)}}
+.qv b{font:700 22px var(--num);display:block;color:#3f7d68}
+.qv small{font-size:11px;color:var(--muted)}
+.rgw{display:flex;align-items:center;gap:10px;margin-top:8px}
+.rg{width:74px;height:74px;flex:none}
+.rg .pg{transition:stroke-dashoffset 1.2s cubic-bezier(.3,1,.4,1)}
+.rg text{font:700 19px var(--num);fill:var(--ink)}
+.rgw .dts{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--muted)}
+.rgw .dts span{display:flex;align-items:center;gap:5px}
+.rgw .dts i{width:7px;height:7px;border-radius:50%;background:color-mix(in srgb,var(--muted) 30%,transparent)}
+.rgw .dts i.on{background:#6f9a8a}
+.wk{display:flex;gap:6px;margin:10px -4px 0;overflow-x:auto;scrollbar-width:none;padding:2px 4px 4px;scroll-snap-type:x mandatory}
+.wk::-webkit-scrollbar{display:none}
+.wd{flex:1 0 54px;border-radius:16px;padding:8px 2px 7px;text-align:center;background:color-mix(in srgb,var(--muted) 8%,transparent);scroll-snap-align:center;transition:transform .15s}
+.wd:active{transform:scale(.93)}
+.wd small{display:block;font-size:10.5px;color:var(--muted)}
+.wd b{display:block;font:700 18px var(--num);margin:1px 0 3px}
+.wd span{display:block;font:500 10px var(--num);color:var(--muted);line-height:1.45}
+.wd.ps{opacity:.55}
+.wd.td{background:#526780;color:#fff}.wd.td small,.wd.td span{color:#dfe5ee}
+.wd.fr:not(.td){box-shadow:inset 0 0 0 1.4px color-mix(in srgb,#526780 35%,transparent)}
+.lr{display:flex;align-items:center;gap:10px}
+.lr .li{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:color-mix(in srgb,#526780 10%,var(--card));color:#526780;flex:none}
+.lr .sh{width:40px;height:40px;border-radius:20px;display:grid;place-items:center;color:#a5604f;background:color-mix(in srgb,#b0503c 9%,var(--card));flex:none;transition:transform .2s}
+.lr .sh:active{transform:rotate(-20deg) scale(.9)}
+.tdark .dark .wd.td{background:#3a4a60}
+.tdark .dark .qv b{color:#86b3a2}
 </style>
 </head>
 <body>
@@ -736,7 +776,7 @@ async function loadAll(){
   if(!OFFSET)getNextApi(now.key).then(n=>{G.next=n;refresh()}).catch(()=>{});
   // prefetch this + next month for offline
   let ny=now.y,nm=now.m+1;if(nm>12){nm=1;ny++}
-  getMonth(now.y,now.m).then(d=>{G.month[now.y+'-'+now.m]=d}).catch(()=>{}).finally(()=>getMonth(ny,nm).catch(()=>{}).finally(()=>{G.cachedUntil=cachedUntil()}));
+  getMonth(now.y,now.m).then(d=>{G.month[now.y+'-'+now.m]=d;if(R.name==='home'&&!document.getElementById('wdt')?.querySelector('span:nth-of-type(2)'))refresh()}).catch(()=>{}).finally(()=>getMonth(ny,nm).catch(()=>{}).finally(()=>{G.cachedUntil=cachedUntil()}));
 }
 
 /* ============ prayer state ============ */
@@ -954,6 +994,38 @@ function tlTick(st){const c=document.getElementById('tlcd');if(!c)return;c.textC
   const i=ORD6.indexOf(st.nxt.p);const s=toSec(st.T[st.nxt.p]);const pv=i>0?toSec(st.T[ORD6[i-1]]):0;const f=Math.max(0,Math.min(1,(st.now.secs-pv)/(s-pv)));
   const b=document.getElementById('tlbar');if(b)b.style.width=(f*100).toFixed(2)+'%';
   const fl=document.getElementById('tlfl');if(fl)fl.style.height=`calc(${(f*50).toFixed(1)}% + 8px)`;const nw=document.getElementById('tlnw');if(nw)nw.style.top=(f*50).toFixed(1)+'%'}
+
+const WDS=['أحد','إثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];
+function homeBento(st){
+  const {now,T}=st;const k=now.key;const dn=DONE[k]||[];const q=qiblaDeg();
+  const passed=PR.filter(p=>toSec(T[p])<=now.secs);const pend=passed.filter(p=>!dn.includes(p)).pop();
+  const C=2*Math.PI*40,f=dn.length/5;
+  const ticks=Array.from({length:24},(_,i)=>`<line x1="50" y1="${i%6?9:7}" x2="50" y2="${i%6?13:15}" stroke="currentColor" stroke-opacity="${i%6?.25:.5}" stroke-width="${i%6?1:1.6}" transform="rotate(${i*15} 50 50)"/>`).join('');
+  const qib=`<button class="bt" onclick="STACK=[];go('qibla',{},false)" style="animation-delay:.05s">
+    <h4>${QAi('qibla','18')} القبلة</h4><span class="go">${I('chevL','16')}</span>
+    <div class="qbw"><svg class="qd" id="mqd" viewBox="0 0 100 100" style="--q:${q||0}deg;color:var(--muted)">
+      <circle cx="50" cy="50" r="46" fill="color-mix(in srgb,#3f7d68 7%,transparent)" stroke="currentColor" stroke-opacity=".25"/>${ticks}
+      <text x="50" y="26" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">N</text>
+      <g class="nd"><g class="sw"><path d="M50 18 L56 50 L50 56 L44 50Z" fill="#3f7d68"/><path d="M50 82 L56 50 L50 44 L44 50Z" fill="currentColor" fill-opacity=".35"/><rect x="45.5" y="10" width="9" height="9" rx="1.5" fill="#2f3644"/><rect x="45.5" y="12.6" width="9" height="1.6" fill="#c9b98a" fill-opacity=".7"/></g></g>
+      <circle cx="50" cy="50" r="3.4" fill="var(--card)" stroke="#3f7d68" stroke-width="2"/></svg>
+     <div class="qv"><b>${q!=null?q.toFixed(0)+'°':'—'}</b><small>من الشمال<br>اضغط للبوصلة</small></div></div></button>`;
+  const adk=`<button class="bt" onclick="${pend?`startAdhkar('${pend}')`:`STACK=[];go('adhkar',{},false)`}" style="animation-delay:.1s">
+    <h4>${QAi('beads','18')} الأذكار</h4><span class="go">${I('chevL','16')}</span>
+    <div class="rgw"><svg class="rg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="color-mix(in srgb,var(--muted) 18%,transparent)" stroke-width="9"/>
+      <circle class="pg" id="adring" cx="50" cy="50" r="40" fill="none" stroke="#6f9a8a" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" data-off="${(C*(1-f)).toFixed(1)}" transform="rotate(-90 50 50)"/>
+      <text x="50" y="57" text-anchor="middle">${dn.length}/5</text></svg>
+     <div class="dts">${pend?`<span style="color:var(--ink);font-weight:600">أذكار ${PAR[pend]}</span><span>بانتظارك · اضغط</span>`:dn.length===5?'<span style="color:#4f8a75;font-weight:600">أتممتها كلها</span><span>بارك الله فيك</span>':'<span>أذكار بعد</span><span>كل صلاة</span>'}</div></div></button>`;
+  const D=G.month[now.y+'-'+now.m]||[];const days=[];
+  for(let o=-2;o<=4;o++){const dk=addDays(k,o);const[y,m,d]=dk.split('-').map(Number);const row=(G.month[y+'-'+m]||[]).find(x=>+x.date.gregorian.day===d);days.push({dk,d,row,o})}
+  const wk=`<div class="bt w" onclick="go('month')" style="animation-delay:.15s;cursor:pointer">
+    <h4>${QAi('month','18')} الإمساكية <span class="s" style="margin:0;font-weight:500">· ${GM[now.m-1]}</span></h4><span class="go">${I('chevL','16')}</span>
+    <div class="wk" id="wk">${days.map(x=>`<button class="wd ${x.o===0?'td':''} ${x.o<0?'ps':''} ${wdOf(x.dk)===5?'fr':''}" onclick="event.stopPropagation();go('timings',{k:'${x.dk}'})" ${x.o===0?'id="wdt"':''}><small>${x.o===0?'اليوم':WDS[wdOf(x.dk)]}</small><b>${x.d}</b>${x.row?`<span>${hm(x.row.timings.Fajr)}</span><span>${hm(x.row.timings.Maghrib)}</span>`:'<span>—</span>'}</button>`).join('')}</div>
+    <div class="s" style="margin-top:6px;display:flex;justify-content:space-between"><span>الفجر / المغرب</span><span>اضغط يوما لرؤية مواقيته</span></div></div>`;
+  const all=`<div class="bt w lr" style="animation-delay:.2s;padding:10px 12px">
+    <button class="lr" style="flex:1;text-align:right" onclick="go('timings',{k:'${k}'})"><span class="li">${I('list','20')}</span><span style="flex:1"><b style="font-size:14.5px">كل مواقيت اليوم</b><div class="s">الإمساك، منتصف الليل، الثلث الأخير</div></span>${I('chevL','18','opacity:.6')}</button>
+    <button class="sh" onclick="shareDay('${k}')" aria-label="مشاركة">${QAi('share','20')}</button></div>`;
+  return `<div class="bn">${qib}${adk}${wk}${all}</div>`;
+}
 function rowTap(p){OPEN=OPEN===p?null:p;if(navigator.vibrate)navigator.vibrate(6);render()}
 SCREENS.home=()=>{
   const st=state();
@@ -987,13 +1059,7 @@ SCREENS.home=()=>{
    </div>
    ${off?`<div class="offbar" style="margin-top:14px">${I('wifioff','22')}<div>لا يوجد اتصال. نعرض مواقيت محفوظة${G.cachedUntil?` حتى <b>${G.cachedUntil}</b>`:''}، والقبلة والأذكار تعمل بلا إنترنت.</div></div>`:''}
    <div class="card tl ${TLANIM?'':'noanim'}" style="${off?'margin-top:12px':''}">${rows}</div>
-   <div class="qa">
-    <button onclick="STACK=[];go('qibla',{},false)"><span style="--c:#2a8a63;--b:#e2f4ec">${QAi('qibla')}</span><b>القبلة</b><small class="num">${q!=null?q.toFixed(0)+'°':'—'}</small></button>
-    <button onclick="go('month')"><span style="--c:#4b5fb0;--b:#e6e9f8">${QAi('month')}</span><b>الإمساكية</b><small>${GM[now.m-1]}</small></button>
-    <button onclick="STACK=[];go('adhkar',{},false)"><span style="--c:#6f7f95;--b:#e9ecf0">${QAi('beads')}</span><b>الأذكار</b><small>${dn.length}/5 اليوم</small></button>
-    <button onclick="shareDay('${k}')"><span style="--c:#b0503c;--b:#f8e4df">${QAi('share')}</span><b>مشاركة</b><small>مواقيت اليوم</small></button>
-   </div>
-   <button class="card" style="margin:0 16px 18px;padding:14px 16px;display:flex;gap:10px;align-items:center;width:calc(100% - 32px);text-align:right" onclick="go('timings',{k:'${k}'})">${I('list','20')}<span style="flex:1;font-weight:600">كل مواقيت اليوم</span>${I('chevL','18')}</button>
+   ${homeBento(st)}
   </div>${nav('home')}</div>`;
 };
 let CDMODE=false;
@@ -1001,6 +1067,8 @@ AFTER.home=()=>{
   const id=setInterval(tick,1000);cleanups.push(()=>clearInterval(id));
   const id2=setInterval(()=>{if(!document.querySelector('.shade'))refresh()},30000);cleanups.push(()=>clearInterval(id2));
   if(S.loc&&S.loc.lat==null&&!G.qibla)ensureQibla();
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{const r=document.getElementById('adring');if(r)r.style.strokeDashoffset=r.dataset.off}));
+  {const qd=document.getElementById('mqd');if(qd){const evn='ondeviceorientationabsolute' in window?'deviceorientationabsolute':'deviceorientation';const h=e=>{let hd=e.webkitCompassHeading!=null?e.webkitCompassHeading:(e.alpha!=null&&(e.absolute||e.type==='deviceorientationabsolute')?360-e.alpha:null);if(hd!=null)qd.style.transform=`rotate(${-hd}deg)`};window.addEventListener(evn,h);cleanups.push(()=>window.removeEventListener(evn,h))}}
   const sc=document.getElementById('hsc'),mini=document.getElementById('mini'),hero=sc&&sc.querySelector('.hero');
   if(sc&&mini&&hero){const cd=document.getElementById('cd');const f=()=>{const show=sc.scrollTop>cd.offsetTop+cd.offsetHeight-30;mini.classList.toggle('show',show)};sc.addEventListener('scroll',f,{passive:true});f()}
 };
