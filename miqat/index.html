@@ -441,6 +441,65 @@ button.ap{color:#fff;font-family:var(--ui)}
 .tdark .hero.sky-asr,.tdark .mini.sky-asr{background:linear-gradient(180deg,#203332,#304644 60%,#425855)}
 .tdark .hero.sky-maghrib,.tdark .mini.sky-maghrib{background:linear-gradient(180deg,#241e30,#352d40 60%,#473c4a)}
 .tdark .hero.sky-isha,.tdark .mini.sky-isha{background:linear-gradient(180deg,#121722,#1a2130)}
+/* prayer timeline card v3 */
+.tl{margin:-14px 16px 0;position:relative;z-index:3;padding:14px 12px 8px;overflow:hidden}
+.tlh{display:flex;align-items:center;gap:10px;padding:0 4px 10px}
+.tlh h3{margin:0;font-size:15px;font-weight:700}
+.tlh small{display:block;font-size:11px;color:var(--muted);margin-top:1px}
+.tlh .sg{display:flex;gap:4px;align-items:center;margin-right:auto}
+.tlh .sg i{width:14px;height:6px;border-radius:3px;background:color-mix(in srgb,var(--muted) 25%,transparent);transition:background .4s}
+.tlh .sg i.on{background:#6f9a8a}
+.tlh .sg b{font:600 12px var(--num);color:var(--muted);margin-right:4px}
+.tr{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:8px 6px 8px 4px;position:relative;cursor:pointer;border-radius:14px;transition:background .25s,transform .15s;animation:trin .45s both}
+.tr:active{transform:scale(.985)}
+@keyframes trin{from{opacity:0;transform:translateX(-14px)}}
+.tl.noanim .tr{animation:none}
+.rail{width:18px;align-self:stretch;position:relative;flex:none}
+.rail:before{content:'';position:absolute;right:8px;width:2px;top:-8px;bottom:-8px;background:color-mix(in srgb,var(--muted) 22%,transparent);border-radius:1px}
+.tr.f .rail:before{top:50%}.tr:last-child .rail:before{bottom:50%}
+.rail .fl{position:absolute;right:8px;width:2px;top:-8px;background:color-mix(in srgb,var(--pc) 55%,#8a96a8);border-radius:1px;transition:height .6s}
+.tr.f .rail .fl{top:50%}
+.rail .dt{position:absolute;right:3px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--card);border:2px solid color-mix(in srgb,var(--muted) 40%,transparent);box-sizing:border-box}
+.tr.past .rail .dt,.tr.sun.gone .rail .dt{background:color-mix(in srgb,var(--pc) 55%,#8a96a8);border-color:transparent}
+.tr.next .rail .dt{border-color:var(--pc);background:var(--card);box-shadow:0 0 0 0 color-mix(in srgb,var(--pc) 40%,transparent);animation:ping 2.2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.rail .nw{position:absolute;right:5px;width:8px;height:8px;border-radius:50%;background:color-mix(in srgb,var(--pc) 70%,#6b7586);margin-top:-4px;transition:top .6s}
+.tr .ic{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none;color:color-mix(in srgb,var(--pc) 80%,#555);background:color-mix(in srgb,var(--pc) 11%,var(--card));transition:transform .3s}
+.tr .tx{flex:1;min-width:0}
+.tr .nm{font-size:15.5px;font-weight:600;display:flex;align-items:center;gap:6px}
+.tr .sb{font-size:11.5px;color:var(--muted);margin-top:1px}
+.tr .tm{font:600 18px var(--num);color:var(--ink)}
+.tr.past .tm,.tr.past .nm{color:color-mix(in srgb,var(--ink) 50%,var(--card))}
+.tr.past .ic{filter:saturate(.4);opacity:.75}
+.tr .ac{width:36px;height:36px;border-radius:18px;display:grid;place-items:center;color:#9aa3b5;flex:none;transition:transform .2s,background .3s,color .3s}
+.tr .ac.off{color:color-mix(in srgb,var(--muted) 55%,transparent)}
+.tr .ac.pr{border:1.6px dashed color-mix(in srgb,var(--muted) 45%,transparent);color:color-mix(in srgb,var(--muted) 70%,transparent)}
+.tr .ac.pr.on{border:0;background:#6f9a8a;color:#fff;animation:pop .35s}
+@keyframes pop{40%{transform:scale(1.22)}}
+.tr.sun{padding-top:3px;padding-bottom:3px}
+.tr.sun .ic{width:30px;height:30px;border-radius:10px;margin:0 5px}
+.tr.sun .nm{font-size:13px;font-weight:500;color:var(--muted)}.tr.sun .tm{font-size:14px;color:var(--muted)}
+.tr.sun .sb{display:inline;margin-right:6px}
+.tr.next{background:color-mix(in srgb,var(--pc) 9%,var(--card));padding-top:12px;padding-bottom:12px;margin:4px 0}
+.tr.next .ic{width:48px;height:48px;border-radius:15px;background:color-mix(in srgb,var(--pc) 70%,#5b6475);color:#fff}
+.tr.next .ic svg{animation:bob 2.6s ease-in-out infinite}
+.tr.next .nm{font-size:17px;font-weight:700}.tr.next .tm{font-size:21px;font-weight:700}
+.tr.next .ac{color:color-mix(in srgb,var(--pc) 75%,#444);background:color-mix(in srgb,var(--pc) 12%,var(--card))}
+.tr.next .ac.off{color:var(--muted);background:transparent}
+.nx{flex-basis:100%;padding-right:28px;margin-top:2px}
+.nx .ln{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px;color:color-mix(in srgb,var(--pc) 70%,var(--ink))}
+.nx .ln b{font:700 15px var(--num);letter-spacing:.5px}
+.nx .br{height:5px;border-radius:3px;background:color-mix(in srgb,var(--pc) 14%,transparent);margin-top:6px;overflow:hidden;display:flex;justify-content:flex-start}
+.nx .br i{display:block;height:100%;border-radius:3px;background:color-mix(in srgb,var(--pc) 60%,#8a96a8);transition:width 1s linear;position:relative;overflow:hidden}
+.nx .br i:after{content:'';position:absolute;inset:0;background:linear-gradient(270deg,transparent,#ffffff55,transparent);animation:shim 2.8s infinite}
+@keyframes shim{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+.tr.open:not(.next){background:color-mix(in srgb,var(--pc) 6%,var(--card))}
+.tr .xp{padding:8px 28px 4px 0}
+.tr .chv{position:absolute;left:50%;bottom:-2px;opacity:0}
+.tdark .dark .tr .ic{background:color-mix(in srgb,var(--pc) 14%,#1c222c);color:color-mix(in srgb,var(--pc) 55%,#c9ced6)}
+.tdark .dark .tr.next{background:color-mix(in srgb,var(--pc) 14%,#1c222c)}
+.tdark .dark .tr.next .ic{background:color-mix(in srgb,var(--pc) 50%,#2a3342);color:#e3e6ea}
+.tdark .dark .nx .ln{color:color-mix(in srgb,var(--pc) 40%,#c9ced6)}
 </style>
 </head>
 <body>
@@ -860,6 +919,40 @@ function rowPanel(p,st){
 }
 function addMin(t,m){const s=toSec(t)+m*60;return `${pad(Math.floor(s/3600)%24)}:${pad(Math.floor(s%3600/60))}`}
 function sharePrayer(p){const t=`${pname(p,tzNow().key)} — ${hm(G.day.timings[p])} · ${(S.loc||{}).label||''}\n— ميقات`;if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard&&navigator.clipboard.writeText(t);toast('نُسخ الوقت')}}
+
+let PRAYED=LS.get('prayed',{}),TLANIM=true;
+function prayerTL(st){
+  const {now,T,nxt}=st;const k=now.key;const nb=S.notif;const pd=PRAYED[k]||[];const dn=DONE[k]||[];
+  const passed=PR.filter(p=>toSec(T[p])<=now.secs);
+  const segs=PR.map(p=>`<i class="${pd.includes(p)?'on':''}"></i>`).join('');
+  const head=`<div class="tlh"><div><h3>صلوات اليوم</h3><small>${passed.length?'اضغط الدائرة عند أداء الصلاة':'يومك يبدأ مع الفجر'}</small></div><div class="sg">${segs}<b>${pd.length}/5</b></div></div>`;
+  const rows=ORD6.map((p,idx)=>{
+    const s=toSec(T[p]);const isN=p===nxt.p&&!nxt.tomorrow;const past=s<=now.secs;const op=OPEN===p;const sun=p==='Sunrise';
+    // rail fill: full for past rows, partial (to "now") for the next row
+    let fl='',nw='';
+    if(past)fl=`<span class="fl" style="height:calc(100% + 16px)"></span>`;
+    if(isN){const pv=idx>0?toSec(T[ORD6[idx-1]]):0;const f=Math.max(0,Math.min(1,(now.secs-pv)/(s-pv)));fl=`<span class="fl" id="tlfl" style="height:calc(${(f*50).toFixed(1)}% + 8px)"></span>`;nw=`<span class="nw" id="tlnw" style="top:${(f*50).toFixed(1)}%"></span>`}
+    let ac,sub='';
+    if(sun){sub='ليس وقت صلاة';ac=''}
+    else if(past){const on=pd.includes(p);ac=`<button class="ac pr ${on?'on':''}" onclick="event.stopPropagation();markPrayed('${p}')" aria-label="صليت">${I('check','18','stroke-width:2.6')}</button>`;sub=on?(dn.includes(p)?'صلّيت · أتممت الأذكار':'صلّيت، تقبّل الله'):'هل صلّيت؟'}
+    else{ac=`<button class="ac ${nb[p].on?'':'off'}" onclick="event.stopPropagation();toggleBell('${p}')">${I(nb[p].on?'bellf':'belloff','19')}</button>`;if(!isN)sub=rel(s-now.secs)}
+    let nx='';
+    if(isN){const pv=idx>0?toSec(T[ORD6[idx-1]]):0;const f=Math.max(0,Math.min(1,(now.secs-pv)/(s-pv)));
+      nx=`<div class="nx"><div class="ln"><span>الصلاة القادمة${nb[p].on&&nb[p].before?` · تنبيه قبلها ${nb[p].before} د`:''}</span><b id="tlcd" class="num">${fmtCd(nxt.secs)}</b></div><div class="br"><i id="tlbar" style="width:${(f*100).toFixed(1)}%"></i></div></div>`}
+    return `<div class="tr ${idx?'':'f'} ${isN?'next':''} ${past&&!sun?'past':''} ${sun?'sun':''} ${sun&&past?'gone':''} ${op?'open':''}" onclick="rowTap('${p}')" style="--pc:${PCOL[p]};animation-delay:${idx*55}ms">
+      <span class="rail">${fl}<span class="dt"></span>${nw}</span>
+      <span class="ic">${PIc(p,sun?17:isN?24:21)}</span>
+      <span class="tx"><div class="nm">${pname(p,k)}${sun?`<span class="sb">${sub}</span>`:''}</div>${!sun&&sub?`<div class="sb">${sub}</div>`:''}</span>
+      <span class="tm">${hm(T[p])}</span>${ac}${nx}
+      ${op?rowPanel(p,st):''}</div>`}).join('');
+  setTimeout(()=>{TLANIM=false},700);
+  return head+rows;
+}
+function markPrayed(p){const k=tzNow().key;const a=PRAYED[k]||(PRAYED[k]=[]);const i=a.indexOf(p);if(i>=0)a.splice(i,1);else{a.push(p);toast('تقبّل الله منك 🤍')}LS.set('prayed',PRAYED);if(navigator.vibrate)navigator.vibrate(i>=0?6:[8,40,8]);render()}
+function tlTick(st){const c=document.getElementById('tlcd');if(!c)return;c.textContent=fmtCd(st.nxt.secs);
+  const i=ORD6.indexOf(st.nxt.p);const s=toSec(st.T[st.nxt.p]);const pv=i>0?toSec(st.T[ORD6[i-1]]):0;const f=Math.max(0,Math.min(1,(st.now.secs-pv)/(s-pv)));
+  const b=document.getElementById('tlbar');if(b)b.style.width=(f*100).toFixed(2)+'%';
+  const fl=document.getElementById('tlfl');if(fl)fl.style.height=`calc(${(f*50).toFixed(1)}% + 8px)`;const nw=document.getElementById('tlnw');if(nw)nw.style.top=(f*50).toFixed(1)+'%'}
 function rowTap(p){OPEN=OPEN===p?null:p;if(navigator.vibrate)navigator.vibrate(6);render()}
 SCREENS.home=()=>{
   const st=state();
@@ -870,16 +963,7 @@ SCREENS.home=()=>{
     <div style="padding:0 16px"><button class="btn navy" onclick="retry()">${I('refresh','20')} إعادة المحاولة</button></div><div style="flex:1"></div>${nav('home')}</div>`;
   const {now,nxt,passed,night,T}=st;const k=now.key;const dark=night;
   const off=!G.online;const nb=S.notif;const dn=DONE[k]||[];
-  const rows=ORD6.map(p=>{
-    const isN=p===nxt.p&&!nxt.tomorrow;const past=toSec(T[p])<=now.secs;const op=OPEN===p;
-    const bell=p==='Sunrise'?`<span class="bell off">${I('belloff','20')}</span>`:`<button class="bell ${nb[p].on?'':'off'}" onclick="event.stopPropagation();toggleBell('${p}')">${I(nb[p].on?'bellf':'belloff','20')}</button>`;
-    const sub=p==='Sunrise'?'ليس وقت صلاة':isN?`الصلاة القادمة · ${rel(nxt.secs)}`:(past&&dn.includes(p)?'أتممت الأذكار':'');
-    return `<div class="prow ${isN?'next':''} ${past&&p!=='Sunrise'?'past':''} ${op?'open':''}" onclick="rowTap('${p}')" style="--pc:${PCOL[p]}">
-      <span class="ic">${PIc(p,21)}</span>
-      <span><div class="nm">${pname(p,k)}</div>${sub?`<div class="sb">${sub}</div>`:''}</span>
-      <span style="flex:1"></span>${past&&p!=='Sunrise'?`<span class="ck ${dn.includes(p)?'gd':''}">${I('check','13','stroke-width:2.6')}</span>`:''}
-      <span class="tm">${hm(T[p])}</span>${bell}
-      ${op?rowPanel(p,st):''}</div>`}).join('');
+  const rows=prayerTL(st);
   const L=S.loc||{};const q=qiblaDeg();
   return `<div class="${dark?'dark':'light'}" style="flex:1;display:flex;flex-direction:column;min-height:0;position:relative">
   <div class="mini pt sky-${period(st)}" id="mini" onclick="document.querySelector('#screen .scroll').scrollTo({top:0,behavior:'smooth'})">
@@ -901,7 +985,7 @@ SCREENS.home=()=>{
     <div class="arcw">${sunArc(st)}</div>
    </div>
    ${off?`<div class="offbar" style="margin-top:14px">${I('wifioff','22')}<div>لا يوجد اتصال. نعرض مواقيت محفوظة${G.cachedUntil?` حتى <b>${G.cachedUntil}</b>`:''}، والقبلة والأذكار تعمل بلا إنترنت.</div></div>`:''}
-   <div class="card plist" style="${off?'margin-top:12px':''}">${rows}</div>
+   <div class="card tl ${TLANIM?'':'noanim'}" style="${off?'margin-top:12px':''}">${rows}</div>
    <div class="qa">
     <button onclick="STACK=[];go('qibla',{},false)"><span style="--c:#2a8a63;--b:#e2f4ec">${QAi('qibla')}</span><b>القبلة</b><small class="num">${q!=null?q.toFixed(0)+'°':'—'}</small></button>
     <button onclick="go('month')"><span style="--c:#4b5fb0;--b:#e6e9f8">${QAi('month')}</span><b>الإمساكية</b><small>${GM[now.m-1]}</small></button>
@@ -924,7 +1008,7 @@ function toggleBell(p){S.notif[p].on=!S.notif[p].on;save();if(S.notif[p].on)askN
 let lastNext=null,lastKey=null;
 function tick(){
   const st=state();if(!st)return;
-  const c2=document.getElementById('cd2');if(c2)c2.textContent=fmtCd(st.nxt.secs);const el=document.getElementById('cd');if(el){el.textContent=CDMODE?`${pad(st.now.h)}:${pad(st.now.mi)}:${pad(st.now.s)}`:fmtCd(st.nxt.secs);el.classList.toggle('clk',CDMODE)}
+  tlTick(st);const c2=document.getElementById('cd2');if(c2)c2.textContent=fmtCd(st.nxt.secs);const el=document.getElementById('cd');if(el){el.textContent=CDMODE?`${pad(st.now.h)}:${pad(st.now.mi)}:${pad(st.now.s)}`:fmtCd(st.nxt.secs);el.classList.toggle('clk',CDMODE)}
   const lb=document.querySelector('.hero .lbl');if(lb)lb.textContent=CDMODE?'الوقت الآن':`${pname(st.nxt.p,st.nxt.tomorrow?addDays(st.now.key,1):st.now.key)} بعد`;
   // day rollover
   if(lastKey&&lastKey!==st.now.key){lastKey=st.now.key;loadAll().then(refresh);return}
