@@ -749,17 +749,17 @@ function sunArc(st){
   const[cx,cy]=pt(cu);const[hx0]=pt(u(toSec(T.Sunrise)));const[hx1]=pt(u(toSec(T.Maghrib)));
   const night=now.secs<a||now.secs>=b;
   const marks=ORD6.map(p=>{const v=u(toSec(T[p]));const[x,y]=pt(v);const past=toSec(T[p])<=now.secs;const isN=p===nxt.p&&!nxt.tomorrow;const sel=ARCSEL===p;
-    return `<g class="mk" onclick="arcTap(event,'${p}')"><circle cx="${x}" cy="${y}" r="14" fill="transparent"/><circle cx="${x}" cy="${y}" r="${isN||sel?5.5:4}" fill="${past?'#fff':isN?'#ffd88a':'#ffffff55'}" stroke="${isN?'#fff':'none'}" stroke-width="2"/>${p==='Sunrise'?'':`<text x="${x}" y="${y+(p==='Dhuhr'?-12:17)}" text-anchor="middle" font-size="9.5" fill="#fff" fill-opacity="${isN?1:.75}" font-weight="${isN?700:500}" font-family="IBM Plex Sans Arabic">${pname(p,now.key)}</text>`}</g>`}).join('');
+    return `<g class="mk" onclick="arcTap(event,'${p}')"><circle cx="${x}" cy="${y}" r="14" fill="transparent"/><circle cx="${x}" cy="${y}" r="${isN||sel?5.5:4}" fill="${past?'#ffffffcc':isN?'transparent':'#ffffff55'}" stroke="${isN?'#fff':'none'}" stroke-width="2.2"/>${p==='Sunrise'?'':`<text x="${x}" y="${y+(p==='Dhuhr'?-12:17)}" text-anchor="middle" font-size="9.5" fill="#fff" fill-opacity="${isN?1:.75}" font-weight="${isN?700:500}" font-family="IBM Plex Sans Arabic">${pname(p,now.key)}</text>`}</g>`}).join('');
   let bubble='';
   if(ARCSEL){const p=ARCSEL;const[x,y]=pt(u(toSec(T[p])));const d=toSec(T[p])-now.secs;const bx=Math.max(62,Math.min(W-62,x));
-    bubble=`<g class="bub"><rect x="${bx-58}" y="${y-44}" width="116" height="32" rx="10" fill="#0d1628dd"/><text x="${bx}" y="${y-31}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="IBM Plex Sans Arabic">${pname(p,now.key)} · ${hm(T[p])}</text><text x="${bx}" y="${y-18}" text-anchor="middle" font-size="10" fill="#e8c27a" font-family="IBM Plex Sans Arabic">${rel(d)}</text></g>`}
+    bubble=`<g class="bub"><rect x="${bx-58}" y="${y-44}" width="116" height="32" rx="10" fill="#0d1628dd"/><text x="${bx}" y="${y-31}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="IBM Plex Sans Arabic">${pname(p,now.key)} · ${hm(T[p])}</text><text x="${bx}" y="${y-18}" text-anchor="middle" font-size="10" fill="#c9d6ea" font-family="IBM Plex Sans Arabic">${rel(d)}</text></g>`}
   return `<svg class="arc" viewBox="0 0 ${W} 96" onclick="if(event.target===this){ARCSEL=null;render()}">
-   <defs><radialGradient id="glow"><stop offset="0" stop-color="#fff6d8"/><stop offset=".45" stop-color="#ffd88a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd88a" stop-opacity="0"/></radialGradient></defs>
+   <defs><radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".5" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><linearGradient id="arcg" x1="1" x2="0" y1="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".95"/></linearGradient></defs>
    <line x1="${hx0}" y1="${BY}" x2="${hx1}" y2="${BY}" stroke="#ffffff40" stroke-width="1" stroke-dasharray="2 4"/>
    <path d="${full}" fill="none" stroke="#ffffff55" stroke-width="1.6" stroke-dasharray="3 5"/>
-   ${done?`<path d="${done}" fill="none" stroke="#ffe3a6" stroke-width="2.6" stroke-linecap="round"/>`:''}
+   ${done?`<path d="${done}" fill="none" stroke="url(#arcg)" stroke-width="2.6" stroke-linecap="round"/>`:''}
    ${marks}
-   ${night||now.secs>=toSec(T.Maghrib)?`<g transform="translate(${night?(now.secs<a?X1:X0):cx} ${night?BY-14:cy-14})"><circle r="16" fill="url(#glow)" opacity=".5"/><circle r="9" fill="#efe3c4"/><circle cx="4" cy="-3" r="7.6" fill="#1c2b47"/></g>`:`<circle cx="${cx}" cy="${cy}" r="22" fill="url(#glow)" class="sunp"/><circle cx="${cx}" cy="${cy}" r="7.5" fill="#fff2c9" stroke="#fff" stroke-width="2"/>`}
+   ${night||now.secs>=toSec(T.Maghrib)?`<g transform="translate(${night?(now.secs<a?X1:X0):cx} ${night?BY-14:cy-14})"><circle r="16" fill="url(#glow)" opacity=".5"/><circle r="9" fill="#f1f3f8"/><circle cx="4" cy="-3" r="7.6" fill="#1c2b47"/></g>`:`<circle cx="${cx}" cy="${cy}" r="22" fill="url(#glow)" class="sunp"/><circle cx="${cx}" cy="${cy}" r="7" fill="#fff" stroke="#ffffff66" stroke-width="5"/>`}
    ${bubble}
   </svg>`;
 }
