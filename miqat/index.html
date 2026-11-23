@@ -651,6 +651,22 @@ button.ap{color:#fff;font-family:var(--ui)}
 .cf2{display:flex;gap:8px;padding:10px 12px calc(12px + env(safe-area-inset-bottom))}
 .cf2 button{flex:1;height:46px;border-radius:16px;background:#ffffff14;color:#fff;font-size:13.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;transition:transform .12s,background .2s}
 .cf2 button:active{transform:scale(.95);background:#ffffff22}
+
+/* MATTE mode (html.matte, toggled in Settings «التوهّج»): flat backgrounds, no glow */
+html.matte .hero.sky-fajr,html.matte .mini.sky-fajr{background:linear-gradient(180deg,#3b4258,#424a60)}
+html.matte .hero.sky-duha,html.matte .mini.sky-duha{background:linear-gradient(180deg,#435566,#4a5c6d)}
+html.matte .hero.sky-dhuhr,html.matte .mini.sky-dhuhr{background:linear-gradient(180deg,#3e5566,#455c6c)}
+html.matte .hero.sky-asr,html.matte .mini.sky-asr{background:linear-gradient(180deg,#3e5452,#455a58)}
+html.matte .hero.sky-maghrib,html.matte .mini.sky-maghrib{background:linear-gradient(180deg,#3c4350,#434a57)}
+html.matte .hero.sky-isha,html.matte .mini.sky-isha{background:linear-gradient(180deg,#1f2633,#242b38)}
+html.matte .hero,html.matte .mini{color:#e3e6ea}html.matte .hero .cd{color:#e6e8eb}
+html.matte .hero .deco,html.matte .stars,html.matte .orb,html.matte .sunp,html.matte .arc [fill="url(#glow)"]{display:none!important}
+html.matte .arc circle[fill="#e9e6dc"]{fill:#cfd5dc;stroke:none}
+html.matte .adhan{background:#3c4350}html.matte .lock{background:#2e3340}
+html.matte .rg3 .cn{background:#ffffff10}html.matte .rg3.full .cn{background:#6f9a8a55;animation:none}
+html.matte .nx .br i:after,html.matte .sb2 button:after{display:none}
+html.matte .sb2 .pi,html.matte .tr.next .rail .dt{animation:none!important;box-shadow:none!important}
+html.matte .rip{background:#ffffff22}
 </style>
 </head>
 <body>
@@ -786,13 +802,16 @@ function adhkarFor(p){
   if(p==='Fajr') L.push({id:'ilm',title:'سؤال العلم النافع',tag:'دعاء',special:'خاص بالفجر',sub:'رواه ابن ماجه',count:1,text:'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا',size:27,src:'رواه ابن ماجه (925) عن أم سلمة رضي الله عنها',gnote:'يقوله بعد السلام من صلاة الفجر.'});
   return L;
 }
-const PGRAD={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#2b3240,#556274)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
+const PGRAD_GLOW={Fajr:'linear-gradient(135deg,#2a3350,#5b5f86)',Dhuhr:'linear-gradient(135deg,#33566b,#5d7d92)',Asr:'linear-gradient(135deg,#34514f,#5f7a76)',Maghrib:'linear-gradient(135deg,#2b3240,#556274)',Isha:'linear-gradient(135deg,#141c2c,#2a3650)'};
+const PGRAD_MATTE={Fajr:'linear-gradient(135deg,#3b4258,#444c62)',Dhuhr:'linear-gradient(135deg,#3e5566,#465d6d)',Asr:'linear-gradient(135deg,#3e5452,#465c5a)',Maghrib:'linear-gradient(135deg,#3c4350,#454c59)',Isha:'linear-gradient(135deg,#1f2633,#272e3b)'};
+const PGRAD={};
+function applyMatte(){Object.assign(PGRAD,S.matte?PGRAD_MATTE:PGRAD_GLOW);document.documentElement.classList.toggle('matte',!!S.matte)}
 
 /* ============ storage ============ */
 const LS={get(k,d){try{const v=localStorage.getItem('miqat.'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('miqat.'+k,JSON.stringify(v))}catch(e){}}};
-const DEF={appearance:'light',loc:null,method:19,school:0,tune:{Fajr:0,Dhuhr:0,Asr:0,Maghrib:0,Isha:0},hijriAdj:0,sound:'calm',remind:true,font:1,
+const DEF={appearance:'light',matte:true,loc:null,method:19,school:0,tune:{Fajr:0,Dhuhr:0,Asr:0,Maghrib:0,Isha:0},hijriAdj:0,sound:'calm',remind:true,font:1,
   notif:{Fajr:{on:true,type:'fajr',before:10,after:25},Dhuhr:{on:true,type:'full',before:10,after:15},Asr:{on:true,type:'full',before:10,after:15},Maghrib:{on:true,type:'full',before:10,after:15},Isha:{on:true,type:'short',before:10,after:15}}};
-let S=Object.assign({},DEF,LS.get('settings',{}));delete S.theme;if(!S.appearance)S.appearance='light';
+let S=Object.assign({},DEF,LS.get('settings',{}));delete S.theme;if(!S.appearance)S.appearance='light';applyMatte();
 const save=()=>LS.set('settings',S);
 let DONE=LS.get('done',{});      // {'YYYY-MM-DD':['Fajr',...]}
 let OFFSET=0;                    // test clock offset ms
@@ -1589,6 +1608,7 @@ SCREENS.settings=()=>{
   <div class="sec">أذكار ما بعد الصلاة</div>
   <div class="card grp">
    <button class="srow" onclick="S.remind=!S.remind;save();askNotif();render()"><span class="ico">${I('tap')}</span><span class="tx"><b>تذكير بالأذكار بعد كل صلاة</b><small>بعد 15–25 د من الأذان حسب الصلاة</small></span><span class="tgl ${S.remind?'on':''}"></span></button>
+   ${row('spark','التوهّج',S.matte?'مطفي (بلا توهّج)':'مع توهّج',"S.matte=!S.matte;save();applyMatte();render()",'')}
    ${row('moon','المظهر',S.appearance==='dark'?'داكن مطفي':'فاتح',"S.appearance=S.appearance==='dark'?'light':'dark';save();render()",'')}
    ${row('font','حجم خط الأذكار',['صغير','متوسط','كبير'][S.font-1],"S.font=S.font%3+1;save();render()",'')}
   </div>
