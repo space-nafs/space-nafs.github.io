@@ -557,6 +557,15 @@ button.ap{color:#fff;font-family:var(--ui)}
 .dark .nav .ind{background:#ffffff14}.dark .nav button{color:#8d97a8}.dark .nav button.on{color:#e3e7ee}.dark .nav button.on:after{background:#aebccc}
 .tdark .dark .nav{background:#1c222c;border-color:#262e3a}.tdark .dark .nav .ind{background:#263040}.tdark .dark .nav button.on{color:#c9d1dc}
 @media (min-width:520px){.nav{padding-bottom:6px;margin-bottom:16px}}
+
+/* nav compact */
+.nav{margin:0 6px calc(4px + env(safe-area-inset-bottom));padding:4px;border-radius:20px;box-shadow:0 3px 12px #2a314010}
+.nav .ind{top:4px;bottom:4px;width:calc((100% - 8px)/4);right:calc(4px + var(--i)*(100% - 8px)/4);border-radius:16px}
+.nav button{height:44px;font-size:10.5px;gap:1px;padding:0!important}
+.nav button .pill{height:22px}.nav button .pill svg{width:20px;height:20px}
+.nav button.on .pill{transform:none}
+.nav button.on:after{display:none}
+@media (max-height:680px){.nav button{height:38px;font-size:10px}.nav button .pill{height:20px}.nav button .pill svg{width:18px;height:18px}}
 </style>
 </head>
 <body>
