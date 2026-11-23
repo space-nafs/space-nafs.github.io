@@ -292,6 +292,50 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 @keyframes sk{to{background-position:-200% 0}}
 .loglist{font:11px var(--mono);direction:ltr;text-align:left;color:#555;padding:10px 14px;line-height:1.7;word-break:break-all}
 .loglist .ok{color:#2a8a63}.loglist .er{color:#c0392b}
+
+/* home v2 */
+.hero .loc{color:#fff;font-family:var(--ui)}
+.hero .cd{cursor:pointer}.hero .cd.clk{opacity:.92}
+button.ap{color:#fff;font-family:var(--ui)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(1.2px 1.2px at 20% 30%,#fff9,transparent),radial-gradient(1px 1px at 60% 18%,#fff8,transparent),radial-gradient(1.4px 1.4px at 80% 40%,#fff7,transparent),radial-gradient(1px 1px at 35% 55%,#fff6,transparent),radial-gradient(1.2px 1.2px at 10% 70%,#fff7,transparent),radial-gradient(1px 1px at 90% 12%,#fff8,transparent),radial-gradient(1px 1px at 48% 8%,#fff9,transparent);pointer-events:none}
+.arcw{margin:8px -10px -4px}
+.arc{width:100%;height:auto;display:block;overflow:visible}
+.arc .mk{cursor:pointer}
+.sunp{animation:sunp 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes sunp{50%{transform:scale(1.25);opacity:.75}}
+.prow{flex-wrap:wrap;cursor:pointer;transition:background .2s}
+.prow .ic{color:var(--pc);background:color-mix(in srgb,var(--pc) 13%,#fff)}
+.dark .prow .ic{color:color-mix(in srgb,var(--pc) 55%,#fff);background:color-mix(in srgb,var(--pc) 22%,#1a2842)}
+.prow.next .ic{background:linear-gradient(160deg,#e8c27a,#d4a44c);color:#fff;box-shadow:0 4px 12px #d4a44c55}
+.prow.next .ic svg{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-2px)}}
+.prow.open:not(.next){background:#faf7f0}.dark .prow.open:not(.next){background:#1f2f4c}
+.prow .ck.gd{background:var(--goldsoft);color:var(--goldink)}.dark .prow .ck.gd{background:#4a3c1f;color:var(--gold2)}
+.xp{flex-basis:100%;padding:10px 50px 2px 0;animation:fade2 .2s}
+@keyframes fade2{from{opacity:0;transform:translateY(-4px)}}
+.xl{font-size:12.5px;color:#6a707b;display:flex;gap:6px;align-items:center;line-height:1.7}
+.dark .xl{color:#b9c3d6}
+.xl b{color:var(--ink)}.dark .xl b{color:#fff}
+.pbar{height:6px;border-radius:3px;background:#0000000f;margin-top:8px;overflow:hidden}
+.dark .pbar{background:#ffffff1a}
+.pbar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#d4a44c,#e8c27a);margin-right:auto;margin-left:0;float:right}
+.pmeta{display:flex;justify-content:space-between;font:11px var(--num);color:var(--muted);margin-top:4px}
+.xa{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.xa button{display:flex;align-items:center;gap:5px;height:32px;padding:0 11px;border-radius:16px;font-size:12px;font-weight:600;background:#fff;border:1px solid var(--line);color:#4b5260}
+.dark .xa button{background:#22324f;border-color:var(--navyline);color:#dfe5ef}
+.xa button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.dark .xa button.on{background:#e8c27a;color:#2a1d05;border-color:#e8c27a}
+.xa button.gold{background:linear-gradient(180deg,#e8c27a,#d4a44c);color:#2a1d05;border:0}
+.xa button.ok{background:var(--greensoft);color:#2a8a63;border-color:transparent}
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:14px 16px}
+.qa button{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:transform .1s}
+.qa button:active{transform:scale(.95)}
+.dark .qa button{background:var(--navy2);border-color:var(--navyline)}
+.qa span{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:var(--b);color:var(--c);margin-bottom:4px}
+.dark .qa span{background:color-mix(in srgb,var(--c) 25%,#1a2842);color:color-mix(in srgb,var(--c) 45%,#fff)}
+.qa b{font-size:13px}.qa small{font-size:10.5px;color:var(--muted)}
+.calbtn{top:calc(12px + env(safe-area-inset-top))}
+@media (min-width:520px){.calbtn{top:56px}}
 </style>
 </head>
 <body>
@@ -646,6 +690,69 @@ function methodSheet(cb){
 }
 
 /* 03 / 17 / 20 home */
+/* duotone prayer icons */
+const PI={
+ Fajr:`<path d="M3 17h18" /><path d="M7.5 17a4.5 4.5 0 019 0z" fill="currentColor" fill-opacity=".28"/><path d="M12 8.5v2.5M7 11.2l1.4 1.3M17 11.2l-1.4 1.3"/><path d="M18.5 4.5l.5 1.2 1.2.5-1.2.5-.5 1.2-.5-1.2-1.2-.5 1.2-.5z" fill="currentColor" stroke-width="1"/><path d="M8 20.5h8"/>`,
+ Sunrise:`<path d="M3 18h18"/><path d="M6.5 18a5.5 5.5 0 0111 0z" fill="currentColor" fill-opacity=".28"/><path d="M12 3.5v4M9.8 5.7L12 3.5l2.2 2.2M4.2 11.6l1.6.9M19.8 11.6l-1.6.9M8 21h8"/>`,
+ Dhuhr:`<circle cx="12" cy="12" r="4.2" fill="currentColor" fill-opacity=".28"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>`,
+ Asr:`<circle cx="9.5" cy="9.5" r="3.6" fill="currentColor" fill-opacity=".28"/><path d="M9.5 2.8v1.4M2.8 9.5h1.4M4.8 4.8l1 1M14.2 4.8l-1 1M4.8 14.2l1-1"/><path d="M12.5 20h6.2a3.2 3.2 0 000-6.4 4.6 4.6 0 00-8.7 1.9 2.3 2.3 0 002.5 4.5z" fill="currentColor" fill-opacity=".12"/>`,
+ Maghrib:`<path d="M3 17h18"/><path d="M7 17a5 5 0 0110 0z" fill="currentColor" fill-opacity=".28"/><path d="M12 4v5M9.8 6.8L12 9l2.2-2.2M8 20.5h8"/>`,
+ Isha:`<path d="M18.5 14.8A7.5 7.5 0 019.2 5.5a7 7 0 109.3 9.3z" fill="currentColor" fill-opacity=".28"/><path d="M16 3.5l.45 1.05 1.05.45-1.05.45L16 6.5l-.45-1.05L14.5 5l1.05-.45zM20 8l.35.8.8.35-.8.35L20 10.3l-.35-.8-.8-.35.8-.35z" fill="currentColor" stroke-width="1"/>`,
+};
+const PIc=(p,s=20)=>`<svg class="i" viewBox="0 0 24 24" style="width:${s}px;height:${s}px">${PI[p]}</svg>`;
+const PCOL={Fajr:'#6f7fc9',Sunrise:'#e3a43c',Dhuhr:'#e0a21f',Asr:'#e08a3c',Maghrib:'#d0644c',Isha:'#5a6fb8'};
+const QA={
+ qibla:`<circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".14"/><circle cx="12" cy="12" r="9"/><path d="M15.8 8.2l-2.3 5.3-5.3 2.3 2.3-5.3z" fill="currentColor" fill-opacity=".35"/>`,
+ month:`<rect x="3.5" y="5" width="17" height="15.5" rx="3" fill="currentColor" fill-opacity=".14"/><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/><circle cx="8.5" cy="14" r=".6" fill="currentColor"/><circle cx="12" cy="14" r=".6" fill="currentColor"/><circle cx="15.5" cy="14" r=".6" fill="currentColor"/><circle cx="8.5" cy="17.2" r=".6" fill="currentColor"/><circle cx="12" cy="17.2" r=".6" fill="currentColor"/>`,
+ beads:`<circle cx="12" cy="4.5" r="1.6" fill="currentColor" fill-opacity=".3"/><circle cx="17.3" cy="6.7" r="1.6" fill="currentColor" fill-opacity=".3"/><circle cx="19.5" cy="12" r="1.6" fill="currentColor" fill-opacity=".3"/><circle cx="17.3" cy="17.3" r="1.6" fill="currentColor" fill-opacity=".3"/><circle cx="6.7" cy="6.7" r="1.6" fill="currentColor" fill-opacity=".3"/><circle cx="4.5" cy="12" r="1.6" fill="currentColor" fill-opacity=".3"/><circle cx="6.7" cy="17.3" r="1.6" fill="currentColor" fill-opacity=".3"/><path d="M12 19.5v2.5M10.5 22h3"/><circle cx="12" cy="19" r="1.4" fill="currentColor"/>`,
+ share:`<circle cx="6" cy="12" r="2.6" fill="currentColor" fill-opacity=".25"/><circle cx="17.5" cy="6" r="2.6" fill="currentColor" fill-opacity=".25"/><circle cx="17.5" cy="18" r="2.6" fill="currentColor" fill-opacity=".25"/><path d="M8.3 10.8l6.9-3.6M8.3 13.2l6.9 3.6"/>`,
+};
+const QAi=(k,s=24)=>`<svg class="i" viewBox="0 0 24 24" style="width:${s}px;height:${s}px">${QA[k]}</svg>`;
+let OPEN=null,ARCSEL=null;
+const ORD6=['Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha'];
+function rel(sec){const a=Math.abs(sec),h=Math.floor(a/3600),m=Math.floor(a%3600/60);const t=h?`${h} س ${m} د`:`${m||1} د`;return sec>=0?`بعد ${t}`:`منذ ${t}`}
+function sunArc(st){
+  const {now,T,nxt}=st;const W=346,X0=14,X1=332,BY=74,H=58;
+  const a=toSec(T.Fajr),b=toSec(T.Isha);
+  const u=s=>Math.max(0,Math.min(1,(s-a)/(b-a)));
+  const pt=v=>[X1-(X1-X0)*v,BY-H*Math.sin(Math.PI*v)];
+  let full='',done='';const cu=u(now.secs);
+  for(let i=0;i<=60;i++){const v=i/60;const[x,y]=pt(v);full+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);if(v<=cu)done+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)}
+  const[cx,cy]=pt(cu);const[hx0]=pt(u(toSec(T.Sunrise)));const[hx1]=pt(u(toSec(T.Maghrib)));
+  const night=now.secs<a||now.secs>=b;
+  const marks=ORD6.map(p=>{const v=u(toSec(T[p]));const[x,y]=pt(v);const past=toSec(T[p])<=now.secs;const isN=p===nxt.p&&!nxt.tomorrow;const sel=ARCSEL===p;
+    return `<g class="mk" onclick="arcTap(event,'${p}')"><circle cx="${x}" cy="${y}" r="14" fill="transparent"/><circle cx="${x}" cy="${y}" r="${isN||sel?5.5:4}" fill="${past?'#fff':isN?'#ffd88a':'#ffffff55'}" stroke="${isN?'#fff':'none'}" stroke-width="2"/>${p==='Sunrise'?'':`<text x="${x}" y="${y+(p==='Dhuhr'?-12:17)}" text-anchor="middle" font-size="9.5" fill="#fff" fill-opacity="${isN?1:.75}" font-weight="${isN?700:500}" font-family="IBM Plex Sans Arabic">${pname(p,now.key)}</text>`}</g>`}).join('');
+  let bubble='';
+  if(ARCSEL){const p=ARCSEL;const[x,y]=pt(u(toSec(T[p])));const d=toSec(T[p])-now.secs;const bx=Math.max(62,Math.min(W-62,x));
+    bubble=`<g class="bub"><rect x="${bx-58}" y="${y-44}" width="116" height="32" rx="10" fill="#0d1628dd"/><text x="${bx}" y="${y-31}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff" font-family="IBM Plex Sans Arabic">${pname(p,now.key)} · ${hm(T[p])}</text><text x="${bx}" y="${y-18}" text-anchor="middle" font-size="10" fill="#e8c27a" font-family="IBM Plex Sans Arabic">${rel(d)}</text></g>`}
+  return `<svg class="arc" viewBox="0 0 ${W} 96" onclick="if(event.target===this){ARCSEL=null;render()}">
+   <defs><radialGradient id="glow"><stop offset="0" stop-color="#fff6d8"/><stop offset=".45" stop-color="#ffd88a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd88a" stop-opacity="0"/></radialGradient></defs>
+   <line x1="${hx0}" y1="${BY}" x2="${hx1}" y2="${BY}" stroke="#ffffff40" stroke-width="1" stroke-dasharray="2 4"/>
+   <path d="${full}" fill="none" stroke="#ffffff55" stroke-width="1.6" stroke-dasharray="3 5"/>
+   ${done?`<path d="${done}" fill="none" stroke="#ffe3a6" stroke-width="2.6" stroke-linecap="round"/>`:''}
+   ${marks}
+   ${night||now.secs>=toSec(T.Maghrib)?`<g transform="translate(${night?(now.secs<a?X1:X0):cx} ${night?BY-14:cy-14})"><circle r="16" fill="url(#glow)" opacity=".5"/><circle r="9" fill="#efe3c4"/><circle cx="4" cy="-3" r="7.6" fill="#1c2b47"/></g>`:`<circle cx="${cx}" cy="${cy}" r="22" fill="url(#glow)" class="sunp"/><circle cx="${cx}" cy="${cy}" r="7.5" fill="#fff2c9" stroke="#fff" stroke-width="2"/>`}
+   ${bubble}
+  </svg>`;
+}
+function arcTap(e,p){e.stopPropagation();ARCSEL=ARCSEL===p?null:p;if(navigator.vibrate)navigator.vibrate(8);render()}
+function rowPanel(p,st){
+  const {now,T,nxt}=st;const k=now.key;const s=toSec(T[p]);const d=s-now.secs;
+  const n=S.notif[p];const done=(DONE[k]||[]).includes(p);const past=d<=0;
+  const i=PR.indexOf(p);let prog='';
+  if(p===nxt.p&&!nxt.tomorrow){const prev=i>0?toSec(T[PR[i-1]]):0;const f=Math.max(0,Math.min(1,(now.secs-prev)/(s-prev)));prog=`<div class="pbar"><i style="width:${(f*100).toFixed(1)}%"></i></div><div class="pmeta"><span>${i>0?pname(PR[i-1],k)+' '+hm(T[PR[i-1]]):''}</span><span>${Math.round(f*100)}%</span></div>`}
+  if(p==='Sunrise')return `<div class="xp"><div class="xl">${I('info','16','color:#c9a35a')} الشروق ليس وقت صلاة؛ يُكره فيه التنفّل حتى ترتفع الشمس قيد رمح (~15 د).</div><div class="xl"><b>${rel(d)}</b> · الضحى يبدأ نحو <span class="num">${addMin(T.Sunrise,15)}</span></div></div>`;
+  return `<div class="xp" onclick="event.stopPropagation()">
+   <div class="xl"><b>${rel(d)}</b>${n.on&&n.before&&!past?` · تنبيه قبلها بـ ${n.before} د`:''}</div>${prog}
+   <div class="xa">
+    <button class="${n.on?'on':''}" onclick="toggleBell('${p}')">${I(n.on?'bellf':'belloff','17')}${n.on?'التنبيه مفعّل':'التنبيه متوقف'}</button>
+    <button onclick="cyc('${p}','before');render()">${I('alarm','17')}${n.before?`قبلها ${n.before} د`:'بلا تنبيه مسبق'}</button>
+    ${past?`<button class="${done?'ok':'gold'}" onclick="${done?'':`startAdhkar('${p}')`}">${I(done?'check':'tap','17')}${done?'أتممت الأذكار':'أذكار بعدها'}</button>`:`<button onclick="sharePrayer('${p}')">${QAi('share','17')}مشاركة</button>`}
+   </div></div>`;
+}
+function addMin(t,m){const s=toSec(t)+m*60;return `${pad(Math.floor(s/3600)%24)}:${pad(Math.floor(s%3600/60))}`}
+function sharePrayer(p){const t=`${pname(p,tzNow().key)} — ${hm(G.day.timings[p])} · ${(S.loc||{}).label||''}\n— ميقات`;if(navigator.share)navigator.share({text:t}).catch(()=>{});else{navigator.clipboard&&navigator.clipboard.writeText(t);toast('نُسخ الوقت')}}
+function rowTap(p){OPEN=OPEN===p?null:p;if(navigator.vibrate)navigator.vibrate(6);render()}
 SCREENS.home=()=>{
   const st=state();
   if(!st)return `<div class="pt light" style="flex:1;display:flex;flex-direction:column">
@@ -654,50 +761,56 @@ SCREENS.home=()=>{
     <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:10px">${I('refresh','16')} جارٍ التحديث عند عودة الاتصال…</p></div>
     <div style="padding:0 16px"><button class="btn navy" onclick="retry()">${I('refresh','20')} إعادة المحاولة</button></div><div style="flex:1"></div>${nav('home')}</div>`;
   const {now,nxt,passed,night,T}=st;const k=now.key;const dark=night;
-  const off=!G.online;
-  const nb=S.notif;
-  const rows=['Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha'].map(p=>{
-    const isN=p===nxt.p&&!nxt.tomorrow;const past=passed.includes(p)||(p==='Sunrise'&&toSec(T.Sunrise)<=now.secs);
-    const bell=p==='Sunrise'?`<span class="bell off">${I('belloff','20')}</span>`:`<button class="bell ${nb[p].on?'':'off'}" onclick="toggleBell('${p}')">${I(nb[p].on?'bellf':'belloff','20')}</button>`;
-    return `<div class="prow ${isN?'next':''} ${past&&p!=='Sunrise'?'past':''}">
-      <span class="ic">${I(PIC[p],'20')}</span>
-      <span><div class="nm">${pname(p,k)}</div>${p==='Sunrise'?'<div class="sb">ليس وقت صلاة</div>':isN?'<div class="sb">الصلاة القادمة</div>':''}</span>
-      <span style="flex:1"></span>${passed.includes(p)&&p!=='Sunrise'?`<span class="ck">${I('check','13','stroke-width:2.6')}</span>`:''}
-      <span class="tm">${hm(T[p])}</span>${bell}</div>`}).join('');
-  const L=S.loc||{};
+  const off=!G.online;const nb=S.notif;const dn=DONE[k]||[];
+  const rows=ORD6.map(p=>{
+    const isN=p===nxt.p&&!nxt.tomorrow;const past=toSec(T[p])<=now.secs;const op=OPEN===p;
+    const bell=p==='Sunrise'?`<span class="bell off">${I('belloff','20')}</span>`:`<button class="bell ${nb[p].on?'':'off'}" onclick="event.stopPropagation();toggleBell('${p}')">${I(nb[p].on?'bellf':'belloff','20')}</button>`;
+    const sub=p==='Sunrise'?'ليس وقت صلاة':isN?`الصلاة القادمة · ${rel(nxt.secs)}`:(past&&dn.includes(p)?'أتممت الأذكار':'');
+    return `<div class="prow ${isN?'next':''} ${past&&p!=='Sunrise'?'past':''} ${op?'open':''}" onclick="rowTap('${p}')" style="--pc:${PCOL[p]}">
+      <span class="ic">${PIc(p,21)}</span>
+      <span><div class="nm">${pname(p,k)}</div>${sub?`<div class="sb">${sub}</div>`:''}</span>
+      <span style="flex:1"></span>${past&&p!=='Sunrise'?`<span class="ck ${dn.includes(p)?'gd':''}">${I('check','13','stroke-width:2.6')}</span>`:''}
+      <span class="tm">${hm(T[p])}</span>${bell}
+      ${op?rowPanel(p,st):''}</div>`}).join('');
+  const L=S.loc||{};const q=qiblaDeg();
   return `<div class="${dark?'dark':'light'}" style="flex:1;display:flex;flex-direction:column;min-height:0">
   <div class="scroll">
    <div class="hero pt ${dark?'night':'day'}">
-    ${dark?'<div class="moon"></div><div class="deco" style="left:-40px;top:-40px"></div>':'<div class="deco"></div>'}
-    <button class="calbtn pt" style="top:${dark?'40px':'12px'};margin-top:0" onclick="go('month')">${I('cal','20')}</button>
+    ${dark?'<div class="stars"></div>':'<div class="deco"></div>'}
+    <button class="calbtn" onclick="go('month')">${I('cal','20')}</button>
     <div style="padding-top:12px">
-     <div class="loc">${I('pin','18','fill:#fff;stroke:#fff')}<span onclick="go('onboard')">${esc(L.label||'الجزائر العاصمة')}</span></div>
+     <button class="loc" onclick="OB={q:'',sel:null,method:S.method,school:S.school};go('onboard')">${I('pin','18','fill:#fff;stroke:#fff')}<span>${esc(L.label||'الجزائر العاصمة')}</span>${I('chevD','16','opacity:.7')}</button>
      <div class="date">${gDate(k)} · ${hDate(G.day)}</div>
     </div>
     <div class="lbl">${pname(nxt.p,nxt.tomorrow?addDays(k,1):k)} بعد</div>
-    <div class="cd" id="cd">${fmtCd(nxt.secs)}</div>
-    <div class="apw">${off?`<span class="ap">${I('wifioff','18')} من المواقيت المحفوظة</span>`:`<span class="ap">${I('bellf','17')} الأذان <span class="num">${nxt.t}</span></span>`}</div>
-    <div style="height:14px"></div>
+    <div class="cd" id="cd" onclick="CDMODE=!CDMODE;tick()">${fmtCd(nxt.secs)}</div>
+    <div class="apw">${off?`<span class="ap">${I('wifioff','18')} من المواقيت المحفوظة</span>`:`<button class="ap" onclick="rowTap('${nxt.p}')">${I('bellf','17')} الأذان <span class="num">${nxt.t}</span></button>`}</div>
+    <div class="arcw">${sunArc(st)}</div>
    </div>
    ${off?`<div class="offbar" style="margin-top:14px">${I('wifioff','22')}<div>لا يوجد اتصال. نعرض مواقيت محفوظة${G.cachedUntil?` حتى <b>${G.cachedUntil}</b>`:''}، والقبلة والأذكار تعمل بلا إنترنت.</div></div>`:''}
    <div class="card plist" style="${off?'margin-top:12px':''}">${rows}</div>
-   <div class="tiles">
-    <button class="card tile" onclick="go('month')"><span class="ti" style="background:#e2f4ec;color:#2a8a63">${I('grid')}</span><span><b>إمساكية الشهر</b><small>${GM[now.m-1]}</small></span></button>
-    <button class="card tile" onclick="STACK=[];go('qibla',{},false)"><span class="ti" style="background:var(--goldsoft);color:var(--goldink)">${I('compass')}</span><span><b>القبلة</b><small class="num">${qiblaDeg()!=null?Math.round(qiblaDeg())+'°':'—'}</small></span></button>
+   <div class="qa">
+    <button onclick="STACK=[];go('qibla',{},false)"><span style="--c:#2a8a63;--b:#e2f4ec">${QAi('qibla')}</span><b>القبلة</b><small class="num">${q!=null?q.toFixed(0)+'°':'—'}</small></button>
+    <button onclick="go('month')"><span style="--c:#4b5fb0;--b:#e6e9f8">${QAi('month')}</span><b>الإمساكية</b><small>${GM[now.m-1]}</small></button>
+    <button onclick="STACK=[];go('adhkar',{},false)"><span style="--c:#a87a22;--b:#f8ecd3">${QAi('beads')}</span><b>الأذكار</b><small>${dn.length}/5 اليوم</small></button>
+    <button onclick="shareDay('${k}')"><span style="--c:#b0503c;--b:#f8e4df">${QAi('share')}</span><b>مشاركة</b><small>مواقيت اليوم</small></button>
    </div>
    <button class="card" style="margin:0 16px 18px;padding:14px 16px;display:flex;gap:10px;align-items:center;width:calc(100% - 32px);text-align:right" onclick="go('timings',{k:'${k}'})">${I('list','20')}<span style="flex:1;font-weight:600">كل مواقيت اليوم</span>${I('chevL','18')}</button>
   </div>${nav('home')}</div>`;
 };
+let CDMODE=false;
 AFTER.home=()=>{
   const id=setInterval(tick,1000);cleanups.push(()=>clearInterval(id));
+  const id2=setInterval(()=>{if(!document.querySelector('.shade'))refresh()},30000);cleanups.push(()=>clearInterval(id2));
   if(S.loc&&S.loc.lat==null&&!G.qibla)ensureQibla();
 };
 function retry(){loadAll().then(()=>render()).catch(()=>toast('ما زال لا يوجد اتصال'))}
-function toggleBell(p){S.notif[p].on=!S.notif[p].on;save();render();toast(`${S.notif[p].on?'تم تفعيل':'تم إيقاف'} تنبيه ${PAR[p]}`)}
+function toggleBell(p){S.notif[p].on=!S.notif[p].on;save();if(S.notif[p].on)askNotif();render();toast(`${S.notif[p].on?'تم تفعيل':'تم إيقاف'} تنبيه ${PAR[p]}`)}
 let lastNext=null,lastKey=null;
 function tick(){
   const st=state();if(!st)return;
-  const el=document.getElementById('cd');if(el)el.textContent=fmtCd(st.nxt.secs);
+  const el=document.getElementById('cd');if(el){el.textContent=CDMODE?`${pad(st.now.h)}:${pad(st.now.mi)}:${pad(st.now.s)}`:fmtCd(st.nxt.secs);el.classList.toggle('clk',CDMODE)}
+  const lb=document.querySelector('.hero .lbl');if(lb)lb.textContent=CDMODE?'الوقت الآن':`${pname(st.nxt.p,st.nxt.tomorrow?addDays(st.now.key,1):st.now.key)} بعد`;
   // day rollover
   if(lastKey&&lastKey!==st.now.key){lastKey=st.now.key;loadAll().then(refresh);return}
   lastKey=st.now.key;
