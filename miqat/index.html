@@ -687,6 +687,19 @@ html.flat .rg3 .cn{background:#ffffff0e}html.flat .rg3.full .cn{background:#6f9a
 html.flat .rip{display:none}
 html.flat .gc{backdrop-filter:none;background:#ffffff10}
 html.flat .btn.gold,html.flat .sb2 button{background-image:none!important}
+
+/* FLATBG (html.flatbg): backgrounds only — solid, no glow; text untouched */
+html.flatbg .hero.sky-fajr,html.flatbg .mini.sky-fajr{background:#3e465b}
+html.flatbg .hero.sky-duha,html.flatbg .mini.sky-duha{background:#465869}
+html.flatbg .hero.sky-dhuhr,html.flatbg .mini.sky-dhuhr{background:#415868}
+html.flatbg .hero.sky-asr,html.flatbg .mini.sky-asr{background:#415755}
+html.flatbg .hero.sky-maghrib,html.flatbg .mini.sky-maghrib{background:#3f4653}
+html.flatbg .hero.sky-isha,html.flatbg .mini.sky-isha{background:#222936}
+html.flatbg .hero .deco,html.flatbg .stars,html.flatbg .orb,html.flatbg .sunp,html.flatbg .arc [fill="url(#glow)"]{display:none!important}
+html.flatbg .adhan{background:#3f4653}html.flatbg .lock{background:#2f3441}
+html.flatbg .rg3 .cn{background:#ffffff0e}
+html.flatbg .gc{backdrop-filter:none}
+html.flatbg .nx .br i:after,html.flatbg .sb2 button:after{display:none}
 </style>
 </head>
 <body>
@@ -827,7 +840,7 @@ const PGRAD_MATTE={Fajr:'linear-gradient(135deg,#3b4258,#444c62)',Dhuhr:'linear-
 const PGRAD_FLAT={Fajr:'#3e465b',Dhuhr:'#415868',Asr:'#415755',Maghrib:'#3f4653',Isha:'#222936'};
 const PGRAD={};
 function glowMode(){return S.glow||(S.matte===false?'glow':'matte')}
-function applyMatte(){const m=glowMode();Object.assign(PGRAD,m==='flat'?PGRAD_FLAT:m==='matte'?PGRAD_MATTE:PGRAD_GLOW);const c=document.documentElement.classList;c.toggle('matte',m==='matte'||m==='flat');c.toggle('flat',m==='flat')}
+function applyMatte(){const m=glowMode();Object.assign(PGRAD,(m==='flat'||S.flatBg)?PGRAD_FLAT:m==='matte'?PGRAD_MATTE:PGRAD_GLOW);const c=document.documentElement.classList;c.toggle('matte',m==='matte'||m==='flat');c.toggle('flat',m==='flat');c.toggle('flatbg',!!S.flatBg)}
 function cycleGlow(){const o=['glow','matte','flat'];S.glow=o[(o.indexOf(glowMode())+1)%3];save();applyMatte();render();toast('التوهّج: '+GLOWL[S.glow])}
 const GLOWL={glow:'مع توهّج',matte:'مطفي',flat:'بلا توهّج نهائياً'};
 
@@ -1633,6 +1646,7 @@ SCREENS.settings=()=>{
   <div class="card grp">
    <button class="srow" onclick="S.remind=!S.remind;save();askNotif();render()"><span class="ico">${I('tap')}</span><span class="tx"><b>تذكير بالأذكار بعد كل صلاة</b><small>بعد 15–25 د من الأذان حسب الصلاة</small></span><span class="tgl ${S.remind?'on':''}"></span></button>
    ${row('spark','التوهّج',GLOWL[glowMode()]+' · اضغط للتبديل',"cycleGlow()",'')}
+   <button class="srow" onclick="S.flatBg=!S.flatBg;save();applyMatte();render();toast(S.flatBg?'الخلفيات بلا توهّج':'الخلفيات كما كانت')"><span class="ico">${I('cal')}</span><span class="tx"><b>خلفيات بلا توهّج نهائياً</b><small>الخلفيات فقط بلون صلب، والخط كما هو</small></span><span class="tgl ${S.flatBg?'on':''}"></span></button>
    ${row('moon','المظهر',S.appearance==='dark'?'داكن مطفي':'فاتح',"S.appearance=S.appearance==='dark'?'light':'dark';save();render()",'')}
    ${row('font','حجم خط الأذكار',['صغير','متوسط','كبير'][S.font-1],"S.font=S.font%3+1;save();render()",'')}
   </div>
