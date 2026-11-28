@@ -835,6 +835,14 @@ button.ap{color:#fff;font-family:var(--ui)}
 .ntg{width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;align-self:center;color:#8796ad;border:1.6px solid #d5dbe3;background:#fff;transition:all .25s}
 .ntg:active{transform:scale(.9)}.ntg.on{background:#4f8a75;border-color:#4f8a75;color:#fff;animation:nck .35s}
 .nr.cur{box-shadow:0 0 0 2px color-mix(in srgb,#455a75 45%,transparent),0 2px 10px #2a31400d}
+
+/* lottie */
+.okbig{position:relative}
+.okbig .okl{position:absolute;left:50%;top:50%;width:150px;height:150px;transform:translate(-50%,-50%);pointer-events:none;opacity:0;transition:opacity .2s}
+.okbig .okl.lon{opacity:1}
+.okbig:has(.okl.lon)>i{opacity:0}
+.okbig:has(.okl.lon){background:none}
+.lpop{position:absolute;width:76px;height:76px;transform:translate(-50%,-50%);pointer-events:none;z-index:60}
 </style>
 </head>
 <body>
@@ -1310,7 +1318,7 @@ function prayerTL(st){
   setTimeout(()=>{TLANIM=false},700);
   return head+`<div class="pcs">${cols}</div>`+line+det;
 }
-function markPrayed(p){const k=tzNow().key;const a=PRAYED[k]||(PRAYED[k]=[]);const i=a.indexOf(p);if(i>=0)a.splice(i,1);else{a.push(p);toast('تقبّل الله منك 🤍')}LS.set('prayed',PRAYED);if(navigator.vibrate)navigator.vibrate(i>=0?6:[8,40,8]);render()}
+function markPrayed(p){const k=tzNow().key;const a=PRAYED[k]||(PRAYED[k]=[]);const i=a.indexOf(p);if(i>=0)a.splice(i,1);else{a.push(p);toast('تقبّل الله منك 🤍');lotPop()}LS.set('prayed',PRAYED);if(navigator.vibrate)navigator.vibrate(i>=0?6:[8,40,8]);render()}
 function tlTick(st){const pos=pdPos(st);const fl=document.getElementById('pdfl');if(fl)fl.style.width=(pos*80).toFixed(2)+'%';const nw=document.getElementById('pdnw');if(nw)nw.style.right=(10+pos*80).toFixed(2)+'%';
   const c=document.getElementById('tlcd');if(!c)return;c.textContent=fmtCd(st.nxt.secs);const b=document.getElementById('tlbar');if(!b)return;
   if(st.nxt.tomorrow){const tm=G.tomorrow?G.tomorrow.timings:st.T;b.style.width=(Math.max(0,Math.min(1,1-st.nxt.secs/(86400-toSec(st.T.Isha)+toSec(tm.Fajr))))*100).toFixed(2)+'%';return}
@@ -1698,7 +1706,7 @@ let NAF=LS.get('naf',{});
 const RAW=[{k:'Fajr-b',p:'Fajr',w:'قبل',n:2,t:'ركعتا الفجر خير من الدنيا وما فيها',src:'رواه مسلم'},
  {k:'Dhuhr-b',p:'Dhuhr',w:'قبل',n:4},{k:'Dhuhr-a',p:'Dhuhr',w:'بعد',n:2},
  {k:'Maghrib-a',p:'Maghrib',w:'بعد',n:2},{k:'Isha-a',p:'Isha',w:'بعد',n:2}];
-function nafToggle(x){const k=tzNow().key;const a=new Set(NAF[k]||[]);a.has(x)?a.delete(x):a.add(x);NAF[k]=[...a];LS.set('naf',NAF);if(navigator.vibrate)navigator.vibrate(a.has(x)?[8,40,8]:6);
+function nafToggle(x){const k=tzNow().key;const a=new Set(NAF[k]||[]);a.has(x)?a.delete(x):(a.add(x),lotPop());NAF[k]=[...a];LS.set('naf',NAF);if(navigator.vibrate)navigator.vibrate(a.has(x)?[8,40,8]:6);
   const sc=$s.querySelector('.scroll');const t=sc?sc.scrollTop:0;render();const s2=$s.querySelector('.scroll');if(s2)s2.scrollTop=t}
 function nafStreak(){let n=0,k=tzNow().key;const full=d=>RAW.every(r=>(NAF[d]||[]).includes(r.k));if(!full(k))k=addDays(k,-1);while(full(k)){n++;k=addDays(k,-1)}return n}
 function nafNow(st){const {now,T}=st;const s=now.secs,ts=x=>toSec(T[x]);
@@ -1738,6 +1746,14 @@ SCREENS.nawafil=()=>{const st=state();const k=tzNow().key;const dn=NAF[k]||[];
 AFTER.nawafil=()=>{requestAnimationFrame(()=>requestAnimationFrame(()=>{const r=document.getElementById('nfr');if(r)r.style.strokeDashoffset=r.dataset.off}))};
 function nafTick(){const c=document.getElementById('nncd');if(!c)return;const e=Math.max(0,+c.dataset.e-Math.floor((Date.now()-+c.dataset.t)/1000));c.textContent='⁦'+fmtShort(e)+'⁩';if(e<=0)render()}
 
+
+/* Lottie animations (LottieFiles, recoloured to the app palette) */
+const LOT={seal:{"nm":"Main Scene","ddd":0,"h":1000,"w":1000,"meta":{"g":"@lottiefiles/creator@1.88.0"},"layers":[{"ty":4,"nm":"tick Outlines","sr":1,"st":0,"op":70,"ip":0,"hd":false,"ddd":0,"bm":0,"hasMask":false,"ao":0,"ks":{"a":{"a":0,"k":[345.75,275.582,0],"ix":1},"s":{"a":1,"k":[{"o":{"x":0.167,"y":0.167},"i":{"x":0.833,"y":0.833},"s":[0,0,100],"t":10},{"o":{"x":0.167,"y":0.167},"i":{"x":0,"y":1},"s":[11,11,100],"t":11},{"o":{"x":0.303,"y":0},"i":{"x":0,"y":1},"s":[25,25,100],"t":12},{"s":[100,100,100],"t":25}],"ix":6},"sk":{"a":0,"k":0},"p":{"a":1,"k":[{"o":{"x":0.167,"y":0.167},"i":{"x":0.833,"y":0.833},"s":[500,498.175],"t":0},{"o":{"x":1,"y":0},"i":{"x":0,"y":1},"s":[500,498.175,0],"t":12,"ti":[-2.667,-3.333,0],"to":[2.667,3.333,0]},{"s":[516,518.175,0],"t":25,"ti":[2.667,4.415,0],"to":[0,0,0]}],"ix":2},"r":{"a":0,"k":0,"ix":10},"sa":{"a":0,"k":0},"o":{"a":0,"k":100,"ix":11}},"shapes":[{"ty":"gr","bm":0,"hd":false,"mn":"ADBE Vector Group","nm":"Group 1","ix":1,"cix":2,"np":2,"it":[{"ty":"sh","bm":0,"hd":false,"mn":"ADBE Vector Shape - Group","nm":"Path 1","ix":1,"d":1,"ks":{"a":0,"k":{"c":false,"i":[[0,0],[0,0],[-3.46,3.459],[0,0]],"o":[[0,0],[3.459,3.459],[0,0],[0,0]],"v":[[-208.249,3.356],[-76.982,134.623],[-64.454,134.623],[208.249,-138.082]]},"ix":2}},{"ty":"st","bm":0,"hd":false,"mn":"ADBE Vector Graphic - Stroke","nm":"Stroke 1","lc":2,"lj":2,"ml":1,"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":55,"ix":5},"c":{"a":0,"k":[1,1,1],"ix":3}},{"ty":"tr","a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"sk":{"a":0,"k":0,"ix":4},"p":{"a":0,"k":[345.749,275.582],"ix":2},"r":{"a":0,"k":0,"ix":6},"sa":{"a":0,"k":0,"ix":5},"o":{"a":0,"k":100,"ix":7}}]},{"ty":"tm","bm":0,"hd":false,"mn":"ADBE Vector Filter - Trim","nm":"Trim Paths 1","ix":2,"e":{"a":0,"k":100,"ix":2},"o":{"a":0,"k":0,"ix":3},"s":{"a":0,"k":0,"ix":1},"m":1},{"ty":"tm","bm":0,"hd":false,"mn":"ADBE Vector Filter - Trim","nm":"Trim Paths 2","ix":3,"e":{"a":1,"k":[{"o":{"x":0.14,"y":0},"i":{"x":0,"y":1},"s":[0],"t":20},{"o":{"x":0.167,"y":0},"i":{"x":0.658,"y":1},"s":[100],"t":40},{"o":{"x":1,"y":0},"i":{"x":0,"y":1},"s":[100],"t":70},{"s":[50],"t":84}],"ix":2},"o":{"a":0,"k":0,"ix":3},"s":{"a":1,"k":[{"o":{"x":1,"y":0},"i":{"x":0,"y":1},"s":[0],"t":70},{"s":[50],"t":84}],"ix":1},"m":1}],"ind":1},{"ty":4,"nm":"Shape Layer 1","sr":1,"st":0,"op":70,"ip":0,"hd":false,"ddd":0,"bm":0,"hasMask":false,"ao":0,"ks":{"a":{"a":0,"k":[-39.258,-12.281,0],"ix":1},"s":{"a":1,"k":[{"o":{"x":1,"y":0},"i":{"x":0,"y":1},"s":[0,0,100],"t":0},{"o":{"x":0.167,"y":0.167},"i":{"x":0.833,"y":0.833},"s":[170,170,100],"t":25},{"s":[170,170,100],"t":72}],"ix":6},"sk":{"a":0,"k":0},"p":{"a":0,"k":[499.286,489.774],"ix":2},"r":{"a":0,"k":0,"ix":10},"sa":{"a":0,"k":0},"o":{"a":0,"k":100,"ix":11}},"ef":[{"ty":5,"mn":"CC Light Sweep","nm":"CC Light Sweep","ix":1,"en":1,"ef":[{"ty":3,"mn":"CC Light Sweep-0001","nm":"Center","ix":1,"v":{"a":1,"k":[{"o":{"x":0.25,"y":0},"i":{"x":0,"y":1},"s":[-236,250],"t":40},{"s":[956,250],"t":56}],"ix":1}},{"ty":0,"mn":"CC Light Sweep-0002","nm":"Direction","ix":2,"v":{"a":0,"k":-30,"ix":2}},{"ty":7,"mn":"CC Light Sweep-0003","nm":"Shape","ix":3,"v":{"a":0,"k":3,"ix":3}},{"ty":0,"mn":"CC Light Sweep-0004","nm":"Width","ix":4,"v":{"a":0,"k":100,"ix":4}},{"ty":0,"mn":"CC Light Sweep-0005","nm":"Sweep Intensity","ix":5,"v":{"a":0,"k":50,"ix":5}},{"ty":0,"mn":"CC Light Sweep-0006","nm":"Edge Intensity","ix":6,"v":{"a":0,"k":60,"ix":6}},{"ty":0,"mn":"CC Light Sweep-0007","nm":"Edge Thickness","ix":7,"v":{"a":0,"k":0,"ix":7}},{"ty":2,"mn":"CC Light Sweep-0008","nm":"Light Color","ix":8,"v":{"a":0,"k":[0.2,0.8784,0.5451],"ix":8}},{"ty":7,"mn":"CC Light Sweep-0009","nm":"Light Reception","ix":9,"v":{"a":0,"k":2,"ix":9}}]}],"shapes":[{"ty":"gr","bm":0,"hd":false,"mn":"ADBE Vector Group","nm":"Polystar 1","ix":1,"cix":2,"np":3,"it":[{"ty":"sr","bm":0,"hd":false,"mn":"ADBE Vector Shape - Star","nm":"Polystar Path 1","ix":1,"d":3,"ir":{"a":1,"k":[{"o":{"x":0.885,"y":0},"i":{"x":0.398,"y":1},"s":[206],"t":14},{"s":[200],"t":20}],"ix":6},"is":{"a":0,"k":60,"ix":8},"pt":{"a":1,"k":[{"o":{"x":0,"y":0},"i":{"x":0,"y":1},"s":[3],"t":10},{"o":{"x":0.167,"y":0},"i":{"x":0,"y":1},"s":[8],"t":25},{"o":{"x":0.167,"y":0},"i":{"x":0.833,"y":1},"s":[8],"t":70},{"s":[3],"t":84}],"ix":3},"p":{"a":0,"k":[0,0],"ix":4},"or":{"a":0,"k":230,"ix":7},"os":{"a":0,"k":100,"ix":9},"r":{"a":1,"k":[{"o":{"x":0.504,"y":0},"i":{"x":0.265,"y":1},"s":[-80],"t":15},{"s":[15],"t":40}],"ix":5},"sy":1},{"ty":"st","bm":0,"hd":false,"mn":"ADBE Vector Graphic - Stroke","nm":"Stroke 1","lc":1,"lj":1,"ml":4,"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":0,"ix":5},"c":{"a":0,"k":[1,1,1],"ix":3}},{"ty":"fl","bm":0,"hd":false,"mn":"ADBE Vector Graphic - Fill","nm":"Fill 1","c":{"a":0,"k":[0.30980392156862746,0.5411764705882353,0.4588235294117647],"ix":4},"r":1,"o":{"a":0,"k":100,"ix":5}},{"ty":"tr","a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"sk":{"a":0,"k":0,"ix":4},"p":{"a":0,"k":[-39.258,10.004],"ix":2},"r":{"a":0,"k":0,"ix":6},"sa":{"a":0,"k":0,"ix":5},"o":{"a":0,"k":100,"ix":7}}]}],"ind":2}],"v":"5.7.0","fr":30,"op":90,"ip":0,"assets":[]}};
+let LOTLIB=null,PX=null,PY=null;
+document.addEventListener('pointerdown',e=>{PX=e.clientX;PY=e.clientY},true);
+function lotLib(){if(window.lottie)return Promise.resolve(window.lottie);if(LOTLIB)return LOTLIB;LOTLIB=new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie_light.min.js';s.onload=()=>ok(window.lottie);s.onerror=()=>{LOTLIB=null;no()};document.head.appendChild(s)});return LOTLIB}
+function lotPlay(el,k,speed=1,seg){return lotLib().then(L=>{if(!el.isConnected)return;el.classList.add('lon');const a=L.loadAnimation({container:el,renderer:'svg',loop:false,autoplay:!seg,animationData:JSON.parse(JSON.stringify(LOT[k]))});a.setSpeed(speed);if(seg)a.playSegments(seg,true);return a}).catch(()=>{})}
+function lotPop(){if(PX==null)return;const ph=document.getElementById('phone');const r=ph.getBoundingClientRect();const d=document.createElement('div');d.className='lpop';d.style.left=(PX-r.left)+'px';d.style.top=(PY-r.top)+'px';ph.appendChild(d);lotPlay(d,'seal',1.4).then(a=>{if(a)a.addEventListener('complete',()=>d.remove())});setTimeout(()=>d.remove(),2200)}
 /* 11-15 counter */
 let C=null;
 function startAdhkar(p,i=0){
@@ -1842,7 +1858,7 @@ SCREENS.done=()=>{
   const k=tzNow().key;const dn=DONE[k]||[];const st=state();
   const done=C.list.filter((a,i)=>C.cnt[i].reduce((x,y)=>x+y,0)>0).length;const tot=C.cnt.flat().reduce((x,y)=>x+y,0);
   return `<div class="pt dark done" style="flex:1;display:flex;flex-direction:column;min-height:0"><div class="scroll">
-  <div class="okbig"><i>${I('check','60','stroke-width:2.6;color:#fff')}</i></div>
+  <div class="okbig"><i>${I('check','60','stroke-width:2.6;color:#fff')}</i><div class="okl" id="okl"></div></div>
   <h2>تقبّل الله منك</h2><p style="color:#b9c3d6;font-size:13px">أتممت أذكار ما بعد صلاة ${PAR[C.p]} · <span class="num">${Math.floor(C.secs/60)}:${pad(C.secs%60)}</span> دقيقة</p>
   <div class="stats3"><div class="card"><b class="num">${done}</b><small>أذكار</small></div><div class="card"><b class="num">${tot}</b><small>عدة</small></div><div class="card"><b class="num" style="color:var(--gold2)">${streak()}</b><small>أيام متتالية</small></div></div>
   <div class="card" style="margin:12px 16px 0;padding:14px;text-align:right"><b style="font-size:15px">أذكار اليوم</b>
@@ -1852,6 +1868,7 @@ SCREENS.done=()=>{
   <div style="display:flex;gap:10px;padding:12px 16px 26px"><button class="btn gold" style="flex:2.2" onclick="STACK=[];go('home',{},false)">العودة للمواقيت</button><button class="btn" style="flex:1;background:#1d2b45;color:#fff;border:1px solid var(--navyline)" onclick="startAdhkar('${C.p}')">${I('refresh','18')} إعادة</button></div></div>`;
 };
 
+AFTER.done=()=>{const ol=document.getElementById('okl');if(ol)lotPlay(ol,'seal',1,[0,62])};
 /* 18 settings */
 SCREENS.settings=()=>{
   const meth=METHODS.find(m=>m.id===S.method)||{ar:'#'+S.method};const L=S.loc||{};
